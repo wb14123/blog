@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>{% if page.title %} {{ page.title }} | {% endif %} {{ site.title }}</title>
+    <link rel="stylesheet" href="/static/css/default.css" type="text/css" />
+
+    <!-- for google analytic --!>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-26103883-3']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <header id="page_header">
+      <h1>{{ site.title }}</h1>
+      <h2 id="description">{{ site.description }}</h2>
+
+      <nav id="page_nav">
+        <ul>
+          <li><a href="{{ site.baseurl }}">home</a></li>
+          <li><a href="/search.html">search</a></li>
+          {% for category in site.categories %}
+          <li><a href="{{ site.baseurl }}categories/{{ category[0] }}">{{ category[0] }} </a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </header>
+
+    <section id="page_content">
+      {{ content }}
+    </section>
+
+    <footer id="page_footer">
+      Copyright @ 2012 Bin Wang
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="/static/images/cc.png" /></a><br />Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 China Mainland License</a>.
+    </footer>
+  </body>
+</html>

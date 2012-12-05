@@ -1,0 +1,95 @@
+
+body{
+  width:90%;
+  margin:15px auto;
+  padding: 0% 5% 5% 5%;
+  font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
+}
+
+code{
+  background: rgb(220, 220, 220);
+  color:#000;
+}
+
+pre{
+  text-indent:0;
+  border-color:#000;
+  border-style:dashed;
+  border-width:1px;
+  display:block;
+  margin:10px 0 0 0;
+  padding:10px 0 10px 5px;
+  background: rgb(220, 220, 220);
+  color:#000;
+}
+
+p, li{
+  line-height: 20px;
+}
+
+a{
+  color: blue;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+} 
+
+#post_list table{
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+}
+#post_list th, td{
+  border: none;
+//  min-width: 50%;
+}
+#post_list #title{
+  font-size: x-large;
+}
+#comment{
+  padding-top: 20px;
+}
+
+
+header#page_header{
+  width:100%;
+  text-align: right;
+}
+
+header#page_header nav ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#page_header nav ul li{
+  padding: 0;
+  margin: 0 20px 0 0;
+  display: inline;
+}
+
+footer#page_footer{
+  clear: both;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 20px 0 0 0;
+  font-size: small; 
+}
+
+#description {
+  font-style: italic;
+}
+
+#post h1{
+  font-size: 28px;
+  font-family: sans-serif;
+}
+#post h2{
+  font-size: 22px;
+  font-weight: normal;
+}
+#post h3{
+  font-size: 20px;
+  font-weight: normal;
+}
