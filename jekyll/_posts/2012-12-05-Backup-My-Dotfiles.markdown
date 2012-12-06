@@ -15,7 +15,7 @@ Using github to backup dotfiles is really a comfortable way. In this way, you ca
 + Keep different versions for different machines (Such as for desktop and laptop). Just use branch to control them.
 + If you are using vim plugins from git repo or something like [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), you could simple use git submodule to keep track of them.
 
-The basic idea is put configure files in a directory such as `dotfile` and use git to track it. Then make a symbolic link to home. However, manual make symbolic links is boring. Firstly I am thinking of use the same directory structure as `~/` and then automatic link them. But there comes some problems: for some directories such as `.vim`, we should make a link for them while for some directories such as `.config`, we may only want to link `openbox` under it to `~/.config/openbox`. It seems impossible to use a automatic way totally. But some shell code could make life a little easy:
+The basic idea is put configure files in a directory such as `dotfile` and use git to track it. Then make a symbolic link to home. However, manual make symbolic links is boring. Firstly I am thinking of use the same directory structure as `~/` and then automatic link them. But there comes some problems: for some directories such as `.vim`, we should make a link for them while for some directories such as `.config`, we may only want to link `openbox` under it to `~/.config/openbox`. It seems impossible to use an automatic way totally. But some shell code could make life a little easy:
 
 	check_link() {
 		LINK=`pwd`/$1
