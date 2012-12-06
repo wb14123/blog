@@ -6,7 +6,7 @@ layout : default
   <header>
     <h1>{{ page.title }}</h1>
     <p id="description">
-      Posted on {{ page.date | date_to_string }}, in <code>{{ page.categories | array_to_sentence_string}}</code>, tagged <code>{{ page.tags | array_to_sentence_string }}</code>
+    Posted on {{ page.date | date_to_string }}, in {% for cat in page.categories %}<code>{{ cat }}</code>{% endfor %}, tagged {% for tag in page.tags %}<code>{{ tag }}</code>{% endfor %}
     </p>
   </header>
   {{ content }}
