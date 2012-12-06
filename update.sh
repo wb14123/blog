@@ -16,13 +16,12 @@ jekyll
 
 echo "Upload blog source code..."
 cd $BASE_DIR
-rm -r $GIT_DIR/*
-cp -r $J_DIR/_site/* $GIT_DIR/
-cd $GIT_DIR
 push
 
 echo "Upload site..."
-cd $BASE_DIR
+rm -r $GIT_DIR/*
+cp -r $J_DIR/_site/* $GIT_DIR/
+cd $GIT_DIR
 push
 
 exit $?
