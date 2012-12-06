@@ -22,6 +22,7 @@ cd $GIT_DIR
 push
 
 echo "Upload blog source code..."
+git submodule update
 cd $BASE_DIR
 push
 
