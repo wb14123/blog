@@ -30,9 +30,9 @@
            <li>Categories:</li>
            {% for category in site.categories %}
              {% if page.title == category[0] %}
-               <li id="selected"><a href="{{ site.baseurl }}categories/{{ category[0] }}">{{ category[0] }}</a></li>
+               <li id="selected"><a href="{{ site.baseurl }}/{{ category[0] }}">{{ category[0] }}</a></li>
              {% else %}
-               <li><a href="{{ site.baseurl }}categories/{{ category[0] }}">{{ category[0] }}</a></li>
+               <li><a href="/{{ category[0] }}">{{ category[0] }}</a></li>
              {% endif %}
            {% endfor %}
          </ul></td>
