@@ -2,7 +2,7 @@
 ---
 layout: post
 title: Remove Categories
-tags: [blog, category, tag]
+tags: [blog, category, pagination, tag]
 ---
 
 I removed categories from my blog today. I did this for some reasons:
