@@ -7,7 +7,7 @@ tags: [blog, category, tag]
 
 I removed categories from my blog today. I did this for some reasons:
 
-* I need paginate. But there is no neat way to paginate in categories index.
+* I need pagination. But there is no neat way to paginate in categories index.
 * I can focus on writing but not on thinking which category I choose for my new post.
 * Tags is enough. Though index by tags is not available now, I will figure out a way.
 * It keeps this site more simple!
