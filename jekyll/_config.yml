@@ -1,5 +1,6 @@
 title:       Crazy Hot Ice
 description: Learning, Researching, Sharing
+paginate: 20
 
 safe:        false
 auto:        false
@@ -18,7 +19,7 @@ future:      true
 lsi:         false
 pygments:    false
 markdown:    maruku
-permalink:   date
+permalink:   /:title.html
 
 maruku:
   use_tex:    false

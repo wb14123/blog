@@ -25,18 +25,7 @@
       <h2 id="description">{{ site.description }}</h2>
 
       <nav id="page_nav">
-      <table><tr>
-         <td id="cat"><ul>
-           <li>Categories:</li>
-           {% for category in site.categories %}
-             {% if page.title == category[0] %}
-               <li id="selected"><a href="{{ site.baseurl }}categories/{{ category[0] }}">{{ category[0] }}</a></li>
-             {% else %}
-               <li><a href="{{ site.baseurl }}categories/{{ category[0] }}">{{ category[0] }}</a></li>
-             {% endif %}
-           {% endfor %}
-         </ul></td>
-         <td id="page"><ul>
+        <ul>
            {% if page.title == 'home' %}
              <li id="selected"><a href="{{ site.baseurl }}">home</a></li>
            {% else %}
@@ -48,8 +37,7 @@
              <li><a href="/search.html">search</a></li>
            {% endif %}
              <li><a href="/feed.xml">feed</a></li>
-          </ul></td>
-      </tr></table>
+       </ul>
       </nav>
 
     </header>
