@@ -7,6 +7,13 @@ tags: [composition, MathJex, LaTex]
 
 Never ever say you are a geek if you don't have some mathematical formulas on your website! I have done so though [MathJex](http://www.mathjax.org)`:)`. Here are some examples:
 
+Code:
+
+	$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+	$$ |s_n - s_m|=|\sum_{k=m+1}^n u_{k}|=|u_{m+1}+u_{m+2}+...+u_{n}| \lt \epsilon $$
+
+Result:
+
 <span>$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$</span>
 
 <span>$$ |s_n - s_m|=|\sum_{k=m+1}^n u_{k}|=|u_{m+1}+u_{m+2}+...+u_{n}| \lt \epsilon $$</span>
