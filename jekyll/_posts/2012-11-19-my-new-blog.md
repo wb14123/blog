@@ -5,7 +5,7 @@ categories: workspace
 tags: [blog, jekyll]
 ---
 
-This is my new blog website, just as simple and as good as my imagine. It is powered by jekyll - a ruby tool to generate a static website. I am using wordpress writing a Chinese blog, too. But its editor is not good enough to write with. On the other hand, jekyll makes it possible to write with markdown, which is really a good tool for writing. Also, a static website is efficient and awesome.
+This is my new blog website, just as simple and as good as my imagine. It is powered by jekyll - a ruby tool to generate a static website. I am using wordpress to write a Chinese blog, too. But its editor is not good enough to write with. On the other hand, jekyll makes it possible to write with markdown, which is really a good tool for writing. Also, a static website is efficient and awesome.
 
 But this site is too simple now. There are some features I missed, such as search box, comment, archives by date, index by tags and so on. Some of them could be solved by third party, and some of them could be solved by plugins. But it makes the blog not so simple any more.
 
