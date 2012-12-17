@@ -31,17 +31,10 @@
 
       <nav id="page_nav">
         <ul>
-           {% if page.title == 'home' %}
-             <li id="selected"><a href="{{ site.baseurl }}">home</a></li>
-           {% else %}
-             <li><a href="{{ site.baseurl }}">home</a></li>
-           {% endif %}
-           {% if page.title == 'search' %}
-             <li id="selected"><a href="/search.html">search</a></li>
-           {% else %}
-             <li><a href="/search.html">search</a></li>
-           {% endif %}
-             <li><a href="/feed.xml">feed</a></li>
+             <li><a href="{{ site.baseurl }}">Home</a></li>
+             <li><a href="/search.html">Search</a></li>
+             <li><a href="/about.html">About</a></li>
+             <li><a href="/feed.xml">Feed</a></li>
        </ul>
       </nav>
 
