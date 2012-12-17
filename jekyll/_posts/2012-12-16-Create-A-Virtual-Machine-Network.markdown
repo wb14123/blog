@@ -23,4 +23,4 @@ I'm quite happy with these now. I could
 + Do experiments in multi-host environment.
 + Test whatever on any OS and need nothing to worry about.
 
-After all, I want to say something about virtaulization. I think the only useful situation of virtaulization is testing, learning or trying to do something for fun. I'm not saying it is not important. When a technology could let us do some funny things, it well be really awesome and important.
+After all, I want to say something about virtaulization. I think the only useful situation of virtaulization is testing, learning or trying to do something for fun. I'm not saying it is not important. When a technology could let us do some funny things, it will be really awesome and important.
