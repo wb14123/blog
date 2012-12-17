@@ -15,6 +15,8 @@ cd $J_DIR
 jekyll
 
 echo "Upload site..."
+cd $GIT_DIR
+git checkout master
 cd $BASE_DIR
 rm -r $GIT_DIR/*
 cp -r $J_DIR/_site/* $GIT_DIR/
