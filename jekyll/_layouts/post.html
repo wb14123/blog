@@ -9,7 +9,19 @@ layout : default
     Posted on {{ page.date | date_to_string }}, tagged {% for tag in page.tags %}<code>{{ tag }}</code>{% endfor %}
     </p>
   </header>
+
   {{ content }}
+
+  <footer id="post_footer">
+  <table><tr>
+    {% if page.previous %}
+      <td id="prev"><a href="{{ page.previous.url }}">Prev: {{ page.previous.title}}</a></td>
+    {% endif %}
+    {% if page.next %}
+      <td id="next"><a href="{{ page.next.url }}" id="next">Next: {{ page.next.title }}</a></td>
+    {% endif %}
+  </tr></table>
+  </footer>
 </article>
 
 <section id="comment">
