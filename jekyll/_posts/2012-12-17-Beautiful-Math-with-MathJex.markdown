@@ -5,7 +5,7 @@ title: Beautiful Math with MathJex
 tags: [composition, MathJex, LaTex]
 ---
 
-Never ever say you are a geek if you don't have some mathematical formula on your website! I have done so though [MathJex](http://www.mathjax.org)`:)`. Here are some examples:
+Never ever say you are a geek if you don't have some mathematical formulas on your website! I have done so though [MathJex](http://www.mathjax.org)`:)`. Here are some examples:
 
 <span>$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$</span>
 
