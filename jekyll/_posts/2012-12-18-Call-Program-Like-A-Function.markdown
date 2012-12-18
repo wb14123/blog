@@ -7,7 +7,7 @@ tags: [shell, formal language]
 
 What's the most important application for Linux users? The answer must be shell. It comes out the ability to combine tools together to solve complex problem. It is a little like function, such as `A | B` could respect as `A(B(x))`. But it is not so powerful. For example, how do you respect the format `A(B(x), C(y))` in a shell?
 
-So here comes some libraries to call command like a function in programming languages. They are interesting but you may not want use them in a real project. Let's take a look first and then we will talk about them.
+So here comes some libraries to call command like a function in programming languages. They are interesting but you may not want to use them in a real project. Let's take a look first and then we will talk about them.
 
 ## [Sh](http://amoffat.github.com/sh/) (Python)
 
