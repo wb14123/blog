@@ -14,6 +14,7 @@ category_title_prefix: ''
 source:      .
 destination: ./_site
 plugins:     ./_plugins
+pygments:    true
 
 future:      true
 lsi:         false
