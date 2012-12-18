@@ -18,6 +18,6 @@ Result:
 
 <span>$$ |s_n - s_m|=|\sum_{k=m+1}^n u_{k}|=|u_{m+1}+u_{m+2}+...+u_{n}| \lt \epsilon $$</span>
 
-Now lets try some inline formulas, such as you may except <span>\(b \ne 0\)</span> in expression <span>\(a \over b\)</span> and the famous formula <span>\(E = mc^2\)</span> from Einstein.
+Now let's try some inline formulas, such as you may except <span>\(b \ne 0\)</span> in expression <span>\(a \over b\)</span> and the famous formula <span>\(E = mc^2\)</span> from Einstein.
 
 However, there are some issues to use MathJex with Markdown because symbols in formula will be parsed by Markdown first. The easiest way to avoid this is surrounding your formula with `<span>` since Markdown will parse nothing in a html/xml block. Such as `<span>\(a \ne 0\)</span>` for a inline formula <span>\(a \ne 0\)</span>.
