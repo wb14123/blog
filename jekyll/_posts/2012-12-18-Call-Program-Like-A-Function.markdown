@@ -54,4 +54,4 @@ I'm pretty proud to say it is written by one of my old colleagues. It has [a dis
 
 ## Conclusion
 
-So after all, you may ask: why not just use these language's REPL as a shell? It provides more power! But thinking of the daily life on Linux, how many times will you use these "advance features"? Instead, if you prefer the "function style shell", you need to type many parentheses, quotes and so on. I think the current ability of shell maybe not the most complete, but it is the most efficient way to work.
+So after all, you may ask: why not just use these language's REPL as a shell? It provides more power! But thinking of the daily life on Linux, how many times will you use these "advance features"? Instead, if you prefer the "function style shell", you need to type many parentheses, quotes and so on. I think the current shell may not provides the most complete ability, but it provides the most efficient way to work.
