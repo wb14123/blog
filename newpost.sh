@@ -19,5 +19,5 @@ tags: []
 ---
 " > $FILE_NAME
 
-vim $FILE_NAME
+vim -c "set spell" $FILE_NAME
 
