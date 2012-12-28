@@ -1,7 +1,7 @@
 
 ---
 layout: post
-title: Comparison Between Linux Desktop Environment
+title: Comparison Between Linux Desktop Environments
 tags: [Openbox, Xfce4, LXDE, Gnome, KDE, UI]
 ---
 
