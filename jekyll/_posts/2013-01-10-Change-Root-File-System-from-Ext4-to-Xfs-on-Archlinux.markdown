@@ -9,7 +9,7 @@ tags: [ext4, xfs, initramfs, backup]
 
 ## 1. Make a xfs partation
 
-Note: A xfs partation cannot be shrunk
+Note: a xfs partation cannot be shrunk. And if you don't have a splite boot partation, you should make one with `ext2` since grub don't support xfs well.
 
 ## 2. Copy files with tar
 
