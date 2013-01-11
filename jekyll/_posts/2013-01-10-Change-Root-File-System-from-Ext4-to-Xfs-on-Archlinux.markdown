@@ -32,7 +32,7 @@ In the boot process, kernel use initramfs as root first, then mount the real roo
 	fsck.xfs: file not found
 	mount: unknown filesystem type "xfs"
 
-In this case,  you need to modify initramfs. In archlinux, you can do it with [mkinitcpio](https://wiki.archlinux.org/index.php/mkinitcpio).
+In this case,  you need boot into your old ext4 root partation and modify initramfs. In archlinux, you can do it with [mkinitcpio](https://wiki.archlinux.org/index.php/mkinitcpio).
 
 Just add `xfs` to kernel modules and `fsck.xfs` to binary files in `/etc/mkinitcpio.conf`: 
 
