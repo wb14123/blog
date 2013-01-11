@@ -27,7 +27,7 @@ And the down side of them is:
 
 * Difficult to configure unless you are skillful.
 * Difficult to make it beautiful unless you have artistic talent.
-* You need to install lots of programs to provide some useful feature and make it not so ugly. After that, you will find you have installed lots of libraries for other desktop environment.
+* You need to install lots of programs to provide some useful feature and make it not so ugly. After that, you will find you have installed lots of libraries from other desktop environment.
 
 ## Simple Desktop: [Xfce 4](http://xfce.org/) And [LXDE](http://lxde.org/)
 
