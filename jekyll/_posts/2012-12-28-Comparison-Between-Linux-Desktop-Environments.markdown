@@ -21,7 +21,7 @@ I have used openbox for a long time until I have installed Archlinux on a Macboo
 
 The truth about you can control everything is, you *have to* control them. You can configure other environment easily, too. Include the shortcuts, autostart programs and so on. (Except for Gnome, we will talk about it later).
 
-It is cool about tilling window manager such as awesome. But it really makes a person crazy to use so many shortcuts. For example, I use shortcuts in chrome, vim, terminal, tmux, desktop eviroment and so on. I don't thought there are so many easy-to-press shortcuts. While you want tilling, you could use tmux or screen in your terminal, or using Gnome and KDE to till windows.
+It is cool about tilling window manager such as awesome. But it really makes a person crazy to use so many shortcuts. For example, I use shortcuts in chrome, vim, terminal, tmux, desktop eviroment and so on. I don't think there are so many easy-to-press shortcuts. While you want tilling, you could use tmux or screen in your terminal, or using Gnome and KDE to till windows.
 
 And the down side of them is:
 
