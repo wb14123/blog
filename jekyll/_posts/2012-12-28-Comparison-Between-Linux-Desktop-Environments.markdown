@@ -17,7 +17,7 @@ The bright side to use a window manager combined with little programs is:
 * You feel like you can control everything.
 * It is cool.
 
-I have used openbox for a long time until I have installed Archlinux on a Macbook Pro. I can hardly found any performance difference between openbox and Gnome 3. Desktop environment is not the biggest thing about performance. Thinking about Chrome, Firefox, Eclipse and so on. While you upgrade your RAM for these applications, you can use a more advanced desktop environment at the same time.
+I have used openbox for a long time until I have installed Archlinux on a Macbook Pro. I can hardly found any performance difference between openbox and Gnome 3 after that. Desktop environment is not the biggest thing about performance. Thinking about Chrome, Firefox, Eclipse and so on. While you upgrade your RAM for these applications, you can use a more advanced desktop environment at the same time.
 
 The truth about you can control everything is, you *have to* control them. You can configure other environment easily, too. Include the shortcuts, autostart programs and so on. (Except for Gnome, we will talk about it later).
 
