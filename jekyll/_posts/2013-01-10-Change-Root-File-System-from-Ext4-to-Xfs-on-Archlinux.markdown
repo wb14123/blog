@@ -21,7 +21,7 @@ I just exclude two directories for an example. You should exclude all mounted fi
 
 	tar  -cf - <ext4_mount_path> | ( cd <xfs_mount_path> ; tar -xpvf - )
 
-## 3. Modify grub config and fstab
+## 3. Config grub and modify fstab
 
 There is nothing special here. Just modify your [grub config](https://wiki.archlinux.org/index.php/GRUB) and [fstab](https://wiki.archlinux.org/index.php/fstab) in your xfs partation to adapt the new partation. Remember to make an entry for your old root file system while config the grub. Then you could try to reboot. If the system could not mount xfs partation, you may want to boot with the old ext4 root partation and modify initramfs for xfs support as bellow.
 
