@@ -39,7 +39,7 @@ It is a famous holy war between Gnome and KDE. I will talk about Gnome first.
 
 I prefer Gnome at the earlier time because KDE "looks like Windows". Gnome 2 is my first desktop environment and I love it. While Ubuntu uses Unity to instead it, I changed to Archlinux with Gnome 3. After a long time, I found MATE(a fork of Gnome 2) and Cinnamon(a fork of Gnome 3). The problem of Gnome 3 is it tries to take care of all thing but it is not so complete enough. MATE is as comfortable as Gnome 2 but it feels not so "modern". Cinnamon is also good and I used it for a long time. Gnome 3 may not as good as people's except but it has a good move. *The biggest problem of Gnome is it uses dconfig!* How could it just use a binary format to store configures. Why could not I just grep a setting but could only click and found it? It is the most silly thing in the non-Windows world.
 
-So I decide to give KDE a try. I surprisingly found it provides a more complete environment than Gnome. It also tries to take over all things but it dose a good job. And it is really more beautiful and comes out with more good theme. I feels happy with it now.
+So I decide to give KDE a try. I surprisingly found it provides a more complete environment than Gnome. It also tries to take over all things but it dose a good job. And it is really more beautiful and comes out with more good themes. I feels happy with it now.
 
 ## Also Good to Try: [Enlightenment(E17)](http://enlightenment.org)
 
