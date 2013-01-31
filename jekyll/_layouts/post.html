@@ -11,8 +11,9 @@ layout : default
   </header>
 
   {{ content }}
+</article>
 
-  <footer id="post_footer">
+<footer id="post_footer">
   <table><tr>
     {% if page.previous %}
       <td id="prev"><a href="{{ page.previous.url }}">Prev: {{ page.previous.title}}</a></td>
@@ -21,8 +22,7 @@ layout : default
       <td id="next"><a href="{{ page.next.url }}" id="next">Next: {{ page.next.title }}</a></td>
     {% endif %}
   </tr></table>
-  </footer>
-</article>
+</footer>
 
 <section id="comment">
   <div id="disqus_thread"></div>
