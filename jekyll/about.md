@@ -14,7 +14,7 @@ This website is a "notebook" to record my thought, work and life. I'd like to sh
 
 ## Where I have been
 
-<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=204236959460305841788.0004d4e366ce3bcc53d91&amp;ie=UTF8&amp;ll=34.459834,119.900322&amp;spn=22.69199,13.270798&amp;t=m&amp;output=embed">
+<iframe width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=204236959460305841788.0004d4e366ce3bcc53d91&amp;ie=UTF8&amp;ll=34.459834,119.900322&amp;spn=22.69199,13.270798&amp;t=m&amp;output=embed">
 </iframe>
 <br>
 </br>
