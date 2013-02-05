@@ -1,0 +1,27 @@
+---
+layout: post
+title: Read
+---
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script>
+var url = 'http://api.douban.com/v2/book/user/42177876/collections?count=100&alt=xd&callback=?';
+$.getJSON(url, function(data){
+  var col = data.collections;
+  $.each(data.collections, function (i, item) {
+    if (item.status === 'read')
+      $("<img/>").attr("src", item.book.images.medium).appendTo("#read");
+    else if (item.status === 'reading')
+      $("<img/>").attr("src", item.book.images.medium).appendTo("#reading");
+    else if (item.status === 'wish')
+      $("<img/>").attr("src", item.book.images.medium).appendTo("#wish");
+  });
+});
+</script>
+
+<h2>I have read</h2>
+<div id="read"></div>
+<h2>I'm reading</h2>
+<div id="reading"></div>
+<h2>I wish to read</h2>
+<div id="wish"></div>
