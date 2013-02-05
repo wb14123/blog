@@ -1,12 +1,14 @@
 #!/bin/bash
 
+COMMENT=$1
+
 BASE_DIR=`pwd`
 J_DIR="./jekyll"
 GIT_DIR="./wb14123.github.com"
 
 push() {
 	git add -A .
-	git commit -m "Changed at $(date)"
+	git commit -m "$COMMENT"
 	git push origin master
 }
 
