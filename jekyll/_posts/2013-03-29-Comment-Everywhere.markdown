@@ -1,6 +1,6 @@
 ---
 layout: post
-title: My New Project Comment Everywhere
+title: Comment Everywhere
 tags: [programming, life, chrome, javascript]
 ---
 
