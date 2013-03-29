@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Call Program Like A Function

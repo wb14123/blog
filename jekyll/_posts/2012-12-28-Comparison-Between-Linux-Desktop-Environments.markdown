@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Comparison Between Linux Desktop Environments

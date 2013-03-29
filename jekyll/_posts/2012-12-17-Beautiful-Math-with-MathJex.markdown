@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Beautiful Math with MathJex

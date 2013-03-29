@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Change Root File System from Ext4 to Xfs on Archlinux

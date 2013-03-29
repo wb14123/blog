@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: How Kernel's Makefile Specify Output Directory

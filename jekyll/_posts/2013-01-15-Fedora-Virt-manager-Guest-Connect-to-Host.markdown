@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Fedora Virt-manager Guest Connect to Host

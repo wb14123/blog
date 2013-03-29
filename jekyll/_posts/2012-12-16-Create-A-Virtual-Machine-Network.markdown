@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Create A Virtual Machine Network
