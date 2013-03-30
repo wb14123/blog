@@ -4,7 +4,7 @@ title: Comment Everywhere
 tags: [programming, life, chrome, javascript]
 ---
 
-Except looking for a job, these days I'm working on a new chrome extension: [comment everywhere](http://www.crazyhotice.com/comment_everywhere). It is an extension to allow you to comment on any web pages. It will have these features:
+These days I'm working on a new chrome extension: [comment everywhere](http://www.crazyhotice.com/comment_everywhere). It is an extension to allow you to comment on any web pages. It will have these features:
 
 * Of cause, comment on any web pages.
 * Show the web pages you have comment.
