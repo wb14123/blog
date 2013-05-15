@@ -29,3 +29,13 @@ There are also other things. I learned Go and write a simple application to fetc
 ## D&D
 
 I'm wondering if it could be count as "work". I really use some time to learn the rules. I'm thinking about to write a web app to play it. But what I need to do is to play it in the real world first.
+
+## Next Plans
+
+1. Continue writing *comment everywhere*.
+2. Continue reading and understanding kernel code. Find what I could do to develop kernel.
+3. Learn more about asynchronous and concurrence. There is [a good book](https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html), I will read it.
+4. Read *Concrete Mathematics*. I feel I'm a little weak on mathematics now.
+5. If possible, play D&D!
+
+I don't know if I have time to do all of them. But I will do my best.
