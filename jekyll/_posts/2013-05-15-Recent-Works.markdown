@@ -24,7 +24,7 @@ And my simple patch about kconfig has been accepted. Though it is only a little 
 
 ## New Languages
 
-There are also other things. I learned Go and write a simple application to fetch Weibo data. And I'm thinking about to learn erlang. It is said to be designed for the "concurrent world". I have write some node.js code these days, and have some more thoughts about asynchronous and concurrence. They are a little mystery for me in the past. But after read some Linux kernel code and learn some new languages, I feel like I'm lifting the veil.
+I learned Go and write a simple application to fetch Weibo data. And I'm thinking about to learn erlang. It is said to be designed for the "concurrent world". I have write some node.js code these days, and have some more thoughts about asynchronous and concurrence. They are a little mystery for me in the past. But after read some Linux kernel code and learn some new languages, I feel like I'm lifting the veil.
 
 ## D&D
 
