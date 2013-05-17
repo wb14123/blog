@@ -9,7 +9,7 @@ I also list [where I have been](/travel.html) and [what I have read](/read.html)
 
 If you want to search something in this website. You can click [search](/search.html) above. It is powered by Google, so it may not has a good timeliness.
 
-At last, here are some of my informations.
+Here are some of my informations.
 
 + Email: [wbin00@gmail.com](mailto:wbin00@gmail.com)
 + Github: [Bin Wang(wb14123)](https://github.com/wb14123)
@@ -18,3 +18,6 @@ At last, here are some of my informations.
 + Twitter: [@Bingo_Wang](https://twitter.com/Bingo_Wang)
 + Weibo: [@疯狂的烤冰](https://weibo.com/kaobing)
 
+And this is the visiters from world.
+
+<script type="text/javascript" src="http://jc.revolvermaps.com/2/1.js?i=2k51nw9zim6&amp;s=350&amp;m=5&amp;v=true&amp;r=true&amp;b=000000&amp;n=false&amp;c=ff0000" async="async"></script>
