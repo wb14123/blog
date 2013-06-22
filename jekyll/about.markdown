@@ -17,7 +17,3 @@ Here are some of my informations.
 + Linkedin: [Bin Wang](http://www.linkedin.com/profile/view?id=128350957)
 + Twitter: [@Bingo_Wang](https://twitter.com/Bingo_Wang)
 + Weibo: [@疯狂的烤冰](https://weibo.com/kaobing)
-
-And this is the visiters from world.
-
-<script type="text/javascript" src="http://jc.revolvermaps.com/2/1.js?i=2k51nw9zim6&amp;s=350&amp;m=5&amp;v=true&amp;r=true&amp;b=000000&amp;n=false&amp;c=ff0000" async="async"></script>
