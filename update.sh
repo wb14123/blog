@@ -14,7 +14,7 @@ push() {
 
 echo "Jekyll generate site..."
 cd $J_DIR
-jekyll
+jekyll build
 
 echo "Upload site..."
 cd $BASE_DIR
