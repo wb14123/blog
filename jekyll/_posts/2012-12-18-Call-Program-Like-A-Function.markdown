@@ -14,7 +14,7 @@ This library contains many advanced features and is well documented.
 
 	# sort this directory by biggest file
 	print(sort(du(glob("*"), "-sb"), "-rn"))
-	
+
 	# print(the number of folders and files in /etc
 	print(wc(ls("/etc", "-1"), "-l")))
 
@@ -23,7 +23,7 @@ This library contains many advanced features and is well documented.
 Using perl with shell command is always comfortable.
 
 	use Shell qw(cat ps cp);
-	
+
 	$passwd = cat('</etc/passwd');
 	@pslines = ps('-ww'),
 	cp("/etc/passwd", "/tmp/passwd");
@@ -40,14 +40,14 @@ Scheme is a great and purl language. But scsh seems like a dead project. You can
 It is written by one of my old colleagues. It has [a discuss on Hacker News](http://news.ycombinator.com/item?id=4553076).
 
 	(require '[shake.static :as sh])
-	
+
 	;; any shell command ...
 	(sh/uname -a) ;;returns a #<UNIXProcess java.lang.UNIXProcess@1833160>
-	
+
 	;; using clojure variables (vars, local bindings) in shake
 	(let [home "/home/sunng87"]
 	  (sh/ls -l $home))
-	
+
 	;; using clojure forms in shake
 	(sh/curl $(format "https://github.com/%s" "sunng87"))
 
