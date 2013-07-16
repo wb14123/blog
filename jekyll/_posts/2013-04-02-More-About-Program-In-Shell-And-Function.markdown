@@ -4,7 +4,7 @@ title: More About Program In Shell And Function
 tags: [shell, formal language]
 ---
 
-Some months ago, I wrote a blog named "[Call Program Like A Function](http://www.crazyhotice.com/2012-12-18-Call-Program-Like-A-Function.html)". In this blog, I said using pipe in shell is like calling function: `A | B` is like `A(B())`. And I also said it's difficult to write in shell like `A(B(), C())`. Read this blog again today, I realize this thought is not totally right.
+Some months ago, I wrote a blog named "[Call Program Like A Function](/2012-12-18-Call-Program-Like-A-Function.html)". In that blog, I said using pipe in shell is like calling function: `A | B` is like `A(B())`. And I also said it's difficult to write in shell like `A(B(), C())`. Read this blog again today, I realize this thought is not totally right.
 
 The thought above is based on this suppose: If we see program in shell like the function in programming, then the arguments of this "function" is standard input, the result of the "function" is standard output. There could only be one standard input, so the "function" must have one argument. In this way, there is no way to call program like `A(B(), C())`. But we could discuss these two points.
 
