@@ -6,7 +6,7 @@ tags: [erlang, rebar]
 
 These days I start learning erlang, and building a poker robot system. While I am learning it, I found the most difficult part is not the function style programming, nor the OTP system. The most difficult part is how to build and run erlang. Surely you can write an erlang module and run the functions from the erlang shell when you do exercises, but it is a little disturbing. And you surely don't want to do that in the production environment. The erlang way and reltool is a little difficult for the newbies. Thanks to rebar, we can do it much easier now.
 
-[Rebar](https://github.com/basho/rebar) is a very good tool to build and run erlang applications. It could automatic get dependencies, run it as a daemon, attach it and hot load code. I'm wonder why there is no book about erlang introduced it. Even the book *Learn You Some Erlang for Great Good*, which is published this year. The rebar offical wiki is a little simple. I will record how am I using rebar to build erlang applications.
+[Rebar](https://github.com/basho/rebar) is a very good tool to build and run erlang applications. It could automatic get dependencies, run it as a daemon, attach it and hot load code. I'm wonder why there is no book about erlang introduced it. Even the book *Learn You Some Erlang for Great Good*, which is published this year. The rebar official wiki is a little simple. I will record how am I using rebar to build erlang applications.
 
 Basic
 ----------------------
@@ -71,15 +71,15 @@ You can put test codes in subdirectory `test`. While run `rebar test`, rebar com
 Run the Application
 ---------------------------
 
-Here comes the most important part. We will build and run our application. The rebar offical wiki has an airticle about how to handle release, but it doesn't menstion how to handle release with dependencies. I will introduce how I do it.
+Here comes the most important part. We will build and run our application. The rebar official wiki has an article about how to handle release, but it doesn't mention how to handle release with dependencies. I will introduce how I do it.
 
-We already know we could use `rebar compile` to compile the codes. But it only put objecct files in `ebin/`, we also need to run them in the shell manually if we want:
+We already know we could use `rebar compile` to compile the codes. But it only put object files in `ebin/`, we also need to run them in the shell manually if we want:
 
 	erl -pa ./ebin ./deps/*/ebin
 
 This command will start the shell with compiled files, and you can run them in the shell.
 
-But it is absolutely not we want. We want a excuteable file, just run it to start. Even better, run as a daemon. Even more better, attach it when we want.
+But it is absolutely not we want. We want a executable file, just run it to start. Even better, run as a daemon. Even more better, attach it when we want.
 
 Rebar allows us to do all test things. It is a little complex, but much simpler than the origin way with erlang.
 
@@ -95,7 +95,7 @@ These command will create a subdirectory named `files` and a file named `reltool
 2. Change `{app, myapp, [{mod_cond, app}, {incl_cond, include}]}` to `{app, myapp, [{mod_cond, app}, {incl_cond, include}, {lib_dir, ".."}]}`.
 3. Add `{sub_dirs, ["rel"]}.` in `rebar.config`.
 
-Now, we could generate the excuteable files:
+Now, we could generate the executable files:
 
 	rebar compile generate
 
@@ -105,12 +105,12 @@ This command will generate files in `rel/myapp`. We can run the app with erlang 
 
 Use `start` argument will start as a daemon, and using `attach` could come back to the erlang shell. You can see the usage with `help` argument.
 
-Ok, enjoy your self!
+OK, enjoy your self!
 
 Reference
 -------------------------
 
 * Erlang application manual: just run `erl -man application`.
 * [OTP design principles](http://www.erlang.org/doc/design_principles/users_guide.html).
-* [Rebar officatl wiki](https://github.com/basho/rebar/wiki).
+* [Rebar official wiki](https://github.com/basho/rebar/wiki).
 
