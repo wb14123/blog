@@ -8,7 +8,7 @@ These days, I learned a lot. The more I learned, the more I am tired of programm
 
 I don't know why modern programming looks so complex, and so ugly. I mean, it should not be.
 
-Because of this, there have been some time I'm thinking about to give up programming. But if I cannot abstract what I make, what could I able to do?
+Because of this, there have been some time I'm thinking about to give up programming. But if I cannot abstract what I make, what am I able to do?
 
 So I'm planning to write a series of articles to specify the details, and research on them. It's not about the theory. Theories just point out what you can, but not point out how to do it in the real world. The problem now is not I cannot do it, but I cannot do it in a clean way.
 
