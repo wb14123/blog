@@ -51,7 +51,7 @@ The advantage of the server don't have a main loop is, it could run really fast.
 
 ### Server Simplicity
 
-Almost all of the developers use a game engine to develop a game. Most of them don't own these game engines, and lots of these engines are closed source. So they cannot know the low-level implementation of the game engine, which are also useful for the server if you want to validate the data more exactly. But as we have seen, the client side already has all of the logic, should we rewrite a game engine and this engine must have the same behaviour as the client's? No. That is a lot of work!
+Almost all of the developers use a game engine to develop a game. Most of them don't own these game engines, and lots of these engines are closed source. So they cannot know the low-level implementation of the game engine, which are also useful for the server if you want to validate the data more exactly. But as we have seen, the client side already has all of the logic, should we rewrite a game engine that has the same behaviour as the client's? No. That is a lot of work!
 
 So which parts are **not** going to be validated?
 
@@ -126,9 +126,9 @@ Let's see how classify workers label the data in database:
 ### Offline Part
 
 1. Get a package labeled as type 3.
-2. If no package labeled as type 3, get a package labeled type 4.
+2. If no package is labeled as type 3, get a package labeled as type 4.
 3. Use a offline worker to validate if the user is cheating.
-4. **Punish the user** if the user is cheating. Labele the package as type 5.
+4. **Punish the user** if the user is cheating. Label the package as type 5.
 5. Label the package as type 6 otherwise.
 
 
