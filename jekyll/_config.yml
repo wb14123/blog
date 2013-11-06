@@ -6,7 +6,7 @@ safe:        false
 auto:        false
 serve:      false
 port: 4000
-baseurl:    /
+baseurl:    http://www.binwang.me
 url: http://localhost:4000
 
 category_title_prefix: ''
