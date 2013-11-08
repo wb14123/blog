@@ -11,7 +11,9 @@ module TocFilter
       end
     end
     output << '</ol>'
-    output
+    if output != '<ol class="toc"></ol>'
+      output = "<h3>Table of Contents</h3>" + output
+    end
   end
 end
 Liquid::Template.register_filter(TocFilter)
