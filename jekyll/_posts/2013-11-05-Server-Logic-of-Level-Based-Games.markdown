@@ -95,14 +95,13 @@ So the server architectural include:
 * Classify workers.
 * Database.
 
-The database will store the packages of players' actions. They can be stored as 6 types:
+The database will store the packages of players' actions. They can be stored as 5 types:
 
 1. Online validate failed.
 2. Online validate success.
-3. Unusual.
-4. Usual.
-5. Offline validate failed.
-6. Offline validate success.
+3. Classified, with a probability if the player is cheating.
+4. Offline validate failed.
+5. Offline validate success.
 
 Here are how the server works. It will include online part(server, online validation worker, database), offline part(offline worker, database) and classify part(classify worker, database). The input is the packages of the players' actions. And the bold font is the output.
 
@@ -116,20 +115,19 @@ Here are how the server works. It will include online part(server, online valida
 
 ### Classify Part
 
-Classify algorithms use data in database (type 1, 5 as cheating package, and type 6 as not cheating package) to train itself.
+Classify algorithms use data in database (type 1, 4 as cheating package, and type 5 as not cheating package) to train itself.
 
 Let's see how classify workers label the data in database:
 
 1. Get a package labeled as type 2.
-2. Use classify algorithms to validate if it is usual. And label it as type 3 or 4.
+2. Use classify algorithms to count its probability of cheating, label it as type 3.
 
 ### Offline Part
 
-1. Get a package labeled as type 3.
-2. If no package is labeled as type 3, get a package labeled as type 4.
-3. Use a offline worker to validate if the user is cheating.
-4. **Punish the user** if the user is cheating. Label the package as type 5.
-5. Label the package as type 6 otherwise.
+1. Get a package labeled as type 3, with the max probability of cheating.
+2. Use a offline worker to validate if the user is cheating.
+3. **Punish the user** if the user is cheating. Label the package as type 4.
+4. Label the package as type 5 otherwise.
 
 
 Reference
@@ -139,3 +137,6 @@ Game servers for Unity3d:
 
 * [Photon](http://cloud.exitgames.com/)
 * [SmartFoxServer](http://www.smartfoxserver.com/)
+
+
+*Updated at Nov 23, 2013. Use probability of classify algorithm.*
