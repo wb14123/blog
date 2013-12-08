@@ -3,7 +3,6 @@ description: Learning, Researching, Sharing
 paginate: 15
 
 safe:        false
-auto:        false
 serve:      false
 port: 4000
 baseurl:    /
