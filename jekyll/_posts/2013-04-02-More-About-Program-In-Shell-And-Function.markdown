@@ -38,7 +38,7 @@ Then compile and see the return value:
 	~/testing » echo $?
 	46
 
-So if we want to get more information from program, we should get its output. Luckily, it's easy to do it in shell. Using <code>`</code> or `$()` you could get the output of program and using them in the shell. For example:
+So if we want to get more information from program, we should get its output. Luckily, it's easy to do it in shell. Using `$()` you could get the output of program and using them in the shell. For example:
 
 	echo `ls`
 
@@ -47,3 +47,4 @@ So if we want to get more information from program, we should get its output. Lu
 So if we treat arguments of program as function's argument, standard output value as function's return value, then `A(B(), C())` could be written as <code>A `B` `C`</code>  in shell.
 
 And there is a note. In C programming, the type you could return is almost the same with what you can return in program. But when you want to get a string's value in a function, you can use a string's pointer as its argument and assignment to it. But you can not do it in shell.
+
