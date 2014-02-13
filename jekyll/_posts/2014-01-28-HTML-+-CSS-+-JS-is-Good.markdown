@@ -17,9 +17,9 @@ Init part also need to specify the position of every objects, or the layout of t
 
 In web tech, here it is:
 
-* HTML is what it has in the first place.
-* CSS is the position and layout of the objects.
-* JS update the objects when some events occurs.
+* HTML is what it has in the first place (init objects).
+* CSS is the position and layout of the objects (data split from code).
+* JS update the objects when some events occurs (update objects).
 
 Everybody say and say that again. But I didn't understand that until I really wrote an application that render graphics to the screen.
 
