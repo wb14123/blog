@@ -9,7 +9,7 @@ Erlang's actor model is good to use, but its syntax is not. Elixir is a very gre
 OOP Suits Actor Model Better
 -------------
 
-Erlang and Elixir are purl functional languages. There are some arguments between OOP and FP. The point of pure functional programming is it avoids side effects: the function always gives the same result while the inputs are same. In Erlang or Elixir, it is true with the functions. But when there comes an actor (a `gen_server` for example), it is not so true. Let's look at a `gen_server` module for example:
+Erlang and Elixir are pure functional languages. There are some arguments between OOP and FP. The point of pure functional programming is it avoids side effects: the function always gives the same result while the inputs are same. In Erlang or Elixir, it is true with the functions. But when there comes an actor (a `gen_server` for example), it is not so true. Let's look at a `gen_server` module for example:
 
 ```
 -module(example).
