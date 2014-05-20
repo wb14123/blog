@@ -4,12 +4,12 @@ title: Experiment On Combining OOP With Erlang's Actor Model
 tags: [erlang, elixir]
 ---
 
-Erlang's actor model is good to use, but its syntax is not. Elixir is a very great language, but I don't think it is enough. So I hacked it a little and do some experiments on turning it into an OOP language in some way.
+Erlang's actor model is good to use, but its syntax is not. Elixir is a very great language, but I don't think it is enough. So I hacked it a little and did some experiments on turning it into an OOP language in some way.
 
 OOP Suits Actor Model Better
 -------------
 
-Erlang and Elixir are pure functional languages. There are some arguments between OOP and FP. The point of pure functional programming is it avoids side effects: the function always gives the same result while the inputs are same. In Erlang or Elixir, it is true with the functions. But when there comes an actor (a `gen_server` for example), it is not so true. Let's look at a `gen_server` module for example:
+Erlang is a pure functional language. There are some arguments between OOP and FP. The point of pure functional programming is it avoids side effects: the function always gives the same result while the inputs are same. In Erlang or Elixir, it is true with the functions. But when there comes an actor (a `gen_server` for example), it is not so true. Let's look at a `gen_server` module for example:
 
 ```
 -module(example).
