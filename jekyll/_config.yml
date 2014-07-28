@@ -1,5 +1,5 @@
 title:       Bin Wang
-description: Learning, Researching, Sharing
+description: This is my personal blog about computer since and technology, and my life.
 paginate: 15
 
 safe:        false
@@ -13,20 +13,12 @@ category_title_prefix: ''
 source:      .
 destination: ./_site
 plugins:     ./_plugins
-pygments:    true
 
 future:      true
 lsi:         false
-pygments:    false
-markdown:    maruku
+markdown:    Kramdown
 permalink:   /:year-:month-:day-:title.html
 
-maruku:
-  use_tex:    false
-  use_divs:   false
-  png_engine: blahtex
-  png_dir:    images/latex
-  png_url:    /images/latex
 
 rdiscount:
   extensions: []
@@ -36,11 +28,12 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  use_coderay: false
+  use_coderay: true
+  input: GFM
   
   coderay:
     coderay_wrap: div
-    coderay_line_numbers: inline
+    coderay_line_numbers: table
     coderay_line_numbers_start: 1
     coderay_tab_width: 4
     coderay_bold_every: 10
