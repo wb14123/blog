@@ -32,7 +32,7 @@ How to make the web framework know the type information? There are these ways in
 
 4. Write type informations in config files.
 
-	We can use XML files for example. But I don't like this way. Many Java frameworks uses XML as config files and it is approved to makes people headache.
+	We can use XML files for example. But I don't like this way. Many Java frameworks uses XML as config files and it is approved to make people headache.
 
 5. Just provide library functions.
 
