@@ -1,0 +1,213 @@
+---
+layout: post
+title: Chroot 简介
+tags: [linux, chroot]
+---
+
+
+chroot，既是Linux的一条命令，也是它的一个系统调用。它的作用就是就是改变当前环境的根目录到一个文件夹，这个文件夹之外的东西，对于当前环境都是不可见的。因此若是运行不信任的代码或程序，使用chroot作为一个安全沙箱是个很好的选择。这里我们简单介绍一下使用chroot的方法和需要注意的问题，并提供一些跳出chroot环境的方法。
+
+
+Chroot命令
+---------------
+
+chroot(1)这条命令在大多数Unix/Linux系统中都能找到。它的作用是将根目录改变到一个新文件夹下并且运行一个shell。因此它要求这个新文件夹下至少有一个可运行的shell。其实大多数情况下，chroot后的文件夹结构都类似于一个小型的Linux系统，例如下面有lib、usr、bin等文件夹。这里我们介绍怎样创建一个最小的环境来使用chroot命令。
+
+首先，我们希望这个文件夹的结构是类似于Linux基本的系统结构，这样chroot后的环境可以作为一个基本的Linux环境来使用。所以用下面的命令先创建一些新文件夹：
+
+```
+mkdir newroot
+cd newroot
+mkdir bin
+mkdir lib
+mkdir usr
+mkdir usr/bin
+mkdir usr/lib
+```
+
+这样就建立了一些必须的文件夹。其中bin和usr/bin是放二进制文件的，而lib和usr/lib是存放链接库文件。
+
+前面说过了，chroot后的环境至少需要一个可以运行的shell，我们可以直接将自己系统中的bash拷贝过去。一般bash都在/bin文件夹下，如果不能确定，可以使用下面的命令来查找：
+
+```
+whereis bash
+```
+
+然后将bash拷贝到新目录中的相应位置:
+
+```
+cp /bin/bash bin
+```
+
+只拷贝这一个文件是不够的，因为一般来说，bash这个程序是通过动态链接来编译的，所以我们要将所包含的库文件也拷贝过去。使用ldd(1)命令可以查看bash所需要的库文件：
+
+```
+ldd /bin/bash
+```
+
+在我的系统中这条命令的输出是:
+
+```
+    linux-vdso.so.1 =>  (0x00007fff46bff000)
+    libreadline.so.6 => /lib/libreadline.so.6 (0x00007fca39fa9000)
+    libncursesw.so.5 => /usr/lib/libncursesw.so.5 (0x00007fca39d4c000)
+    libdl.so.2 => /lib/libdl.so.2 (0x00007fca39b48000)
+    libc.so.6 => /lib/libc.so.6 (0x00007fca397a7000)
+    /lib/ld-linux-x86-64.so.2 (0x00007fca3a1ef000)
+```
+
+然后根据输出来拷贝库文件到相应的文件夹：
+
+```
+cp /lib/libreadline.so.6 lib
+cp /usr/lib/libncursesw.so.5 usr/lib
+cp /lib/libdl.so.2 lib
+cp /lib/libc.so.6 lib
+cp /lib/ld-linux-x86-64.so.2 lib
+```
+
+这样就可以使用chroot命令来chroot到新目录了（需要root权限）：
+
+```
+chroot . /bin/bash
+```
+
+chroot参数的详细作用可以使用`man chroot`命令来查看。在chroot之后，我们可以随便输入一些命令，可以发现很多在新环境中是没有的。而一直执行`cd ..`的命令，也只能在newroot这个文件夹中。然而在新环境中来开，newroot就是根目录。
+
+显然单纯这样的一个环境是没有多大用途的。在新环境中需要什么软件和工具，可以仿照上面移植bash的方法，来配置到新环境中。如果需要一个比较全面的shell环境，可以考虑使用busybox。
+
+使用这种方法来chroot除了可以运行不受信任的代码之外，还可以作为一个编译环境来免受外部环境的污染，例如LFS(Linux From Scrach)中的用法。
+
+chroot函数
+---------------
+
+很多语言都提供chroot这个函数，以在程序中使用chroot环境。我们主要介绍C语言当中的。其实chroot(1)这条命令，就用到了chroot这个函数。
+
+chroot的使用方法很简单，函数原型是`int chroot(const char *path)`。需要root权限来使用。详细信息可以使用`man 2 chroot`命令查看。
+
+下面是一个很简单的chroot程序示例:
+
+```
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+    chroot(".");
+    chdir("/");
+    execvp("/bin/bash", NULL);
+    return 0;
+}
+```
+
+这段代码的功能就是chroot到当前目录下并且打开bash这个shell。需要注意的是，上面这段代码除了没有错误提示之外，还是很危险的！因为运行它就必须给用户root权限，而在以root权限chroot之后，并没有收回权限就打开了一个shell让用户操作。我们后面可以看到，用一段很简单的代码就可以轻易的跳出这个chroot环境。正确的做法是，在chroot之后使用setuid，使当前用户变成一个权限较低的用户，比如在chroot后添加如下代码：
+
+```
+setuid(1000);
+```
+
+在程序中使用chroot的好处就是不一定非要打开一个shell，需要在chroot环境中使用什么程序，直接用exec函数族来执行就行了。这样有两个好处：（1）只需要在新环境中配置需要运行的程序。如果要执行的程序是静态编译的，那么连链接库文件都不用要了。（2）由于一直是程序在控制运行过程，没有提供shell让用户交互操作，所以安全性相对高一些。
+
+跳出chroot
+-----------
+
+如果有root权限，可以用很多种方法跳出chroot环境。
+
+### 在新环境中使用chroot
+
+最简单最通用的方法是在新环境中再使用一下chroot。写一个程序可以轻易的跳出chroot环境。方法如下：
+
+1. 在当前环境中新建一个文件夹，并chroot到它。
+2. 一直执行“cd ..”，就会回到系统真正的根目录。
+3. chroot到这个真正的根目录。
+
+下面是一个简单的C语言代码示例，我们将它保存为jumpout.c：
+
+```
+//jumpout.c
+
+#include <stdio.h>  
+#include <unistd.h>  
+   
+#define TEMP_DIR "temp"  
+   
+int main()
+{  
+    int x;
+    chroot(TEMP_DIR);
+    for(x=0;x<1024;x++)   
+        chdir("..");  
+    chroot(".");  
+    execl("/bin/sh", "-i", NULL);
+    
+    return 0; 
+}
+```
+
+现在来体验一下这段代码。首先静态编译（这样编译后的可执行文件就不需要动态链接库的支持了）:
+
+```
+gcc --static jumpout.c -o jumpout
+```
+
+然后在newroot下面新建一个名为temp的文件夹：
+
+```
+mkdir temp
+```
+
+这样准备工作就做好了。现在chroot到newroot，然后执行jumpout：
+
+```
+chroot . /bin/bash
+./jumpout
+```
+
+可以看到我们现在已经跳出chroot环境了。各种命令都可以使用，并且文件夹也都是真正的根文件夹下的结构。
+
+使用perl等其它语言也可以达到同样的效果。很多服务器都支持CGI脚本，这种攻击不是没有可能。因此在chroot之后处理好权限是非常重要的。
+
+### 使用mknod(2)
+
+mknod(2)系统调用可以按照自己的需求来新建文件。所以它有可能在硬盘上新建一块有特定目的的代码，来破坏chroot环境。或者新建/dev/mem来改写内核的内存。
+
+### 找到hard link到chroot环境外的文件
+
+### 使用ptrace(2)
+
+ptrace(2)是用于跟踪和调试程序系统调用的一个函数，它可以跟踪并且改写程序的信号和系统调用。如果在chroot中有某个程序使用到了chroot之外的一些资源，那么就可以使用ptrace来更改这个程序的系统调用来做一些事情。
+
+安全原则
+----------------
+
+看到了这么多跳出chroot的方法后，就会发现，如果配置不恰当，chroot环境也不是安全的。因此这里给出一些安全的原则。
+
+1. 几乎所有的跳出chroot环境的方法都需要root权限。因此再chroot后如果没有特殊需求，一定要放弃root权限。
+2. 如果可能，chroot中的文件和文件夹的所有者最好都是root，并控制好读写权限。
+3. chroot后一定要chdir到新的根目录。
+4. 如果没有必要，不要在chroot环境中使用/etc/passwd文件。
+5. 最好不要链接到chroot环境外的文件。
+
+使用中可能遇到的问题
+------------------
+
+上面已经把容易出现的问题给说到了。这些问题虽然不大，并且懂了之后也没什么，但是却是很容易困惑新手的一些地方，所以这里突出的提一下：
+
+1. 无论是chroot命令，还是chroot这个函数，都需要root权限。
+2. chroot这个命令需要在新环境中至少有一个shell程序，包括它用到的库文件。使用ldd可以看到相应的库文件。
+3. chroot后不管运行什么命令和软件，都要保证有相应的库文件。gcc默认是动态编译的，因此如果想在chroot环境中不需要库文件就可以执行编译过的二进制文件，则需要静态编译，即加上“–static”选项。
+
+参考资料
+--------------------
+
+系统自带的手册页是很好的参考资料。详见
+
+```
+man 1 chroot
+man 2 chroot
+```
+
+这篇文章中有跳出chroot环境的详细讲解和C语言代码：http://www.bpfh.net/simes/computing/chroot-break.html
+
+这里有一篇非常详尽的讲解:http://www.unixwiz.net/techtips/chroot-practices.html
