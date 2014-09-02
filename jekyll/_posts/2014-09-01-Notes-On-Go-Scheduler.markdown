@@ -17,7 +17,7 @@ Go scheduler mainly uses three structures:
 
 The number of `P` is setted by `GOMAXPROCS`.
 
-Each `M` has a `G` called `g0` to do schedule jobs.
+Each `M` has a `G` called `g0` to do schedule jobs. (`mcall` will use `g0` to execute functions).
 
 The Beginning
 ------------
@@ -111,7 +111,7 @@ TEXT runtime·gogo(SB), NOSPLIT, $0-4
 The Start of the Other Goroutines
 --------------
 
-When the program use the keyword `go`, it will start a new Goroutine. `runtime·proc` could start a `G` given the function. It put this new `G` in the current `P`'s run queue, then call `wakeup` to wake up all the `P`s to find a `G` to run.
+When the program use the keyword `go`, it will start a new Goroutine. `runtime·proc` could start a `G` given the function. It put this new `G` in the current `P`'s run queue, then call `wakep` in order to call `startm`, which will get an idle `P` and run a `G` on it. If the `P` don't have an `M` for now, it will call `newm` which will alloc an `M` using `startm` as its executing function. As we already known, `startm` will start this `M`, call scheduler to find a `G` to run.
 
 How the `P` finds the executable `G` will be explained in the next section.
 
@@ -120,9 +120,9 @@ Change the Current Executing Goroutine
 
 ### When to Change
 
-When the current Goroutine call a system call, it is the chance to call the scheduler and change a Goroutine to run.
+We know when the `G` is executing, the code will never return. It means that the scheduler of Go is non-preemptive. So when to change the current running `G`?
 
-It means that the scheduler of Go is non-preemptive.
+When the current Goroutine call a system call, it is the chance. It will call `handoffp`, which will release the current `P` (and set it's state to idle), start a new `M` to run the system call `G`, and then call `startm`, which will find an idle `P` and run it.
 
 From Go 1.2, it increases the chance to run the scheduler. For example, when the goroutine call a function, it will check the memory and deside whether to do a scheduling.
 
@@ -197,3 +197,5 @@ We've know that the first Gorutine is run by the main program and never returns.
 ### Which One to Change
 
 In the last section, we know that the new started `G` is just put under the `P` that calls the `go` keyword. So the queue don't ensure fairness. However, while the `P` is able to run a new `G` but could not find any `G` in its queue, it will look up other `P`s and steal half of their `G`s if there are any. This is more effective that ensure the fairness while put `G` in the run queue since it need not lock all the scheduler to check all the `P`s run queue to ensure the fairness.
+
+The code could be found in `findrunnable`.
