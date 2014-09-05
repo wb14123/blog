@@ -11,9 +11,9 @@ Basic Structures
 
 Go scheduler mainly uses three structures:
 
-* `G` as a Goroutines.
+* `G` as a Goroutine.
 * `M` as an OS thread.
-* `P` as a context or process. Running under threads and control the goroutines.
+* `P` as a context. Running under threads and control the goroutines.
 
 The number of `P` is setted by `GOMAXPROCS`.
 
