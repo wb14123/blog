@@ -205,4 +205,4 @@ A Slide
 
 A slide could be more suitable to show the point:
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/38726402" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>iframe>
+<iframe src="//www.slideshare.net/slideshow/embed_code/38726402" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
