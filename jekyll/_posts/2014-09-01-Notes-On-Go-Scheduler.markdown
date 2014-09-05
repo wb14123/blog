@@ -199,3 +199,10 @@ We've know that the first Gorutine is run by the main program and never returns.
 In the last section, we know that the new started `G` is just put under the `P` that calls the `go` keyword. So the queue don't ensure fairness. However, while the `P` is able to run a new `G` but could not find any `G` in its queue, it will look up other `P`s and steal half of their `G`s if there are any. This is more effective that ensure the fairness while put `G` in the run queue since it need not lock all the scheduler to check all the `P`s run queue to ensure the fairness.
 
 The code could be found in `findrunnable`.
+
+A Slide
+---------------
+
+A slide could be more suitable to show the point:
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/38726402" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>iframe>
