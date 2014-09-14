@@ -20,6 +20,7 @@ echo "Upload site..."
 cd $BASE_DIR
 cd $GIT_DIR
 git checkout master
+git pull origin master
 cd $BASE_DIR
 rm -r $GIT_DIR/*
 cp -r $J_DIR/_site/* $GIT_DIR/
