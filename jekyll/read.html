@@ -6,9 +6,28 @@ title: Read
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script>
 
-function link(item) {
-  return $('<a>').attr('href', 'http://book.douban.com/subject/' + item.book.id)
-    .attr('title', item.book.title);
+function getAuthor(author) {
+  var authors = "";
+  if (author.length > 0) {
+    authors = " -- "
+  }
+  for (var i = 0; i < author.length; i++) {
+    authors += author[i];
+    if (i < author.length - 1) {
+      authors += ", "
+    }
+  }
+  return authors;
+}
+
+function renderBook(item) {
+  var dom = $('<li>');
+  $('<a>')
+    .attr('href', item.book.alt)
+    .attr('target', '_blank')
+    .text(item.book.title + getAuthor(item.book.author))
+    .appendTo(dom);
+  return dom;
 }
 
 function getBook(to, cb) {
@@ -18,16 +37,12 @@ function getBook(to, cb) {
       if (i === (data.collections.length - 1) && data.count < data.total) {
         cb(item.updated);
       }
-      $("<img/>")
-        .attr("src", item.book.images.medium)
-        .appendTo('#' + item.status)
-        .wrap(link(item));
+      renderBook(item).appendTo('#' + item.status)
     });
   });
 }
 
 function bookCallback(d) {
-  console.log(d);
   getBook((new Date(d)).toISOString(), bookCallback);
 }
 
@@ -42,4 +57,5 @@ getBook('', bookCallback);
 <h2>I wish to read</h2>
 <div id="wish"></div>
 
+<br/>
 Powered by <a href="http://www.douban.com">Douban</a> API.
