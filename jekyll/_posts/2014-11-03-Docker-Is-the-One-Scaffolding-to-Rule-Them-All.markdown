@@ -10,7 +10,7 @@ tags: [Docker]
 >
 > -- *The Load of the Rings*
 
-Docker is hot these days. I don't like it at first.
+Docker is popular these days. I don't like it at first.
 
 Docker could build an OS template with the environment already setup. Include the softwares we need to use, and the deploy tools.
 
