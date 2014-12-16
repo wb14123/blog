@@ -1,6 +1,8 @@
 title:       Bin Wang
+name: Bin Wang
 description: This is my personal blog about computer since and technology, and my life.
 paginate: 15
+
 
 safe:        false
 serve:      false
