@@ -14,7 +14,7 @@ category_title_prefix: ''
 
 source:      .
 destination: ./_site
-plugins:     ./_plugins
+plugindir:     ./_plugins
 
 future:      true
 lsi:         false
@@ -30,7 +30,7 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  use_coderay: true
+  enable_coderay: true
   input: GFM
   
   coderay:
@@ -41,3 +41,4 @@ kramdown:
     coderay_bold_every: 10
     coderay_css: style
 
+gems: [jekyll-paginate]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Travel to Tokyo
+title: 东京之旅
 tags: [life]
 ---
 
