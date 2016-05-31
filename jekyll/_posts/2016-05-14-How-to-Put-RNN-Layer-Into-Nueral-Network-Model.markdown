@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to Put RNN Layers Into Nueral Network Model
+title: How to Put RNN Layers Into Neural Network Model
 tags: [neural nerwork, rnn]
 ---
 
