@@ -9,9 +9,9 @@ I've bought a Surface Pro 4 some days ago. It is very amazing and I'd like to us
 Terminal and Unix Tools
 -------------
 
-There is a famous software called [Cygwin](https://www.cygwin.com/) which provides many unix tools along with a terminal. Download it from its homepage and then you can install it with GUI.
+There is a famous software called [Cygwin](https://www.cygwin.com/) which provides many unix tools along with a terminal. You can download it from its homepage and install it with GUI.
 
-While installing it, it will ask you which tools you'd like to install. Just install the default ones and Lynx is enough for now, since we will install a package manager so it will be easy to install other tools then.
+While installing it, it will ask you which tools you'd like to install. Just install the default ones and Lynx is enough, since we will install a package manager and it will be easier to install other tools then.
 
 You can use Xterm with Cygwin terminal, so you can config it as you are in Linux.
 
@@ -19,7 +19,7 @@ You can use Xterm with Cygwin terminal, so you can config it as you are in Linux
 Package Manager
 ------------
 
-The most missed thing while I'm using Windows is Linux's package manager. You can search, install, update and manage software very easily with it. There is also HomeBrew under Mac OS X and I'd like something like that under Windows. So I've found [apt-cyg](https://github.com/transcode-open/apt-cyg) which can manage packages in Cygwin. You can follow the steps on its homepage to install it. After install it, you can install wget with it so that it will stop print warning messages.
+The most missed thing while I'm using Windows is Linux's package manager. You can search, install, update and manage software very easily with it. There is also HomeBrew under Mac OS X so I'd like something like that under Windows. I searched on Google and found [apt-cyg](https://github.com/transcode-open/apt-cyg) which can manage packages in Cygwin. You can follow the steps on its homepage to install it. After install it, you can install wget with it so that it will stop print warning messages.
 
 I've installed tmux, zsh, Git and vim with it. And config them with my [config files](https://github.com/wb14123/dotfiles). I only need to change the tmux start up config:
 
@@ -45,13 +45,15 @@ python ez_setup.py
 easy_install pip
 ```
 
-In order to install packages that need to compile, first we need to install packages related to gcc:
+Then we need to install gcc in order to compile some python packages:
 
 ```
-apt-cyg searchall gcc
+apt-cyg install colorgcc gcc-core gcc-g++ libgcc1
 ```
 
-Then we need to change a python header file: :
+Then we need to change a python header file: /usr/include/python2.7/pyconfig.h:
 
 ```
+- #define __BSD_VISIBLE 1
++ #define __BSD_VISIBLE 0
 ```
