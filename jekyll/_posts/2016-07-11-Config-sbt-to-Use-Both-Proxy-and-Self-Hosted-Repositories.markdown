@@ -11,7 +11,7 @@ Use Proxy Repositories
 
 sbt has a [document](http://www.scala-sbt.org/0.13/docs/Proxy-Repositories.html) that described how to set proxy repositories:
 
-1. Config repositories in `~/.sbt/repositories` like this:
+### Config repositories in `~/.sbt/repositories` like this:
 
 ```
 [repositories]
@@ -20,7 +20,7 @@ sbt has a [document](http://www.scala-sbt.org/0.13/docs/Proxy-Repositories.html)
     my-maven-proxy-releases: http://repo.company.com/maven-releases/
 ```
 
-2. Add `-Dsbt.override.build.repos=true` while use sbt command.
+### Add `-Dsbt.override.build.repos=true` while use sbt command.
 
 The second step will override all the resolvers defined in your project, like in the file `build.sbt`. It is necessary because if you don't do this, sbt will still send requests to default repos like typesafe and scala-sbt.
 
