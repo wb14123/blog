@@ -14,6 +14,6 @@ Here are some of my informations.
 + Email: [wbin00@gmail.com](mailto:wbin00@gmail.com)
 + Github: [Bin Wang(wb14123)](https://github.com/wb14123)
 + Stackoverflow: [Bin Wang](http://stackoverflow.com/users/1068627/bin-wang)
-+ Linkedin: [Bin Wang](http://www.linkedin.com/profile/view?id=128350957)
++ Linkedin: [Bin Wang](www.linkedin.com/in/bin-wang-211b9936)
 + Twitter: [@Bingo_Wang](https://twitter.com/Bingo_Wang)
 + Weibo: [@疯狂的烤冰](https://weibo.com/kaobing)
