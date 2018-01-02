@@ -1,10 +1,10 @@
 ---
 layout: post
-title: The Year of 2017 and The Thoughs About Future
+title:  My 2017 Year in Review
 tags: [thoughs, life]
 ---
 
-When I open my blog, I suddenly realized that I haven't even writen one blog in the year of 2017. I've tried to write some blogs about technology but it spent too much time and energy so I gave up at last. There happens a lot of things on me in the year of 2017. So I must write something while the next year is beginning. Things have changed both on my life and my work. I don't want to write too many details on my personal life, so I will just record some work related things.
+When I open my blog, I suddenly realized that I haven't even writen one blog in 2017. I've tried to write some blogs about technology but it spent too much time and energy so I gave up at last. There happens a lot of things on me in 2017. So I must write something while the next year is beginning. Things have changed both on my life and my work. I don't want to write too many details on my personal life, so I will just record some work related things.
 
 Job Change
 ------------
@@ -20,7 +20,7 @@ After the game project suspended, I've writen [another machine learning applicat
 
 The last project I've written about machine learning is the dissertation of my MSc project. I've joined the MSc distance learning project at the University of Leicester at the mid of 2016. So I need to write a dissertation in order to get the degree this year. This project is also NLP related and is about text classification and regression. I may write more details in the future.
 
-Though I've writen some machine learning application, I don't think I've put more time on it or learned more than in the year of 2016. For example, I've read less paper and book, and written less code. In my plan, the book *Probability Theory: The Logic of Science* should be completed in the year 2017, but I almost haven't read it after I quite the job. However, the degree of proficiency of writting a web crawler and Tensorflow code have been increased, which is one thing that I can comfort myself.
+Though I've writen some machine learning application, I don't think I've put more time on it or learned more than in 2016. For example, I've read less paper and book, and written less code. In my plan, the book *Probability Theory: The Logic of Science* should be completed in 2017, but I almost haven't read it after I quite the job. However, the degree of proficiency of writting a web crawler and Tensorflow code have been increased, which is one thing that I can comfort myself.
 
 
 Freelancer Experience
