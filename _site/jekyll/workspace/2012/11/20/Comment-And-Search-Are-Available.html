@@ -1,0 +1,63 @@
+<p>As you can see, my blog are able to comment and search now!</p>
+
+<h2 id="comment">Comment</h2>
+
+<p>I always think comment is very important for a blog. You can know how helpful or is there some issues in your article. <a href="http://disqus.com">Disqus</a> is a great tool to put comment on a website. It is neat and powerful as you can see. It may be a little slow in China. But consider of my blog are mostly written in English, it is not a big deal.</p>
+
+<h2 id="search">Search</h2>
+
+<p>The search engine I am using is <a href="http://www.google.com/cse">Google custom search engine</a>. Isn’t it awesome I have google’s technology on my blog? It is easy to use, too. The badness of this choice is google may take some time to put the website’s content into its index. And google is even not available in China sometimes.</p>
+
+<h2 id="scripts-to-make-life-easy">Scripts to Make Life Easy</h2>
+
+<p>As I put the website on <a href="http://pages.github.com/">github page</a>, I don’t want to upload the jekyll directory. Just the static site is enough. So I must copy the site to git repository, add, commit and then push it. It is a boring work. I write two scripts to make it easy. I don’t know if there is some other way to do this, but I’m OK with it.</p>
+
+<p>update.sh: generate static site and upload to github.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">BASE_DIR</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="nv">J_DIR</span><span class="o">=</span><span class="s2">"./jekyll"</span>
+<span class="nv">GIT_DIR</span><span class="o">=</span><span class="s2">"./wb14123.github.com"</span>
+
+<span class="nb">cd</span> <span class="nv">$J_DIR</span>
+jekyll
+<span class="nb">cd</span> <span class="nv">$BASE_DIR</span>
+rm -r <span class="nv">$GIT_DIR</span>/<span class="k">*</span>
+cp -r <span class="nv">$J_DIR</span>/_site/<span class="k">*</span> <span class="nv">$GIT_DIR</span>/
+<span class="nb">cd</span> <span class="nv">$GIT_DIR</span>
+git add -A .
+git commit -m <span class="s2">"Changed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span>
+git push origin master
+<span class="nb">exit</span> <span class="nv">$?</span>
+</code></pre>
+</div>
+
+<p>newpost.sh: use vim to open a new post with current time and some meta information.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span>-lt 1 <span class="o">]</span>
+<span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"newpost: You need to specify the post name."</span>
+    <span class="nb">exit </span>1
+<span class="k">fi
+
+</span><span class="nv">POST_NAME</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">POST_DATE</span><span class="o">=</span><span class="sb">`</span>date +%Y-%m-%d<span class="sb">`</span>
+<span class="nv">POST_DIR</span><span class="o">=</span><span class="s2">"./jekyll/_posts"</span>
+<span class="nv">FILE_NAME</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$POST_DIR</span><span class="s2">/</span><span class="nv">$POST_DATE</span><span class="s2">-</span><span class="nv">$POST_NAME</span><span class="s2">.md"</span> | sed <span class="s2">"s/ /-/g"</span><span class="sb">`</span>
+
+<span class="nb">echo</span> <span class="s2">"
+---
+layout: post
+title: </span><span class="nv">$POST_NAME</span><span class="s2">
+categories: misc
+tags: []
+---
+"</span> &gt; <span class="nv">$FILE_NAME</span>
+
+vim <span class="nv">$FILE_NAME</span>
+</code></pre>
+</div>
+
