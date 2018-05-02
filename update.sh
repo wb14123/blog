@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 COMMENT=$1
 
 BASE_DIR=`pwd`

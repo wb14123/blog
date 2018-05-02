@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ $# -lt 1 ]
 then
     echo "newpost: You need to specify the post name."
