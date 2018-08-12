@@ -21,6 +21,9 @@ lsi:         false
 markdown:    kramdown
 permalink:   /:year-:month-:day-:title.html
 
+collections:
+  category:
+    output: true
 
 rdiscount:
   extensions: []
