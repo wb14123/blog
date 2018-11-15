@@ -11,7 +11,7 @@ If you want to search something in this website. You can click [search](/search.
 
 Here are some of my informations.
 
-+ Email: [wbin00@gmail.com](mailto:wbin00@gmail.com)
++ Email: [bin.wang@mail.binwang.me](mailto:bin.wang@mail.binwang.me)
 + Github: [Bin Wang(wb14123)](https://github.com/wb14123)
 + Stackoverflow: [Bin Wang](http://stackoverflow.com/users/1068627/bin-wang)
 + Linkedin: [Bin Wang](http://www.linkedin.com/in/bin-wang-211b9936)
