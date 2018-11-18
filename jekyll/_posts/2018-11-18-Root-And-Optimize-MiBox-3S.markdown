@@ -37,17 +37,17 @@ The apps used are:
 
 We must use a mouse to do some operations since many apps are not designed for TV.
 
-## 1. Root the Device
+## 2. Root the Device
 
 Root the device is easy. Just install the app KingRoot and follow the instructors. One thing to notice is after root, KingRoot will ask you to optimize the system. **Don't do that!**. Since KingRoot is [found to have bad behaviours](https://forum.xda-developers.com/showthread.php?t=2473747). We will clean it up and use Superuser to replace it.
 
-## 2. Cleanup KingRoot and Install Superuser
+## 3. Cleanup KingRoot and Install Superuser
 
 1. Instal SManager.
 2. In SManager, copy the downloaded folder [MDZ18AA_1.5.2](https://yadi.sk/d/wOKiw5RL3EGpKX) from USB drive to `/storage/sdcard0`.
 3. In SManager, open `1_ROOT/SuperSU.sh`, check `su` option and run it.
 
-## 3. Install A Third-Party Launcher
+## 4. Install A Third-Party Launcher
 
 Many people use the original Android TV launcher from Google. I don't want to do that. Since you must install a lot of Google apps in order to use it (which means is also bloated), and it's not very convenience to use Google in China. So I decide to install a third-party one. At last I choose [HALauncher](https://play.google.com/store/apps/details?id=net.i.akihiro.halauncher). It is very simple and clean. After some simple configurations, the UI looks very beautiful. Here is a picture of it:
 
@@ -55,7 +55,7 @@ Many people use the original Android TV launcher from Google. I don't want to do
 
 However, after install HALauncher, we cannot set it to default. In order to use it, we must disable the built-in launcher.
 
-## 4. Disable Built-in Apps
+## 5. Disable Built-in Apps
 
 Uninstall built-in apps will get a higher risk since the built-in apps are integrate with the device very deeply, if uninstall the wrong one may make the device unusable. So I uses the app [Ice Box](https://play.google.com/store/apps/details?id=com.catchingnow.icebox) to just disable them. After disable the built-in launcher, the system will use the third-party launcher that you installed in the last step.
 
@@ -63,11 +63,11 @@ One thing that is not very convenience of Ice Box is the operations must be done
 
 After disabled the built-in apps, if you want to use the USB drive, you must open the original launcher from XiaoMi as well as the MiSystem app from Ice Box. After mount the USB drive, you can disable them again.
 
-## 5. Disable Network by Default
+## 6. Disable Network by Default
 
 Even we've disabled the built-in apps, we cannot ensure the security either. Since XiaoMi may modified the Android OS. So I disabled the network at all with [AFWall+](https://play.google.com/store/apps/details?id=dev.ukanth.ufirewall) and only let limited video apps have access to network. So whatever XiaoMi built in the OS cannot upload anything to its server, and it cannot download and upgrade the system, either. (In theory, XiaoMi can also upload things through modify the kernel but I don't think it will do things like that deep.)
 
-## 6. Install Some Video Apps
+## 7. Install Some Video Apps
 
 At this step, the system is clean. You can install your favorite video apps. If you want to watch YouTube, you cannot install the official one since it needs Google service. You can install Smart YouTube instead. I think it is much better than the Google one. After installed the video apps, don't forget to give them network access in AFWall+ and disable the background behavior in Greenify.
 
