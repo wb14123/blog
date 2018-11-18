@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A Review on Spanner and Open Source Implementations
+title: Spanner and Open Source Implementations
 tags: [database, technology, distributed system]
 categories: Technical
 ---
