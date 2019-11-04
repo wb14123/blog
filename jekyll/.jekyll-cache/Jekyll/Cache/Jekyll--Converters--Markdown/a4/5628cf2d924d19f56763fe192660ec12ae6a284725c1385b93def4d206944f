@@ -1,0 +1,19 @@
+I"�<p><a href="https://github.com/dmlc/mxnet">MXNet</a> is a deep learning library. I read its doc and some of its source code. It looks very good. So I’d like to install and try it. While I’m following the <a href="https://mxnet.readthedocs.org/en/latest/build.html#build-mxnet-library">installing guide</a> to install it on Mac OS X, it failed to compile with the error <code>cblas.h</code> not found. The message pointed out I may miss the BLAS library.</p>
+
+<p>After some search, I find Mac OS X seems to come with its default BLAS library. But I cannot find its headers. And as an article said, the default BLAS library may not as fast as some third party ones. So I install <code>OpenBLAS</code> with homebrew:</p>
+
+<pre><code>brew install openblas
+</code></pre>
+
+<p>It is installed under <code>/usr/local/opt/openblas</code>, so we need to change these lines in the MXNet’s <code>config.mk</code> (it should be copied from <code>make/osx.mk</code> as the installing guide specified) :</p>
+
+<pre><code># the additional link flags you want to add
+ADD_LDFLAGS = '-L/usr/local/opt/openblas/lib'
+
+# the additional compile flags you want to add
+ADD_CFLAGS = '-I/usr/local/opt/openblas/include'
+</code></pre>
+
+<p>Then the compile should pass.</p>
+
+:ET

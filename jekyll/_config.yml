@@ -15,6 +15,7 @@ category_title_prefix: ''
 source:      .
 destination: ./_site
 plugindir:     ./_plugins
+plugins: [jekyll-paginate]
 
 future:      true
 lsi:         false
