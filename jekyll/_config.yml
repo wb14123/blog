@@ -46,3 +46,4 @@ syntax_highlighter_opts:
   css: style
 
 gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
