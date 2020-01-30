@@ -9,7 +9,7 @@ I migrated my Arch Linux installation to ZFS recently. This article describes wh
 
 ## Why ZFS?
 
-ZFS is a very advanced file system that has many handful features. I first knew it many years ago, when I installed FreeNAS for fun. FreeNAS is an OS made for NAS based on FreeBSD. When I played with it, the features of ZFS really shocked me and let me realised what a file system can really do. I will list the features of ZFS that I'm using and no other file system has:
+ZFS is a very advanced file system that has many handful features. I first knew it many years ago, when I installed FreeNAS for fun. FreeNAS is an OS made for NAS based on FreeBSD. When I played with it, the features of ZFS really shocked me and let me realised what a file system can really do. I will list the features of ZFS that I'm using and not usually avaliable in traditional file systems:
 
 * Snapshot: It is really easy to take a snapshot. Because ZFS has copy-on-write feature, so a snapshot doesn't take any space until you change some content on the file system. It makes backup way much cheaper and easier. This is the biggest feature that let me want to migrate to ZFS.
 * RAIDZ: The traditional raid hides the disks from the file system. But for ZFS, you can use raidz which the file system can see the topological of disks so that it can optimize the I/O based on the information.
