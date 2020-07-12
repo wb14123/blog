@@ -1,14 +1,14 @@
-title:       Bin Wang
-name: Bin Wang
-description: This is my personal blog about computer since and technology, and my life.
+title: Bin Wang - My Personal Blog
+name: Bin Wang - My Personal Blog
+description: This is my personal blog about computer science, technology and my life.
 paginate: 15
 
 
-safe:        false
-serve:      false
+safe:  false
+serve: false
 port: 4000
-baseurl:    /
-url: http://www.binwang.me
+baseurl: /
+url: https://www.binwang.me
 
 category_title_prefix: ''
 
@@ -45,5 +45,8 @@ syntax_highlighter_opts:
   bold_every: 10
   css: style
 
-gems: [jekyll-paginate]
-plugins: [jekyll-paginate]
+feed:
+  posts_limit: 20
+
+gems: [jekyll-paginate, jekyll-feed]
+plugins: [jekyll-paginate, jekyll-feed]
