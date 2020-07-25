@@ -6,7 +6,7 @@ paginate: 15
 
 safe:  false
 serve: false
-port: 4000
+port: 4001
 baseurl: /
 url: https://www.binwang.me
 
