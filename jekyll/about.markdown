@@ -3,17 +3,15 @@ layout: post
 title: About
 ---
 
-Hi, I’m Bin Wang (王斌). Welcome to my personal website. I record my thought, research and life here. You can find them in the [index page](/).
+Hi, I’m Bin Wang (王斌). Welcome to my personal website. I record my thoughts, research and life here. You can find them in the [index page](/). You can also [subscribe RSS](/feed.xml) for the new posts.
 
-I also list [where I have been](/travel.html) and [what I have read](/read.html). Since there is an old saying in Chinese: "Walk thousands of miles, and read thousands of books (行千里路，读万卷书)". I belive it makes my life vaster and more beautiful.
+Other than the long posts, I also record some random thoughts with much shorter post. It's powered by [my self hosted Mastodon](mastodon.binwang.me/) and you can see them at the [Snippets tab](/snippets).
 
-If you want to search something in this website. You can click [search](/search.html) above. It is powered by Google, so it may not has a good timeliness.
+As a programmer, I also write side projects and contribute to open source projects. You can find some information at [my Github page](https://github.com/wb14123).
 
-Here are some of my informations.
+I also list [where I have been](/travel.html) and [what I have read](/read.html). Since there is an old saying in Chinese: "Walk thousands of miles, and read thousands of books (行千里路，读万卷书)". I believe it makes my life vaster and more beautiful.
 
-+ Email: [bin.wang@mail.binwang.me](mailto:bin.wang@mail.binwang.me)
-+ Github: [Bin Wang(wb14123)](https://github.com/wb14123)
-+ Stackoverflow: [Bin Wang](http://stackoverflow.com/users/1068627/bin-wang)
-+ Linkedin: [Bin Wang](http://www.linkedin.com/in/bin-wang-211b9936)
-+ Twitter: [@Bingo_Wang](https://twitter.com/Bingo_Wang)
-+ Weibo: [@疯狂的烤冰](https://weibo.com/kaobing)
+If you want to search something in this website. You can click [search](/search.html) above. It is powered by Google, which means the pages need time to be indexed. So you may not always be able to search the newest post.
+
+At last, if you want to contact me, my Email address is [bin.wang@mail.binwang.me](mailto:bin.wang@mail.binwang.me).
+
