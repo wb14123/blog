@@ -5,7 +5,7 @@ title: About
 
 Hi, I’m Bin Wang (王斌). Welcome to my personal website. I record my thoughts, research and life here. You can find them in the [index page](/). You can also [subscribe RSS](/feed.xml) for the new posts.
 
-Other than the long posts, I also record some random thoughts with much shorter post. It's powered by [my self hosted Mastodon](mastodon.binwang.me/) and you can see them at the [Snippets tab](/snippets).
+Other than the long posts, I also record some random thoughts with much shorter post. It's powered by [my self hosted Mastodon](https://mastodon.binwang.me/) and you can see them at the [Snippets tab](/snippets).
 
 As a programmer, I also write side projects and contribute to open source projects. You can find some information at [my Github page](https://github.com/wb14123).
 
