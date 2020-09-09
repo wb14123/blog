@@ -1,10 +1,16 @@
 ---
 layout: post
-title: "Build An Instant Messaging System without Censorship: An Overview of Chinese Internet Censorship Strategy"
-tags: [technology, Matrix, instant messaging, censorship]
+title: "An Overview of China's Internet Censorship Strategy"
+tags: [technology, GFW, China, Internet]
 ---
 
-*This article is the second one of a series of articles that talk about how to build an instant messaging system without censorship. See the previous article [Chose the right technology](/2020-08-23-Build-An-Instant_Messaging-System-without-Censorship-Choose-the-right-technology.html).*
+*Updated at sep 6, 2020: change the title and add other articles in this series.*
+
+*This article belongs of a series of articles that talk about how to build an instant messaging system without censorship:*
+
+1. *[Matrix: A Self Hosted Instant Messaging Solution with End to End Encryption](/2020-08-23-Build-An-Instant_Messaging-System-without-Censorship-Choose-the-right-technology.html)*
+2. *[Overview of China's Internet censorship strategy](/2020-08-29-Build-An-Instant_Messaging-System-without-Censorship-Choose-An-Overview-of-Chinese-Internet-Censorship-Strategy.html)*
+3. *[Deploy Matrix for Users in China](/2020-09-08-Build-An-Instant-Messaging-System-without-Censorship-Deployment-Options.html)*
 
 
 There are two parts of Internet censorship in China:

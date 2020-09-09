@@ -1,11 +1,16 @@
 ---
 layout: post
-title: "Build An Instant Messaging System without Censorship: Choose the Right Technology"
+title: "Matrix: A Self Hosted Instant Messaging Solution with End to End Encryption"
 tags: [technology, Matrix, instant messaging, censorship]
 ---
 
-*This article is the first one of a series of articles that talk about how to build an instant messaging system without censorship.*
+*Updated at sep 6, 2020: change the title and add other articles in this series.*
 
+*This article belongs of a series of articles that talk about how to build an instant messaging system without censorship:*
+
+1. *[Matrix: A Self Hosted Instant Messaging Solution with End to End Encryption](/2020-08-23-Build-An-Instant_Messaging-System-without-Censorship-Choose-the-right-technology.html)*
+2. *[Overview of China's Internet censorship strategy](/2020-08-29-Build-An-Instant_Messaging-System-without-Censorship-Choose-An-Overview-of-Chinese-Internet-Censorship-Strategy.html)*
+3. *[Deploy Matrix for Users in China](/2020-09-08-Build-An-Instant-Messaging-System-without-Censorship-Deployment-Options.html)*
 
 Instant messaging (IM) software maybe the most commonly used type of software. Privacy is especially important for instant messaging apps. No one wants to be eavesdropped when talking with friends and family. However, most of the instant messaging applications don't have end to end encryption, which means the service provider can see all the messages. This information is much more sensitive than financial information, yet we have regulations for banks but have basically zero regulation for instant messaging providers. Sometimes it's even worse while having regulations: Chinese government can require the provider to hand over server data [by law](http://www.cac.gov.cn/2016-11/07/c_1119867116_2.htm) (Ironically, the offical website of Cyberspace Administration of China doesn't even have https). That's why TikTok is such a hot topic recently. And while Tencent saying they never look at the messages in WeChat, I never trust them. There are even [news](https://news.qq.com/a/20151012/010241.htm#p=4) that showing QQ (another IM software provided by Tencent that is very similar with WeChat) messages helped the police to find criminals. Even if the providers don't look at the data as they declared, as long as they store the data, it becomes permanent record. You don't know who will use that data on what purpose in the future.
 
