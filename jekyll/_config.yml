@@ -39,7 +39,7 @@ kramdown:
 
 syntax_highlighter_opts:
   wrap: div
-  line_numbers: table
+  line_numbers: false
   line_numbers_start: 1
   tab_width: 4
   bold_every: 10
