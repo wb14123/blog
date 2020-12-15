@@ -8,6 +8,12 @@ tags: [TLA+, cache, database, consistency, algorithm, distributed system]
 >
 > -- Phil Karlton
 
+
+*This article belongs to a series of articles about caching.*
+
+1. *Use TLA+ to Verify Cache Consistency (This one)*
+2. *[Redis Implementation for Cache and Database Consistency](2020-12-14-Redis-Implementation-for-Cache-and-Database-Consistency.html)*
+
 During web service development, it's very usual to use a cache before the database. It's so common that almost becomes the default solution whenever there is a performance issue. But a lot of people don't really think about the consistency between database and cache. A main reason is it's so hard to reason about the consistency under a distributed system. So in this article, I will explore how to use TLA+ to specify different cache algorithms and use TLC to check whether it will keep the data consistency between cache and database. All the code in this article is available at [my Github repo](https://github.com/wb14123/tla-cache). The code may be updated after this article is published.
 
 ## System Architecture
