@@ -4,7 +4,7 @@ title: Setup SSH Authentication with YubiKey
 tags: [linux, ssh, security, yubikey, yubico, pam, pam-u2f]
 ---
 
-[YubiKey](https://www.yubico.com/) is a kind of hardware security token. The idea is to authenticate a person not only based on something he knows (password), but also on something he owns. It can be a digital file, but a more secure option would be a hardware token like Yubikey since no one can steal it without physical access. I use it for a lot of services. Not surprisingly, it can also be used in ssh authentication. But the official Yubikey tutorials are not very straightforward and the Archlinux wiki pages are more generic instead of Yubikey specific. So in this article, I'll introduce how to setup ssh to include Yubikey in the authentication process. The operating system I'm using is Arch Linux, but the process for other Linux systems should be very similar.
+[YubiKey](https://www.yubico.com/) is a kind of hardware security token. The idea is to authenticate a person not only based on something he knows (password), but also on something he owns. It can be a digital file, but a more secure option would be a hardware token like Yubikey since no one can steal it without physical access. I use it for a lot of services. Not surprisingly, it can also be used in ssh authentication. But the official Yubikey tutorials are not very straightforward and the ~~Archlinux wiki pages are more generic instead of Yubikey specific~~. So in this article, I'll introduce how to setup ssh to include Yubikey in the authentication process. The operating system I'm using is Arch Linux, but the process for other Linux systems should be very similar.
 
 ## Generate OpenSSH Hardware Token
 
@@ -16,7 +16,9 @@ The most easy way is to generate a ssh key file based on Yubikey. OpenSSH suppor
 Then you can use the generated ssh key like other key files with `-i` option. After type in the login command, you need to touch Yubikey for a few seconds, then you should be able to login.
 
 
-## Use PAM
+## ~~Use PAM~~
+
+**Update: this way only works while the key is plugged into the ssh host, which makes it useless for SSH. However, it's still useful for things like local login.**
 
 A more generic way is to use [PAM](https://en.wikipedia.org/wiki/Linux_PAM) with Yubikey. It's a modular authentication mechanism not only for SSH, but also for lots of other things like local login.
 
