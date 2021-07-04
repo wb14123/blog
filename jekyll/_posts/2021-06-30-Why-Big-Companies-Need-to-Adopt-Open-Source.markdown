@@ -48,4 +48,4 @@ As I said above, if an open source project is done right, it can attract lots of
 
 ## Feedback to the Community
 
-While I listed all the real benefits above, sometimes we may need to think in a more ideological way. Open source started with the idea of openness, to make the code and technology available to everyone. While companies' main focus is making money, why not have some effort to really make the world a better place on the way?
+While I listed all the real benefits above, sometimes we may need to think in a more idealism way. Open source started with the idea of openness, to make the code and technology available to everyone. While companies' main focus is making money, why not have some effort to really make the world a better place on the way?
