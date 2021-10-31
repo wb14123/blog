@@ -1,0 +1,152 @@
+I"|2<blockquote>
+  <p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
+
+  <p>– Phil Karlton</p>
+</blockquote>
+
+<p><em>This article belongs to a series of articles about caching.</em></p>
+
+<ol>
+  <li><em>Use TLA+ to Verify Cache Consistency (This one)</em></li>
+  <li><em><a href="2020-12-14-Redis-Implementation-for-Cache-and-Database-Consistency.html">Redis Implementation for Cache and Database Consistency</a></em></li>
+</ol>
+
+<p>During web service development, it’s very usual to use a cache before the database. It’s so common that almost becomes the default solution whenever there is a performance issue. But a lot of people don’t really think about the consistency between database and cache. A main reason is it’s so hard to reason about the consistency under a distributed system. So in this article, I will explore how to use TLA+ to specify different cache algorithms and use TLC to check whether it will keep the data consistency between cache and database. All the code in this article is available at <a href="https://github.com/wb14123/tla-cache">my Github repo</a>. The code may be updated after this article is published.</p>
+
+<h2 id="system-architecture">System Architecture</h2>
+
+<p>Let’s first describe the normal architecture of the cache and database system. Normally, a web service query data from a database and save data to it. The service itself usually doesn’t store any stateful data. This makes it’s very easy to scale up: just start a bunch of servers and put them behind a load balancer. But for the database, it’s not so easy. It’s usually very hard to scale up a database. So when the performance of the database is an issue, we usually put a cache before it. The cache stores everything in memory so it would be much faster and can handle much more requests than a traditional database that needs to persistent everything. When we read data, we read cache first and only load it from database if there is no data in cache. When save data, we must persistent the data to database. Here is a graph about what this architecture looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>web_server_1
+web_server_2
+web_server_3  &lt;--&gt; cache &lt;--&gt; database
+...
+web_server_n
+</code></pre></div></div>
+
+<p>We need to notice this is a different architecture than the cache of CPU. In multi-core CPUs, each core has it’s own cache instead of having a shared cache, which looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>core_1 &lt;--&gt; cache_1
+core_2 &lt;--&gt; cache_2
+core_3 &lt;--&gt; cache_3  &lt;---&gt; main memory
+...
+core_n &lt;--&gt; cache_n
+</code></pre></div></div>
+
+<p>Because of the differences of architectures, consistency and latency requirements, they usually needs different solutions. In this article, we only talk about the cache algorithms for web services.</p>
+
+<h2 id="cache-algorithms">Cache Algorithms</h2>
+
+<p>The cache algorithms are very simple. When read data, read data from cache first. If there is no data in cache, read from database and write it back to cache. When write data, because normally database has stronger consistency model and can persistent data better, we usually write to database first, then write to cache or invalidate cache. In our example, we invalidate data after write since it’s the most widely used one and has less consistency issues.</p>
+
+<p>This is the pseudocode for this algorithm:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read(key) {
+    cache = readCache(key)
+    if (cache != null) {
+        return cache
+    }
+    data = readDB(key)
+    writeCache(key, data)
+    return data
+}
+
+write(key, value) {
+    writeDB(key, value)
+    invalidateCache(key)
+}
+</code></pre></div></div>
+
+<h2 id="tla-specification">TLA+ Specification</h2>
+
+<p>Once we have the algorithm in mind, we can write a TLA+ specification and let TLC to check whether it has the properties we want. A TLA+ specification is not a 100% map from the system, it’s an abstraction that omits irrelevant details. In our specification, we make two key abstractions:</p>
+
+<ol>
+  <li>Data is inconsistent between cache and database if one row is inconsistent. So in the specification, we only care about one row. Which means we don’t need the parameter for <code class="language-plaintext highlighter-rouge">key</code>.</li>
+  <li>In the specification, we don’t care about what’s the actual value as long as each client writes different values. So we let the client write it’s own ID as the value. Thus we can also omit <code class="language-plaintext highlighter-rouge">value</code> from write behavior.</li>
+</ol>
+
+<p>We need also to notice that if we write multiple state changes in one TLA+ statement, it means those state changes are atomic. In the code, we assume read/write cache/database is atomic while others are not, which means each line is an atomic operation but the lines between them are not. So for each of the lines, we should write separate statements.</p>
+
+<p>So keeping this in mind, we have these variables for our specification:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONSTANT CLIENTS
+VARIABLE cache, db, cacheResults, dbResults, cacheWritten, states
+</code></pre></div></div>
+
+<ul>
+  <li>CLIENTS: all the clients</li>
+  <li>cache: the value in cache</li>
+  <li>db: the value in database</li>
+  <li>cacheResults: read cache results for each client</li>
+  <li>dbResults: read DB results for each client</li>
+  <li>cacheWritten: whether the cache has been written.</li>
+  <li>states: the state of clients</li>
+</ul>
+
+<p>The reason we want to have a variable <code class="language-plaintext highlighter-rouge">cacheWritten</code> is, we want to make sure the algorithm really wrote to the cache. Otherwise it would be simple to keep data consistent by not using the cache at all. (We don’t check this property in this article, but it’s not hard to add that).</p>
+
+<p>For <code class="language-plaintext highlighter-rouge">states</code>, we want all client start with <code class="language-plaintext highlighter-rouge">free</code> and ends with <code class="language-plaintext highlighter-rouge">done</code> when read/write is done. It can go from <code class="language-plaintext highlighter-rouge">done</code> to <code class="language-plaintext highlighter-rouge">free</code> again to start another read/write.</p>
+
+<p>Then we have <code class="language-plaintext highlighter-rouge">Null</code> value for no data in cache or database, <code class="language-plaintext highlighter-rouge">InitValue</code> for any value that exists before the system is running, and all the data that could be put into cache and database;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Null == "null"
+InitValue == "init"
+Data == CLIENTS \union {Null, InitValue}
+</code></pre></div></div>
+
+<p>Once these basic values are ready, it’s not hard to write the specification for cache and database interface. The specification of it is in <a href="https://github.com/wb14123/tla-cache/blob/master/CacheInterface.tla">CacheInterface.tla</a>. Then we can use the interface to specify the algorithm described above: <a href="https://github.com/wb14123/tla-cache/blob/master/WriteInvalidateCache.tla">WriteInvalidateCache.tla</a>.</p>
+
+<p>Finally, we want to also specify what property we want for our system. We want the data in cache and database to be consistent. It would be very hard to make them to be the same all the time. So we make a reasonable weaker statement: we want to make sure once all the clients are done, either the cache doesn’t have any data, or it has the same data as in database:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AllDone == \A c \in CLIENTS: states[c] = "done"
+Consistency == IF AllDone THEN (cache = db \/ cache = Null) ELSE TRUE
+</code></pre></div></div>
+
+<p>We can put the specification and all the properties we want to check into a TLC model config file <a href="https://github.com/wb14123/tla-cache/blob/master/WriteInvalidateCache.cfg">WriteInvalidateCache.cfg</a> and let TLC to check it:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tlc WriteInvalidateCache
+</code></pre></div></div>
+
+<p>After running this, it will show it violates <code class="language-plaintext highlighter-rouge">Consistency</code>, and also show all the sequences to reach the violation. In this way, we know this algorithm cannot guarantee consistency between cache and database.</p>
+
+<h2 id="a-better-algorithm">A Better Algorithm</h2>
+
+<p>An algorithm that makes data possible to be inconsistent doesn’t necessary makes it a bad algorithm. It maybe faster than stronger consistent algorithms and some application is fine with stale data. It all depends on the use case. What makes it a bad algorithm is people use it without truly understand it.</p>
+
+<p>In this section, I’ll introduce an algorithm with better consistency. It’s introduced by the paper <a href="https://pdos.csail.mit.edu/6.824/papers/memcache-fb.pdf">Scaling Memcache at Facebook</a>. In this algorithm, if there is a cache miss during read, the cache server will return a lease token to client. A newer token or the invalidate of the cache will make previous token invalidate. The client can only write cache if it has a valid token.</p>
+
+<p>I implemented the specification of this algorithm in <a href="https://github.com/wb14123/tla-cache/blob/master/WriteInvalidateLease.tla">WriteInvalidateLease.tla</a> and the model config <a href="https://github.com/wb14123/tla-cache/blob/master/WriteInvalidateLease.cfg">WriteInvalidateLease.cfg</a>. If you run the TLC checker on it:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tlc WriteInvalidateLease
+</code></pre></div></div>
+
+<p>You will find it passed the check. Because we specify two clients in <code class="language-plaintext highlighter-rouge">WriteInvalidateLease.cfg</code>, so it means it meets the <code class="language-plaintext highlighter-rouge">Consistency</code> requirement with two concurrent clients:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CLIENTS = {"c1", "c2"}
+</code></pre></div></div>
+
+<p>You can make it as many clients as you want. But increase one client will increase the checking time a lot. Usually 3 clients is enough. It will not guarantee it meets the property under unlimited clients (we need formal proof to do that), but it will give us much higher confidence on the algorithm.</p>
+
+<h2 id="what-else-can-go-wrong">What Else Can Go Wrong</h2>
+
+<p>In the algorithm above, we can see the data in cache and database can be consistent once the client has done the work. But it doesn’t say any thing about client failure. Because the client write to database then invalid the cache, if the client is down during these two operations, it will not invalid the cache so it will have stale data. To specify this in TLA+, we can add two behaviors into Next:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failure(c) == /\ states' = [states EXCEPT ![c] = "fail"]
+              /\ UNCHANGED &lt;&lt;cache, db, cacheResults, dbResults, cacheWritten, lease&gt;&gt;
+
+Recover(c) == /\ states[c] = "fail"
+              /\ states' = [states EXCEPT ![c] = "start"]
+              /\ UNCHANGED &lt;&lt;cache, db, cacheResults, dbResults, cacheWritten, lease&gt;&gt;
+</code></pre></div></div>
+
+<p>Since it’s much less likely for the server to not graceful shutdown, this problem is much smaller than the previous one. And the effect can be limited by having a TTL for cache. However, you need to understand that to know if the algorithm really meets your need.</p>
+
+<p>Another thing need to notice is the consistency property we defined above is a really weak one. It doesn’t guarantee you always read the newest data.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In this article, we can see how easy a cache algorithm can go wrong and how to use TLA+ to specify and verify it. Based on the specification examples above, you can verify any cache algorithm you like: for example, instead of invalidate the cache after write to database, update the cache and see how it works.</p>
+
+<p>In next articles, I will write an implementation for Redis to use the lease token algorithm. And compare the performance between database and cache to see if we really need to use cache in some use cases.</p>
+:ET

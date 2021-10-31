@@ -1,0 +1,49 @@
+I"<p>Some months ago, I wrote a blog named “<a href="/2012-12-18-Call-Program-Like-A-Function.html">Call Program Like A Function</a>”. In that blog, I said using pipe in shell is like calling function: <code class="language-plaintext highlighter-rouge">A | B</code> is like <code class="language-plaintext highlighter-rouge">A(B())</code>. And I also said it’s difficult to write in shell like <code class="language-plaintext highlighter-rouge">A(B(), C())</code>. Read this blog again today, I realize this thought is not totally right.</p>
+
+<p>The thought above is based on this suppose: If we see program in shell like the function in programming, then the arguments of this “function” is standard input, the result of the “function” is standard output. There could only be one standard input, so the “function” must have one argument. In this way, there is no way to call program like <code class="language-plaintext highlighter-rouge">A(B(), C())</code>. But we could discuss these two points.</p>
+
+<h2 id="standard-input-as-arguments">Standard input as arguments</h2>
+
+<p>But think about the program could receive arguments from shell, we need not treat standard input as its argument. In C programming, it’s like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int main(int argc, char *argv[])
+{
+	return 0;
+}
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">argc</code> is the number of arguments, and <code class="language-plaintext highlighter-rouge">argv</code> is what they are. So there is no need to see standard input as the program’s arguments.</p>
+
+<h2 id="standard-output-as-return-value">Standard output as return value</h2>
+
+<p>Now let’s think about why we treat program’s standard output as function’s return value. In the example above, you could return other type as you want, such as <code class="language-plaintext highlighter-rouge">void</code>, <code class="language-plaintext highlighter-rouge">char</code> and so on. But there will be a warning while compiling and the result will be transformed to <code class="language-plaintext highlighter-rouge">int</code> at last. You can try to modify the code like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>char main(int argc, char *argv[])
+{
+	return 'a';
+}
+</code></pre></div></div>
+
+<p>Then compile and see the return value:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/testing » gcc -Wall a.c
+a.c:4:11: warning: return type of ‘main’ is not ‘int’ [-Wmain]
+------------------------------------------------------------
+~/testing » ./a.out
+------------------------------------------------------------
+~/testing » echo $?
+46
+</code></pre></div></div>
+
+<p>So if we want to get more information from program, we should get its output. Luckily, it’s easy to do it in shell. Using <code class="language-plaintext highlighter-rouge">$()</code> you could get the output of program and using them in the shell. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo `ls`
+</code></pre></div></div>
+
+<h2 id="and-then">And then?</h2>
+
+<p>So if we treat arguments of program as function’s argument, standard output value as function’s return value, then <code class="language-plaintext highlighter-rouge">A(B(), C())</code> could be written as <code>A `B` `C`</code>  in shell.</p>
+
+<p>And there is a note. In C programming, the type you could return is almost the same with what you can return in program. But when you want to get a string’s value in a function, you can use a string’s pointer as its argument and assignment to it. But you can not do it in shell.</p>
+
+:ET
