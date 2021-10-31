@@ -3,6 +3,7 @@ layout: post
 title: 东京之旅
 tags: [life]
 lang: zh
+index: ['/Essay/Chinese']
 ---
 
 最近一直比较忙，事情很多，变化很多，这回不愁博客没东西来写了。今天就先把最近去东京的旅游记一下吧。

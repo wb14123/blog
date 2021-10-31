@@ -2,6 +2,7 @@
 layout: post
 title: How About Translate IMAP And SMTP Into HTTP API?
 tags: [programming, email, thought]
+index: ['/Computer Science/Software Engineering']
 ---
 
 I use Gmail as my personal Email. And it works well. I always uses the web UI for it. After Google Inbox is out, it feels even better.

@@ -2,6 +2,7 @@
 layout: post
 title: Life in Guangzhou
 tags: [life]
+index: ['/Life']
 ---
 
 I realize there have been a lot of time since my last blog. These days I'm a little busy. I moved out from Beijing and I'm in Guangzhou now. There happens a lot in Beijing. I always want to write a blog about it, but I need some time to sum them up. The simple way to say it is: I had an intern on both a start up (AVOS) and a big company (Redhat), and really learned a lot. I also have learned about how to make a life: rent an apartment, make contact with all kinds of people and so on.

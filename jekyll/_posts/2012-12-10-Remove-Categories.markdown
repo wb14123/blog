@@ -2,6 +2,7 @@
 layout: post
 title: Remove Categories
 tags: [blog, category, pagination, tag]
+index: ['/Projects/Blog']
 ---
 
 I removed categories from my blog today. I did this for some reasons:

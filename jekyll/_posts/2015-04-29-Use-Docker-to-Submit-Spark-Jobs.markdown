@@ -2,6 +2,7 @@
 layout: post
 title: Use Docker to Submit Spark Jobs
 tags: [Docker, Spark]
+index: ['/Computer Science/Data Processing']
 ---
 
 These days I'm working on analyze data with Spark. Since our Spark cluster is offline in the office for now, so it needs to download data from log server every hour, analyze them with Spark and then upload to the server. The work flow is a little complex so I write some scripts to do it. In addition, I also write a whole automated end to end test for it.

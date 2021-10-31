@@ -2,6 +2,7 @@
 layout: post
 title: In Defence of Disabling Swap
 tags: [Linux, swap, memory, technology]
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 Recently, I read an article [*In Defence of Swap*](https://chrisdown.name/2018/01/02/in-defence-of-swap.html) that talks about memory swap in Linux. I happened to see some problems at work related to it as well. So in this article, I'll talk about swap and why we want to disable it.

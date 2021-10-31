@@ -2,6 +2,7 @@
 layout: post
 title: "Matrix: A Self Hosted Instant Messaging Solution with End to End Encryption"
 tags: [technology, Matrix, instant messaging, censorship]
+index: ['/Computer Science/Digital Life']
 ---
 
 *Updated at sep 6, 2020: change the title and add other articles in this series.*

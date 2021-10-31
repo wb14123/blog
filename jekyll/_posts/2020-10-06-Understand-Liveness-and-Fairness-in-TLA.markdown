@@ -2,6 +2,7 @@
 layout: post
 title: "Understand Liveness and Fairness in TLA+"
 tags: [TLA+, Formal Proof, Distributed System, liveness, fairness]
+index: ['/Computer Science/Distributed System']
 ---
 
 Recently I'm learning [TLA+](https://lamport.azurewebsites.net/tla/tla.html): A language that can specify distributed and concurrent systems. Though it's very different from most programming languages, the idea behind it is very simple: basically what it does is specifying a state machine. The [TLA+ tool box](https://lamport.azurewebsites.net/tla/toolbox.html) has a model checker called TLC that can explore all the states of the state machine and check properties of the system. If the state space is too big or infinite, we can define a reasonable subset of it to check. So it will not always guarantee the correctness. However, the tool box also has a more advanced tool called TLA+ Proof System (TLAPS) to write formal proof like Coq. I highly recommend the [video course](http://lamport.azurewebsites.net/video/videos.html) to learn TLA+. It's short and includes TLC. I first started with The TLA+ Book *Specifying Systems* which doesn't include TLC, and I was wondering how specify a system can check properties of it.

@@ -3,6 +3,7 @@ layout: post
 title: Compile And Install Kernel
 categories: notes
 tags: [linux, kernel]
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 There are already many documents to teach one how to compile and install kernel. Here are just some key notes. Use `make help` under source directory for details.

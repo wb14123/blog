@@ -2,6 +2,7 @@
 layout: post
 title: Xbmc on Raspberry Pi with Archlinux
 tags: [xbmc, raspberry pi]
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 前段时间买了Raspberry Pi。一开始安装的系统是raspbian，但是感觉安装软件太不方便了，于是安装了Archlinux Arm。在Archlinux上安装xbmc上很简单。这里简单介绍一下。

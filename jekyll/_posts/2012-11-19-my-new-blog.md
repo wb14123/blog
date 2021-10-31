@@ -3,6 +3,7 @@ title: My New Blog Website
 layout: post
 categories: workspace
 tags: [blog, jekyll]
+index: ['/Projects/Blog']
 ---
 
 This is my new blog website, just as simple and as good as my imagine. It is powered by jekyll - a ruby tool to generate a static website. I am using wordpress to write a Chinese blog, too. But its editor is not good enough to write with. On the other hand, jekyll makes it possible to write with markdown, which is really a good tool for writing. Also, a static website is efficient and awesome.

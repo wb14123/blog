@@ -2,6 +2,7 @@
 layout: post
 title: What Is Wrong about Recommendation System
 tags: [technology, RSS]
+index: ['/Computer Science/Digital Life']
 ---
 
 I remember when I was in high school, the courses were so boring that I was always trying to find some other things to read on class. It was very hard because smart phones were very expensive. And we don't even have a good library in our city. But just more than 10 years later, it's a totally different world. The information is so easy to get and so overwhelming that people can easily get lost. So I'm trying to use mobile phone and social network platforms less often since 2 years ago. Recently, I feel I've made some progress. I want to share some of my experience by writing a series of articles (hopefully :)). This time, I want to talk about one of the reasons that I want to involve less with the digital world: the recommendation system.

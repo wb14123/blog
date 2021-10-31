@@ -2,6 +2,7 @@
 layout: post
 title: Docker Is the One Scaffolding to Rule Them All
 tags: [Docker]
+index: ['/Computer Science/Virtualization']
 ---
 
 > One Ring to rule them all, One Ring to find them,

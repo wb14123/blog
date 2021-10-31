@@ -2,6 +2,7 @@
 layout: post
 title: Config sbt to Use Both Proxy and Self Hosted Repositories
 tags: [sbt, scala]
+index: ['/Computer Science/Programming Language/Scala']
 ---
 
 While building Scala projects, we usually use a proxy to make the build faster. On the other hand, we usually use another repository to host our internal dependencies, which usually has a password to protect it from unwanted access. Both things are good and necessary. But if you want to use both of them, you will find it's very tricky.

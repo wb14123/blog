@@ -2,6 +2,7 @@
 layout: post
 title: The Permission Management of Android Becomes A Bigger Problem When It Comes to Wearable Devices and TV
 tags: [Android]
+index: ['/Computer Science/Operating System/Android']
 ---
 
 The permission management of Android is a problem for a long time. The behaviour of an app depends on the morality of its developers. Unluckily, many developers are big companies which making money is their primary target and morality is little considered.

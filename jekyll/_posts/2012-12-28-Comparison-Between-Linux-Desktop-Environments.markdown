@@ -2,6 +2,7 @@
 layout: post
 title: Comparison Between Linux Desktop Environments
 tags: [Openbox, Xfce4, LXDE, Gnome, KDE, UI]
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 I finally choose to KDE after used lots of desktop environments and window managers for many years. I think it is worth to write a summary of them.

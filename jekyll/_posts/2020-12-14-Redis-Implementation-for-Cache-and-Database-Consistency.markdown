@@ -2,6 +2,7 @@
 layout: post
 title: Redis Implementation for Cache and Database Consistency
 tags: [Redis, database, consistency, Jepsen, distributed system]
+index: ['/Computer Science/Distributed System']
 ---
 
 *This article belongs to a series of articles about caching. The code in this article can be found at [my Github repo](https://github.com/wb14123/redis_lease).*

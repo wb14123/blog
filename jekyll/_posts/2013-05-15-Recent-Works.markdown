@@ -2,6 +2,7 @@
 layout: post
 title: Recent Works
 tags: [work]
+index: ['/Life']
 ---
 
 There are nothing new in my blog these days. But I am working on something. Mainly learning things and working without new technique challenge (which means you can find information easily in the internet), so I will just list these work here, in case of I forget them some day.

@@ -2,6 +2,7 @@
 layout: post
 title: Experiment On Combining OOP With Erlang's Actor Model
 tags: [erlang, elixir]
+index: ['/Computer Science/Programming Language/Erlang']
 ---
 
 Erlang's actor model is good to use, but its syntax is not. Elixir is a very great language, but I don't think it is enough. So I hacked it a little and did some experiments on turning it into an OOP language in some way.

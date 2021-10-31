@@ -2,6 +2,7 @@
 layout: post
 title: Build a Unix Like Environment on Windows
 tags: [Windows, Python, bash]
+index: ['/Computer Science/Operating System/Windows']
 ---
 
 I've bought a Surface Pro 4 some days ago. It is very amazing and I'd like to use it as my backup development laptop. My daily development is under Linux and Mac OS X. I use terminal and lots of bash scripts everyday. So I need a Unix-like environment on Windows. This article will introduce how to do that.

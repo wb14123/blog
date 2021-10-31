@@ -2,6 +2,7 @@
 layout: post
 title: DNS Resolving Bug in iOS 14
 tags: [DNS, iOS, technology, self hosted]
+index: ['/Computer Science/Operating System/iOS']
 ---
 
 ## The Bug Description

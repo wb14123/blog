@@ -2,6 +2,7 @@
 layout: post
 title: "An Overview of China's Internet Censorship Strategy"
 tags: [technology, GFW, China, Internet]
+index: ['/Computer Science/Digital Life']
 ---
 
 *Updated at sep 6, 2020: change the title and add other articles in this series.*

@@ -2,6 +2,7 @@
 layout: post
 title: Aurora Database
 tags: [Aurora, distributed system, database, 2PC]
+index: ['/Computer Science/Distributed System']
 ---
 
 I'm very interested in databases and distributed systems. It's shocking that how less in depth articles about databases are on the Internet. I wrote an [article about Spanner](/2018-07-29-A-Review-on-Spanner-and-Open-Source-Implementations.html) before and I'm very satisfied with that. So recently, I'm looking at another interesting database [Aurora](https://aws.amazon.com/rds/aurora/). This article is about it.

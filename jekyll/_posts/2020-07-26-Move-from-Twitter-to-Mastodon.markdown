@@ -2,6 +2,7 @@
 layout: post
 title: Move from Twitter to Mastodon
 tags: [social network, Twitter, Mastodon, technology]
+index: ['/Computer Science/Digital Life']
 ---
 
 I'm very happy to announce that I moved to [Mastodon](https://mastodon.binwang.me/@wangbin) from Twitter.

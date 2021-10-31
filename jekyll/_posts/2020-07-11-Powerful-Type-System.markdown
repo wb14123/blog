@@ -2,6 +2,7 @@
 layout: post
 title: Powerful Type System
 tags: [technology, programming language, type system, machine learning]
+index: ['/Computer Science/Programming Language/Type System']
 ---
 
 This is not an article to introduce type systems. It's only some of my experience and thoughts about it.

@@ -2,6 +2,7 @@
 layout: post
 title: RESTful API with Type System
 tags: [web, langauge]
+index: ['/Computer Science/Programming Language/Type System']
 ---
 
 Long long ago, some programming languages already have type system. They can find some bugs while compiling the code, instead of let the program run and fail. Though there are many popular languages that do not have static type system, type system has its advantage and has been accepted widely.

@@ -3,6 +3,7 @@ layout: post
 title: 由“废青”这个称呼所想到的
 tags: [politics, Hong Kong, China, biological, neurological]
 lang: zh
+index: ['/Essay/Chinese']
 ---
 
 最近一直都在关注香港的事情，无奈水平和精力有限，对于各种事实尚不能核实清楚，更不用说大局上有什么高见了。所以只是想在一个小事上说一些自己的看法。

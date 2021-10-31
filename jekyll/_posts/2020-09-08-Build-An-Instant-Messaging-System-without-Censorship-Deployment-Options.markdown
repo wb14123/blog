@@ -2,6 +2,7 @@
 layout: post
 title: "Deploy Matrix for Users in China"
 tags: [technology, Matrix, instant messaging]
+index: ['/Computer Science/Digital Life']
 ---
 
 *This article belongs of a series of articles that talk about how to build an instant messaging system without censorship:*

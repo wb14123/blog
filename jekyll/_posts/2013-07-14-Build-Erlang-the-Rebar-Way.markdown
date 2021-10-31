@@ -2,6 +2,7 @@
 layout: post
 title: Build Erlang the Rebar Way
 tags: [erlang, rebar]
+index: ['/Computer Science/Programming Language/Erlang']
 ---
 
 These days I start learning erlang, and building a poker robot system. While I am learning it, I found the most difficult part is not the function style programming, nor the OTP system. The most difficult part is how to build and run erlang. Surely you can write an erlang module and run the functions from the erlang shell when you do exercises, but it is a little disturbing. And you surely don't want to do that in the production environment. The erlang way and reltool is a little difficult for the newbies. Thanks to rebar, we can do it much easier now.

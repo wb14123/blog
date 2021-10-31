@@ -3,6 +3,7 @@ layout: post
 title: 也谈C++
 tags: [c++, programming]
 lang: zh
+index: ['/Computer Science/Programming Language/C++']
 ---
 
 近段时间有不少谈及C++的文章，其中酷壳的陈皓写了一篇《Why C++？王者归来》，介绍了Herb的一个演讲，说到语言的下一个时期又将是C++的时期。但是对于这些，我却是不甚同意。关于语言的战争从来没有停止过，这里只是我自己的想法，欢迎大家一起讨论。

@@ -2,6 +2,7 @@
 layout: post
 title: The Proper Way to Use Spark Checkpoint
 tags: [spark]
+index: ['/Computer Science/Data Processing']
 ---
 
 These days I'm using Spark streaming to process real time data. I'm using `updateStateByKey`, so I need to add [checkpointing](https://spark.apache.org/docs/latest/streaming-programming-guide.html#checkpointing), which is a fault tolerance mechanism of Spark streaming. The checkpoint will save DAG and RDDs. So when you restart the Spark application from failure, it will continue to compute.

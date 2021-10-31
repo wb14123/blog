@@ -2,6 +2,7 @@
 layout: post
 title: My 2020 in Review
 tags: [life]
+index: ['/Life']
 ---
 
 2020 is a special year to everyone because of Covid-19. It's special to me not only because of it, but also because of a big change in my life. I moved from China to Canada at November 2019. I cannot review my life in 2020 without mention that part, so this article is more like 2019 and 2020 in review.

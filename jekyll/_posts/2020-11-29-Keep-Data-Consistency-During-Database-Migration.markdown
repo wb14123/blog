@@ -2,6 +2,7 @@
 layout: post
 title: Keep Data Consistency During Database Migration
 tags: [database, distributed system, consistency]
+index: ['/Computer Science/Distributed System']
 ---
 
 When a system has been live for a long time, it's not rare to use newer technologies to improve performance, maintainability, or add new features. One of such changes can be which database to use. This can be the most difficult kind of change. During the migration, there are two data sources, which makes it a distributed system. Make data consistent under a distributed system is very hard and can easily go wrong. In this article, we will explore a way to keep the data consistent during the migration, and maintain a low downtime at the same time.

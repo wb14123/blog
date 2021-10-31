@@ -2,6 +2,7 @@
 layout: post
 title: More About Program In Shell And Function
 tags: [shell, formal language]
+index: ['/Computer Science/Software Engineering']
 ---
 
 Some months ago, I wrote a blog named "[Call Program Like A Function](/2012-12-18-Call-Program-Like-A-Function.html)". In that blog, I said using pipe in shell is like calling function: `A | B` is like `A(B())`. And I also said it's difficult to write in shell like `A(B(), C())`. Read this blog again today, I realize this thought is not totally right.

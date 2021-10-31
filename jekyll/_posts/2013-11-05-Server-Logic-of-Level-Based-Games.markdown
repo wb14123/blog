@@ -2,6 +2,7 @@
 layout: post
 title: Server Logic of Level Based Games
 tags: [game, server, unity3d]
+index: ['/Computer Science/Software Engineering']
 ---
 
 These days, I'm working on the server side of an ARPG mobile game. The client of this game is written with Unity3d. I've never done such a thing before. After thinking and researching many days, I found out how to implement the server logic in such a "level based game".

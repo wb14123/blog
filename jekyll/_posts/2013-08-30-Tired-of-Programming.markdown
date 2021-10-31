@@ -2,6 +2,7 @@
 layout: post
 title: Tired of Programming
 tags: [programming]
+index: ['/Essay/English']
 ---
 
 These days, I learned a lot. The more I learned, the more I am tired of programming.

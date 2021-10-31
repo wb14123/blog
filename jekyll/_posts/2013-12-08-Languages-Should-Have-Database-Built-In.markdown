@@ -2,6 +2,7 @@
 layout: post
 title: Languages Should Have Database Built In
 tags: [programming, language, database]
+index: ['/Computer Science/Software Engineering']
 ---
 
 When we are programming, we are programming with data. When the data is too big, we could not put them all in the Ram. So we need some place to store these data, and then read them when we need them. The place we store our data is called "database".

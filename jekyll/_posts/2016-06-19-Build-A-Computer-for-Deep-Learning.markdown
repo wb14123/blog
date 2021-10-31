@@ -2,6 +2,7 @@
 layout: post
 title: Build A Computer for Deep Learning
 tags: [life]
+index: ['/Computer Science/Machine Learning']
 ---
 
 These days, I bought some hardware and build a computer by myself. It's fun and I've learned lots of things from it. Here is a note to record it.

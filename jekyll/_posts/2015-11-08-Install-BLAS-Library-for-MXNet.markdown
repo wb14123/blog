@@ -2,6 +2,7 @@
 layout: post
 title: Install BLAS Library for MXNet
 tags: [deep learning, programming, mxnet, mac os x]
+index: ['/Computer Science/Machine Learning']
 ---
 
 [MXNet](https://github.com/dmlc/mxnet) is a deep learning library. I read its doc and some of its source code. It looks very good. So I'd like to install and try it. While I'm following the [installing guide](https://mxnet.readthedocs.org/en/latest/build.html#build-mxnet-library) to install it on Mac OS X, it failed to compile with the error `cblas.h` not found. The message pointed out I may miss the BLAS library.

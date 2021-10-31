@@ -2,6 +2,7 @@
 layout: post
 title: Why Big Companies Need to Adopt Open Source
 tags: [thoughts, tech, open source]
+index: ['/Computer Science/Software Engineering']
 ---
 
 Recently I'm really frustrated by some internal tools in the company. Lots of people think the internal tools in big company should be much better than open source ones. Maybe that's true in the past or in some other companies. But that's not true in my experience. While we are seeing more and more companies adopting open source, I think it would be helpful to list some of its advantages. I know there are already lots of articles and people talking about this, but while I'm not in the position to make open source decisions for the internal tools I use, writing this article is at least what I can do.

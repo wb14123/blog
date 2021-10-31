@@ -2,6 +2,7 @@
 layout: post
 title: Call Program Like A Function
 tags: [shell, formal language]
+index: ['/Computer Science/Software Engineering']
 ---
 
 What's the most important application for Linux users? The answer must be shell. It comes out the ability to combine tools together to solve complex problem. It is a little like function, such as `A | B` could be represented as `A(B(x))`. But how do you respresent the format `A(B(x), C(y))` in a shell?

@@ -2,6 +2,7 @@
 layout: post
 title: Use Redis Instead of Spark Streaming to Count Statistics
 tags: [big data, redis, spark]
+index: ['/Computer Science/Data Processing']
 ---
 
 In my work, I need to count basic statistics of streaming data, such as mean, variance, sum and so on. At first, I'm using Spark, then Spark Streaming. But after a while, I reimplemented it with Redis and find it is much better. I'd like to talk about them in this article.

@@ -2,6 +2,7 @@
 layout: post
 title: Why I Come Back to Erlang
 tags: [erlang, node.js]
+index: ['/Computer Science/Programming Language/Erlang']
 ---
 
 Some months ago, I learned Erlang and wrote a poker game with it. While I'm using it, its strange syntax drives me to crazy. The most sweet syntax I've ever seen is in coffee script. So in the next game I wrote (also a poker game), I tried to use Node.js with coffee script. But after the basic features are implemented, I came back to Erlang. Here is why.

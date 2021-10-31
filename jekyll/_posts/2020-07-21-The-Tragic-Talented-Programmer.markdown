@@ -2,6 +2,7 @@
 layout: post
 title: The Tragic Talented Programmer
 tags: [thoughts, Temple OS, programming, technology]
+index: ['/Essay/English']
 ---
 
 > I'm king Terry...

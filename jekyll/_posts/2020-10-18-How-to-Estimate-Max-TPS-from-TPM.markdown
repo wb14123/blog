@@ -2,6 +2,7 @@
 layout: post
 title: How to Estimate Max TPS from TPM
 tags: [probability theory, math, technology]
+index: ['/Computer Science/Software Engineering']
 ---
 
 It's good to understand the TPS (transaction per second) of a service. But sometimes we only have TPM (transaction per minute) metrics. It may because we don't have TPS metric at all since it needs resources to compute, or it has been deleted because storing all the historical per second metrics needs a lot of storage space. So we need to estimate TPS from TPM (or even longer time period, which the method below also applies). It's not hard to get an average TPS from TPM: just divide TPM by 60. However, because the database and the dependency services have a limit on how many concurrent requests it can handle, we also need to understand what's the max TPS. In this article, we will explore how to do that.

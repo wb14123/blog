@@ -2,6 +2,7 @@
 layout: post
 title: HTML + CSS + JS is Good
 tags: [web, UI, frontend]
+index: ['/Computer Science/Programming Language/Javascript']
 ---
 
 These days I'm using Libgdx to write a mobile game. While I'm writing it, I find that the modern web tech is very good: HTML + CSS + JS. Let me talk about the details.

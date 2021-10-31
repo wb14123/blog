@@ -2,6 +2,7 @@
 layout: post
 title: Root And Optimize MiBox 3S
 tags: [Android, Android TV, MiBox]
+index: ['/Computer Science/Operating System/Android']
 ---
 
 I've bought a MiBox 3S to watch TV and video for a long time. These days I've done lots of things to security my digital life and privacy, like change my Email to Proton Mail, change the search engine to DuckDuckGo, use Authy to enable 2FA when possible, and so on. So I didn't turn on the MiBox for a long time since I don't feel security to let a XiaoMi device running all the time in my LAN. The business model of XiaoMi is to sell cheap device and push ads to you. So it definitely collects your data. But I do need a device to watch TV or video on a big screen, so I decide to root and clean it to make it more security. Here is how I do it:

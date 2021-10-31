@@ -2,6 +2,7 @@
 layout: post
 title: Create A Virtual Machine Network
 tags: [qemu, virt-manager, virtualization]
+index: ['/Computer Science/Virtualization']
 ---
 
 Because of some problems I'm working on, I need some test machines with Windows and some Linux distribution installed. It is impossible to have so many machines or install so many systems on my laptop. So I use [qemu](http://www.qemu.org) to create some virtual machines and use [virt-manager](http://virt-manager.org/) to manage them. Here is what I have now:

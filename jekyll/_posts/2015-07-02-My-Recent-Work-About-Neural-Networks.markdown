@@ -2,6 +2,7 @@
 layout: post
 title: My Recent Work About Neural Networks
 tags: [neural network, deep learning, programming]
+index: ['/Computer Science/Machine Learning']
 ---
 
 These days I've written some code about neural networks. There is nothing important, but worth to be recorded.

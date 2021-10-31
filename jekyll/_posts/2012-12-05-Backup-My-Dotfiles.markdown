@@ -3,6 +3,7 @@ layout: post
 title: Backup My Dotfiles
 categories: workspace
 tags: [vim, zsh, config, git]
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 These days I re-configure my vim and zsh. Then backup them in [github](http://github.com). You can see it at [here](https://github.com/wb14123/dotfiles).

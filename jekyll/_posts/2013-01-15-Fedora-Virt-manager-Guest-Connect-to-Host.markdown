@@ -2,6 +2,7 @@
 layout: post
 title: Fedora Virt-manager Guest Connect to Host
 tags: [kvm, fedora, virt-manager, newwork]
+index: ['/Computer Science/Virtualization']
 ---
 
 These days I'm confused with the virt-manager's network. While I use the Fedora guest to connect to 192.168.122.1, it always connect to itself. I searched on the internet but there are little information. I mean, though the information, it should work.

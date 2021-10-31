@@ -2,6 +2,7 @@
 layout: post
 title: How Kernel's Makefile Specify Output Directory
 tags: [kernel, make]
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 When compile Linux kernel, we could output files to a split directory with "make O=". The kernel's way to do it is a little tricky. Since kernel's Makefile is very big, we could have a simpler version to analyse:

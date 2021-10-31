@@ -2,6 +2,7 @@
 layout: post
 title: How to Put RNN Layers Into Neural Network Model
 tags: [neural nerwork, rnn]
+index: ['/Computer Science/Machine Learning']
 ---
 
 If you are interested in neural networks, you must have ever read and learn lots of things about RNN, which can reason about sequences of data. RNN is awesome and very fun to play with, if you haven't heard of it, you can read [this great article](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) which train a char level RNN model to generate text.

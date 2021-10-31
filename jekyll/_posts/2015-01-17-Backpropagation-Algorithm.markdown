@@ -2,6 +2,7 @@
 layout: post
 title: Backpropagation Algorithm
 tags: [algorithm, deep learning]
+index: ['/Computer Science/Machine Learning']
 ---
 
 These days I start to learn neural networks again and write some Matlab codes from scratch. I try to understand everything I do while I write the code, so I derive the equations in the back propagation while try to keep it clear and easy to understand.

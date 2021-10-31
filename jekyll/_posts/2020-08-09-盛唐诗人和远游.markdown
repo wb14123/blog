@@ -3,6 +3,7 @@ layout: post
 title: 盛唐诗人和远游
 tags: [life, poem]
 lang: zh
+index: ['/Essay/Chinese']
 ---
 
 > 少时壮且厉，抚剑独行游。

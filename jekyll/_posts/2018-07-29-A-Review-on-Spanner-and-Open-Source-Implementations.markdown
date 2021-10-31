@@ -3,6 +3,7 @@ layout: post
 title: Spanner and Open Source Implementations
 tags: [database, technology, distributed system]
 categories: Technical
+index: ['/Computer Science/Distributed System']
 ---
 
 When [Spanner paper](https://ai.google/research/pubs/pub39966) was published, the use of synced clock to implement globally distributed database attracted a lot of attentions. After these years, Google have put Spanner on its cloud to make everyone be able to use it. And there are also some open source implementations of Spanner in these years. In this article, I'd like to write about how synced clock makes Spanner special, some notes of using it and how others implement it without special hardware clock.

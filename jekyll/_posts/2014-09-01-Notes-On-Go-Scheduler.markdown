@@ -2,6 +2,7 @@
 layout: post
 title: Notes On Go Scheduler
 tags: [golang, scheduler]
+index: ['/Computer Science/Programming Language/Go']
 ---
 
 I read the Go source code about scheduler these days. They are under `src/pkg/runtime`, mainly in `runtime.h`, `proc.c` and some Assembly files. The scheduler's policy is easy to understand, because there are already many articles on this. I'm more interesting in the details. I learned how to switch the current running goroutine, which is a little mystery for me before.

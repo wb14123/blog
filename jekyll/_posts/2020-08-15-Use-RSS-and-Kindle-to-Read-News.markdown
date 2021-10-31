@@ -2,6 +2,7 @@
 layout: post
 title: Use RSS and Kindle to Read News
 tags: [technology, RSS]
+index: ['/Computer Science/Digital Life']
 ---
 
 In a [previous blog post](/2020-08-02-What-Is-Wrong-abount-Recommendation-System.html), I talked about one of the reasons I want to use mobile phone and social network less often. In this article, I will talk about one of the strategies of doing that: don't read news on mobile phone or computer. Use Kindle or other E-Readers instead. Here is how I do it:

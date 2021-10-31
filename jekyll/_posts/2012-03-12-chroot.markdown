@@ -3,6 +3,7 @@ layout: post
 title: Chroot 简介
 tags: [linux, chroot]
 lang: zh
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 

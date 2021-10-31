@@ -3,6 +3,7 @@ layout: post
 title: Comment And Search Are Available
 categories: workspace
 tags: [blog, disqus, google]
+index: ['/Projects/Blog']
 ---
 
 As you can see, my blog are able to comment and search now!

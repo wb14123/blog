@@ -2,6 +2,7 @@
 layout: post
 title: Define Infrastructure as Code
 tags: [cloud, docker, aws, cdk, technology, programming]
+index: ['/Computer Science/Software Engineering']
 ---
 
 I'm using a lot of [CDK](https://aws.amazon.com/cdk/) at work recently. So in this article, I want to talk about defining infrastructure as code.

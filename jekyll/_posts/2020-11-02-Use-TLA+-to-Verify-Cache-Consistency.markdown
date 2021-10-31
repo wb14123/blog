@@ -2,6 +2,7 @@
 layout: post
 title: Use TLA+ to Verify Cache Consistency
 tags: [TLA+, cache, database, consistency, algorithm, distributed system]
+index: ['/Computer Science/Distributed System']
 ---
 
 > There are only two hard things in Computer Science: cache invalidation and naming things.

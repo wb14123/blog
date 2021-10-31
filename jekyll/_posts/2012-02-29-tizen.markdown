@@ -3,6 +3,7 @@ layout: post
 title: Tizen，加油
 tags: [tizen, mobile]
 lang: zh
+index: ['/Computer Science/Operating System/Tizen']
 ---
 
 一直以来，都希望有一个真正的基于Linux的手机操作系统。找来找去，还是看好Tizen。Tizen是一个由Linux基金会主持的一个项目，致力于打造一个真正开放的手机系统。这里是它的项目主页：https://www.tizen.org/
