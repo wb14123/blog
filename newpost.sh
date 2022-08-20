@@ -11,6 +11,7 @@ fi
 POST_NAME=$1
 POST_DATE=`date +%Y-%m-%d`
 POST_DIR="./jekyll/_posts"
+POST_NAME=`echo $POST_NAME | sed "s/\//-/g"`
 FILE_NAME=`echo "$POST_DIR/$POST_DATE-$POST_NAME.markdown" | sed "s/ /-/g"`
 if [ -e $FILE_NAME ] ; then
 	echo "File $FILE_NAME already exists"
