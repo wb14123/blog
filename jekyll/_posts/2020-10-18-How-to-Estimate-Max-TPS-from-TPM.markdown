@@ -11,7 +11,7 @@ We have an assumption before we go to the solution: we assume that in the time p
 
 With this assumption in mind, we can use [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution) to solve this problem. The probability of how many times the event occurs in the interval of time can be solved by this:
 
-<span>$$ P(TPS=k) =  \frac{\lambda^k e^{-k}}{k!} $$</span>
+<span>$$ P(TPS=k) =  \frac{\lambda^k e^{-\lambda}}{k!} $$</span>
 
 <span>$$k$$</span> means how many times the event happens in the interval of time. <span>$$\lambda$$</span> means the average of times that the event will occur in the interval.
 
@@ -19,7 +19,7 @@ In our case, the interval of time is 1 second. So <span>$$\lambda$$<span> is the
 
 So we have the probability of the TPS. But what we want is the max TPS. If we want to know what's the probability of max TPS equals n, we can add all the probabilities of TPS under n:
 
-<span>$$ P(max TPS = n) = \sum_{k=0}^{n} P(TPS=k) = \sum_{k=0}^{n} \frac{\lambda^k e^{-k}}{k!} $$</span>
+<span>$$ P(max TPS = n) = \sum_{k=0}^{n} P(TPS=k) = \sum_{k=0}^{n} \frac{\lambda^k e^{-\lambda}}{k!} $$</span>
 
 Then we can draw a graph of this function and select n that makes the probability almost to 1. I recommend [Wolfram Alpha](https://www.wolframalpha.com) to draw the graph. Though it needs paid version to show a more clear graph, the free version is enough for our use case.
 
@@ -36,3 +36,5 @@ Sometimes the dependency has a throttling mechanism. It may has a target throttl
 From the graph, we can see max transactions per 100ms would be more like 36. And when we provide a target throttling TPS, we should multiply this by 10 which is 360, a lot higher than 260.
 
 The calculation above also applies when it count throttling number independently on multiple hosts. (Again, it should have a better throttling counting mechanism). For example, if the dependency service has 10 hosts and it chooses random host to handle the request, then we should count max TPS per host. Which <span>$$\lambda$$</span> is also 20 and target TPS configuration should be 360 instead of 260.
+
+*Update at Sep 22, 2022: Fix the formular from <span>$$e^{-k}$$</span> to <span>$$e^{-\lambda}$$</span>. The graphs and results were computed with <span>$$e{-\lambda}$$</span> so they are still correct.*
