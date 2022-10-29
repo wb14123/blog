@@ -5,6 +5,9 @@ tags: [technology, RSS]
 index: ['/Computer Science/Digital Life']
 ---
 
+*Update: check [this article](/2022-10-29-RSS-Brain-Yet-Another-RSS-Reader-With-More-Features.html) to see how to use a RSS reader I wrote to take back the control of your information consumption.*
+
+
 In a [previous blog post](/2020-08-02-What-Is-Wrong-abount-Recommendation-System.html), I talked about one of the reasons I want to use mobile phone and social network less often. In this article, I will talk about one of the strategies of doing that: don't read news on mobile phone or computer. Use Kindle or other E-Readers instead. Here is how I do it:
 
 ## Use RSS to Get News
