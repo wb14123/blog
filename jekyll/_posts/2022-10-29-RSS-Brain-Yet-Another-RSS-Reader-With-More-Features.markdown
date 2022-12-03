@@ -71,7 +71,7 @@ Currently the implementation only has the ability to select from all your subscr
 * I can compare the report coverage from both left and right news agencies, to get a whole picture. I don't use this feature a lot myself, but I know a lot of people like that and there are some popular apps do just that.
 * I usually read news from a high quality source. But if I find some news to be interesting, I'd like to read more coverage on that. Those coverage doesn't need to be high quality but might have more details.
 
-I have plan to extend this feature. It will be much better after that: RSS Brain will support related articles groups, so that you can show related articles not only from all the subscriptions, but also from the folders of your choice. So you can configure it to show related forum posts in one group, left/right news coverage on another group, and so on. I'll also implement a feature to show related articles from a time range, so that it can filter the matches based on time, to make the news more related if you want.
+I have plan to extend this feature. (*Update: this feature has been implemented. Check the [blog post here](/2022-12-03-How-RSS-Brain-Shows-Related-Articles.html).*) It will be much better after that: RSS Brain will support related articles groups, so that you can show related articles not only from all the subscriptions, but also from the folders of your choice. So you can configure it to show related forum posts in one group, left/right news coverage on another group, and so on. I'll also implement a feature to show related articles from a time range, so that it can filter the matches based on time, to make the news more related if you want.
 
 ## 4. Just Want to Write Something
 
