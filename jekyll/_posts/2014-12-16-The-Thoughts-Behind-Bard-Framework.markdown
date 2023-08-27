@@ -2,7 +2,7 @@
 layout: post
 title: The Thoughts Behind Bard Framework
 tags: [web, programming]
-index: ['/Computer Science/Software Engineering']
+index: ['/Projects/Bard']
 ---
 
 These days I'm working on a really exciting project: a web framework. My job is to write web services, and there is no framework I thought is doing things right. So I just write one myself. It is really an interesting thing. I will talk about some thoughts behind it in this article.

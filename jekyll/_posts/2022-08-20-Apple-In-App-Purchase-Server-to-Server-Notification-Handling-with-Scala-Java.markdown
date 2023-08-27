@@ -2,7 +2,7 @@
 layout: post
 title: Handle Apple In-App-Purchase Server Notification with Scala/Java
 tags: [iOS, Apple, In App Purchase, Scala, Java, Programming]
-index: ['/Computer Science/Software Engineering']
+index: ['Computer Science/Operating System/iOS']
 ---
 
 When you write an app for iOS, publish it to Apple App Store and want to sell something within it, Apple makes it mandatory to use its own in app purchase framework for non consumable items and subscriptions. If the app has a server, it's very usual that the server wants to know the payment events and have some followup logic with them. But how to do that? There is always an option to let the app send a request to server, but anyone can use the same endpoint to make false claims. To prevent this, Apple has a server to server notification mechanism: Instead the app itself, a server from Apple will send a request to your server to notify the payment events. Since the message is signed by Apple, you can make sure no one else can fake it by verifying the signature.

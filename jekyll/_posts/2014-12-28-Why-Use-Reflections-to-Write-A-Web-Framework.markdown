@@ -2,7 +2,7 @@
 layout: post
 title: Why Use Reflections to Write A Web Framework
 tags: [web, programming]
-index: ['/Computer Science/Software Engineering']
+index: ['/Projects/Bard']
 ---
 
 Lots of people don't like reflections. And I said if I could see the whole things I might not use reflections (with Annotation) to write the web framework [Bard](https://github.com/wb14123/bard). But I think it is not true, I really need reflections to do the things.

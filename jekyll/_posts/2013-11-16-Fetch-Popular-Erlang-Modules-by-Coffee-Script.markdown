@@ -2,7 +2,7 @@
 layout: post
 title: Fetch Popular Erlang Modules by Coffee Script
 tags: [erlang, coffeescript, node.js]
-index: ['/Projects']
+index: ['/Projects', '/Computer Science/Programming Language/Erlang']
 ---
 
 These days I write [a small app](https://github.com/wb14123/erlang_module) which fetches the popular erlang modules. It is inspired by [nodejsmodules.org](http://nodejsmodules.org). But it is simpler. Only fetch the dependencies of a repo.
