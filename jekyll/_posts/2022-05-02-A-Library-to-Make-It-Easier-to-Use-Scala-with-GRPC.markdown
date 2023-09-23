@@ -2,7 +2,7 @@
 layout: post
 title: A Library to Make It Easier to Use Scala with gRPC
 tags: [Programming, Scala, gRPC, backend]
-index: ['/Projects', '/Computer Science/Programming Language/Scala']
+index: ['/Projects/Scala2grpc', '/Computer Science/Programming Language/Scala']
 ---
 
 *This article describes why I created the library [Scala2grpc](https://github.com/wb14123/scala2grpc).*
