@@ -123,9 +123,9 @@ def loop(start: Int): IO[Unit] = {
 }
 ```
 
-However, this only makes a batch of tasks run in parallel. It needs to wait the whole batch to be finished in order to start next batch. This is very obvious when we run this approach and see the output of characters (download [Github repo](https://github.com/wb14123/scala-stream-demo) and run `sbt run "-n BatchIOApp"`). See how it paused after each batch even when consumer is slower than producer:
+However, this only makes a batch of tasks run in parallel. It needs to wait the whole batch to be finished in order to start next batch. This is very obvious when we run this approach and see the output of characters (download [Github repo](https://github.com/wb14123/scala-stream-demo) and run `sbt "run -n BatchIOApp"`). See how it paused after each batch even when consumer is slower than producer:
 
-<script async id="asciicast-P2ZX0r2VYaMXCVjrJCoJ0Y3DS" src="https://asciinema.org/a/P2ZX0r2VYaMXCVjrJCoJ0Y3DS.js" data-rows="10"></script>
+{% asciicast tmpg4x5_bn7-ascii %}
 
 ## Approach 2: Use Blocking Queue to Buffer Tasks
 
@@ -154,7 +154,7 @@ Here we have two IOs run in parallel with `parSequence`: the first one creates a
 
 When run it with `sbt "run -n BlockingQueueApp"`, we can see it's much faster when the consumer is faster or has the same speed as the producer. Especially when the consumer is slow, it prints multiple `P` at first, which means the producers doesn't wait all the consumers to finish in order to produce tasks.
 
-<script async id="asciicast-gWC18DjuVT1v6sDaf2HJJerq6" src="https://asciinema.org/a/gWC18DjuVT1v6sDaf2HJJerq6.js" data-rows="10"></script>
+{% asciicast tmp6dx2heu_-ascii %}
 
 Back to the blocking the whole thread problem: it doesn't seem to be a problem in this case, right? It's only because we are lucky! In this setup, we are using two fixed threads as the thread pool of running IO in `Main.scala`:
 
