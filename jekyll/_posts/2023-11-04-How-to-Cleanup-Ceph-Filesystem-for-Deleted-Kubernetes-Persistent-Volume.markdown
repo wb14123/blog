@@ -1,7 +1,8 @@
 ---
 layout: post
 title: How to Cleanup Ceph Filesystem for Deleted Kubernetes Persistent Volume
-tags: ['/Computer Science/Distributed System Infrastructure']
+tags: [Kubernetes, Ceph, Distributed file system]
+index: ['/Computer Science/Distributed System Infrastructure']
 ---
 
 [Ceph](https://docs.ceph.com) is a distributed file system. [Rook](https://rook.io/) is a project to deploy it with Kubernetes. I recently replaced GlusterFS in my Kubernetes cluster with Ceph. I will write a blog (or a series of blogs) for the migration. But in this article, I will just talk about a problem I encountered, just in case I forget it.
