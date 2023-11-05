@@ -2,7 +2,7 @@
 layout: post
 title: Upgrade Kubernetes from 1.23 to 1.24
 tags: [Kubernetes, container, Docker, Linux]
-index: ['/Computer Science/Virtualization']
+index: ['/Computer Science/Distributed System Infrastructure']
 ---
 
 In the [last blog post](/2023-03-13-Infrastructure-Setup-for-High-Availability.html), I introduced using Kubernetes to setup high available infrastructure. I had that setup a long time ago. I did the long overdue upgrade for Kubernetes from 1.23 to 1.24 recently. Since GlusterFS is [deprecated](https://github.com/kubernetes/kubernetes/pull/111485)(though not removed) in 1.25, I have no plans to continue the upgrade without exploring alternative storage options.
