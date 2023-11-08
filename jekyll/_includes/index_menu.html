@@ -25,13 +25,30 @@
 
 <script>
 
-    document.addEventListener("DOMContentLoaded", function(event) { 
-        var scrollpos = localStorage.getItem('menu-scroll-pos');
-				console.log(scrollpos);
-        if (scrollpos) document.getElementById('index_menu').scrollTo(0, scrollpos);
-    });
+  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
-    window.onbeforeunload = function(e) {
-        localStorage.setItem('menu-scroll-pos', document.getElementById('index_menu').scrollTop );
-    };
+  const indexMenu = document.getElementById('index_menu');
+  const selected = document.getElementsByClassName("index-selected")[0];
+
+
+
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var scrollpos = localStorage.getItem('menu-scroll-pos');
+    console.log(scrollpos);
+    if (scrollpos) indexMenu.scrollTo(0, scrollpos);
+
+    if (selected !== undefined) {
+      const topOffset = selected.getBoundingClientRect().top;
+      if (topOffset < 0 || topOffset > vh) {
+        indexMenu.scrollBy({left: 0, top: topOffset - vh / 3.0, behavior: "smooth"});
+      }
+    }
+
+  });
+
+  window.onbeforeunload = function(e) {
+    localStorage.setItem('menu-scroll-pos', indexMenu.scrollTop );
+  };
+
 </script>
