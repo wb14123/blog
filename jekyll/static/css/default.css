@@ -120,6 +120,18 @@ header#page_header nav ul{
   display: inline;
 }
 
+#index_menu {
+  width: 400px;
+  height: 90vh;
+  overflow-y: scroll;
+  position: fixed;
+}
+
+#real_page_content{
+  flex-grow: 2;
+  margin-left: 440px;
+}
+
 #post-pagination {
   clear: both;
   width: 100%;
@@ -144,7 +156,7 @@ footer#page_footer{
   display: block;
   text-align: center;
   padding: 20px 0 0 0;
-  font-size: small; 
+  font-size: small;
 }
 
 .description {
@@ -230,7 +242,7 @@ blockquote {
 @media screen and (min-width:1060px){
   #post_list {
     width: 960px;
-    margin: auto;
+    margin: 0 auto;
   }
 
   #article_content{
@@ -285,12 +297,31 @@ blockquote {
   margin-right: 10px;
 }
 
-.index-index {
-  font-size: 22px;
+.index-entry {
+  font-size: 18px;
   margin-top: 10px;
 }
 
+.index-intend {
+  margin-left: 20px;
+}
+
+.index-index a {
+  font-weight: bold;
+  color: black;
+  
+}
+
 .index-post {
-  margin-top: 10px;
-  font-size: 18px;
+  font-size: 17px;
+}
+
+
+.index-post a {
+  color: rgb(20, 20, 20);
+  font-weight: lighter;
+}
+
+.index-selected {
+  color: blue;
 }

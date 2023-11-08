@@ -16,36 +16,24 @@ module Index
             end
           end
 
-          cur_index['_post_' + post.data['title']] = post
+          cur_index['_post_' + post.data['date'].iso8601 + post.data['title']] = post
         end
       end
 
-      index_arr = idx_map_to_array(index)
+      index_arr = []
+      idx_map_to_array(index, index_arr, 0, nil)
 
-      index_page = site.pages.find { |page| page.name == 'index_page.html'}
-      index_page.data['type'] = "root"
-      index_page.data['index'] = index_arr
+      site.data['index_arr'] = index_arr
     end
 
-    def idx_map_to_array(index_map)
-      root = []
-      index_map.each do |name, value|
+    def idx_map_to_array(index_map, entries, level, parent_id)
+      index_map.sort.each do |name, value|
         if name.start_with?('_post_')
-          root.append({'type' => "post", 'post' => value})
+          entries.append({'type' => "post", 'post' => value, 'level' => level, 'parent_id' => parent_id})
         else
-          root.append({'name' => name, 'type' => "index", 'value' => idx_map_to_array(value)})
+          entries.append({'type' => "index", 'name' => name, 'level' => level, 'parent_id' => parent_id})
+          idx_map_to_array(value, entries, level + 1, name)
         end
-      end
-      return root.sort{ |a,b| compare_index(a, b)}
-    end
-
-    def compare_index(a, b)
-      if a['type'] != b['type']
-        return a['type'] <=> b['type']
-      elsif a['type'] == 'index'
-        return a['name'] <=> b['name']
-      else
-        return a['post'].data['date'] <=> b['post'].data['date']
       end
     end
 

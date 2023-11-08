@@ -1,0 +1,37 @@
+{% for element in include.index_arr %}
+
+<div class="index-entry index-{{ element.type }}">
+      {% for i in (0..element.level) %}
+        <div class="index-intend">
+      {% endfor %}
+
+      {% if element.type == "index" %}
+      <a href="#" onclick="taggleMenu({{ element.name }})">{{ element.name }}</a>
+      {% elsif element.type == "post" %}
+        {% if page.title == element.post.title %}
+          <div class="index-selected">{{ element.post.title }}</div>
+        {% else %}
+          <a href="{{ element.post.url }}">{{ element.post.title }}</a>
+        {% endif %}
+      {% endif %}
+
+      {% for i in (0..element.level) %}
+        </div>
+      {% endfor %}
+    </div>
+
+{% endfor %}
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var scrollpos = localStorage.getItem('menu-scroll-pos');
+				console.log(scrollpos);
+        if (scrollpos) document.getElementById('index_menu').scrollTo(0, scrollpos);
+    });
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('menu-scroll-pos', document.getElementById('index_menu').scrollTop );
+    };
+</script>
