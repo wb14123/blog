@@ -21,7 +21,7 @@ module Index
       end
 
       index_arr = []
-      idx_map_to_array(index, index_arr, 0, nil)
+      idx_map_to_array(index, index_arr, -1, nil)
 
       site.data['index_arr'] = index_arr
     end

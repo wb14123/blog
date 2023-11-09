@@ -27,13 +27,15 @@
 
 
 body{
-  width:90%;
-  margin:15px auto;
-  padding: 0% 5% 5% 5%;
+  max-width: 1400px;
+  margin: 0 auto;
   font-family: mixFont,Georgia,serif;
   font-size: 20px;
   color:  #111111;
   background-color: #FFFCF4;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 code{
@@ -107,6 +109,11 @@ a:hover{
 header#page_header{
   text-align: right;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
 }
 
 header#page_header nav ul{
@@ -120,16 +127,31 @@ header#page_header nav ul{
   display: inline;
 }
 
-#index_menu {
-  width: 400px;
-  height: 90vh;
-  overflow-y: scroll;
-  position: fixed;
+#menu-button a {
+  display: none;
+  font-size: 48px;
 }
 
-#real_page_content{
+#index_menu {
+  padding: 10px 10px 10px 10px;
+  width: 400px;
+  height: 96vh;
+  overflow-y: scroll;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+#main_content {
+  padding: 10px 10px 10px 10px;
+  margin: 0 auto;
+  max-width: 960px;
   flex-grow: 2;
-  margin-left: 440px;
+  flex-shrink: 100;
+}
+
+#page_content {
+  margin: 0 auto;
 }
 
 #post-pagination {
@@ -239,16 +261,19 @@ blockquote {
     display: inline;
   }
 }
-@media screen and (min-width:1060px){
-  #post_list {
-    width: 960px;
-    margin: 0 auto;
+@media screen and (max-width:1060px) {
+  #index_menu {
+    display: none;
   }
 
-  #article_content{
-    width: 960px;
-    margin: auto;
+  #menu-button a {
+    display: inline;
   }
+
+  #main_content {
+    max-width: 96vw;
+  }
+
 }
 
 .category_desc {
@@ -325,3 +350,4 @@ blockquote {
 .index-selected {
   color: blue;
 }
+

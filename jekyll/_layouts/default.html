@@ -39,11 +39,18 @@
   </head>
 
   <body>
+    <div id="index_menu">
+      {% include index_menu.html index_arr=site.data.index_arr %}
+    </div>
+
+    <div id="main_content">
     <header id="page_header">
+      <div id="menu-button">
+          <a href="/index_page.html">&#9776;</a>
+      </div>
       <nav id="page_nav">
         <ul>
              <li><a href="{{ site.baseurl }}">Home</a></li>
-             <li><a href="/index_page.html">Index</a></li>
              <li><a href="/snippets">Snippets</a></li>
              <li><a href="https://www.goodreads.com/review/list/103708630-bin?shelf=read" target="_blank">Read</a></li>
              <li><a href="/travel.html">Travel</a></li>
@@ -58,18 +65,13 @@
 
 
     <section id="page_content">
-      <div id="index_menu">
-        {% include index_menu.html index_arr=site.data.index_arr %}
-      </div>
-
-      <div id="real_page_content">
         {{ content }}
-      </div>
     </section>
 
     <footer id="page_footer">
       Copyright @ 2008 - 2023 Bin Wang
       <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
     </footer>
+    </div>
   </body>
 </html>
