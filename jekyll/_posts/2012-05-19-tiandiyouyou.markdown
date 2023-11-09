@@ -3,7 +3,7 @@ layout: post
 title: 念天地之悠悠
 tags: [thougths]
 lang: zh
-index: ['/Essay/Chinese']
+index: ['/Thoughts/Chinese']
 ---
 
 

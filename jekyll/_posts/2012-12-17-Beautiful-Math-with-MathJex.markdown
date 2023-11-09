@@ -2,7 +2,7 @@
 layout: post
 title: Beautiful Math with MathJex
 tags: [composition, MathJex, LaTex]
-index: ['/Computer Science/Digital Life']
+index: ['/Computer Science/Programming Language/Javascript']
 ---
 
 Never ever say you are a geek if you don't have some mathematical formulas on your website! I have done so though [MathJex](http://www.mathjax.org)`:)`. Here are some examples:

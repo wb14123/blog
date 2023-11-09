@@ -2,7 +2,7 @@
 layout: post
 title: Change Root File System from Ext4 to Xfs on Archlinux
 tags: [ext4, xfs, initramfs, backup]
-index: ['/Computer Science/Storage']
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 [Xfs](http://xfs.org/) is said a high performance file system. So I changed my root file system from ext4 to xfs today. There are some tricky things. This article is a simple HOWTO.

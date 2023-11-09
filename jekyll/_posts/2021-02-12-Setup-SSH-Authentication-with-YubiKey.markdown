@@ -2,7 +2,7 @@
 layout: post
 title: Setup SSH Authentication with YubiKey
 tags: [linux, ssh, security, yubikey, yubico, pam, pam-u2f]
-index: ['/Computer Science/Security']
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 [YubiKey](https://www.yubico.com/) is a kind of hardware security token. The idea is to authenticate a person not only based on something he knows (password), but also on something he owns. It can be a digital file, but a more secure option would be a hardware token like Yubikey since no one can steal it without physical access. I use it for a lot of services. Not surprisingly, it can also be used in ssh authentication. But the official Yubikey tutorials are not very straightforward and the ~~Archlinux wiki pages are more generic instead of Yubikey specific~~. So in this article, I'll introduce how to setup ssh to include Yubikey in the authentication process. The operating system I'm using is Arch Linux, but the process for other Linux systems should be very similar.

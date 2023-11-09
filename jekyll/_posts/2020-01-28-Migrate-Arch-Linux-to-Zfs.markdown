@@ -2,7 +2,7 @@
 layout: post
 title: Migrate Arch Linux to ZFS
 tags: [linux, zfs, technology, freebsd]
-index: ['/Computer Science/Storage']
+index: ['/Computer Science/Operating System/Linux']
 ---
 
 I migrated my Arch Linux installation to ZFS recently. This article describes why and how I did that.

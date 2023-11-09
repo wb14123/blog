@@ -2,7 +2,7 @@
 layout: post
 title: The Things You Need to Know When Using Apache Sentry
 tags: [Sentry, Hadoop, Cloudera, security, Splice Machine]
-index: ['/Computer Science/Security']
+index: ['/Computer Science/Software Engineering']
 ---
 
 For the last few days, I was working on integrating [Apache Sentry](https://sentry.apache.org) into our database product Splice Machine. And when doing that, I found the document of Sentry is awful. It takes me much time to figure out what's the role of Sentry and how to configure it. So in this article, I'd like to write some really important things to help understanding Sentry.

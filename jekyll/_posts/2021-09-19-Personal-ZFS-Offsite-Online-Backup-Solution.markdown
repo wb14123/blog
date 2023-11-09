@@ -2,7 +2,7 @@
 layout: post
 title: Personal ZFS Offsite Backup Solution
 tags: [zfs, backup, secure boot, linux, tech, vpn]
-index: ['/Computer Science/Storage']
+index: ['/Computer Science/Distributed System Infrastructure']
 ---
 
 Digital data was never as important as nowadays. Not only for business, but also for every individual. And it's challenging to make data safe. For example, we see the news about ransomware encrypted all the data of big companies, made their business suspended. We also see a lot of extreme weathers recently: fires, flood and so on, which threats the hardware that stores the data. So it's necessary to have backups. There should be at least two kinds of backups to keep data safe: offline backup and offsite backup.

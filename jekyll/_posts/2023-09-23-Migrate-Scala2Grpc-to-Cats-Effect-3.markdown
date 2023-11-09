@@ -2,7 +2,7 @@
 layout: post
 title: Migrate Scala2grpc to Cats Effect 3
 tags: [Programming, Scala, gRPC, Cats, Functional Programming]
-index: ['/Projects/Scala2grpc', '/Computer Science/Programming Language/Scala']
+index: ['/Projects/Scala2grpc']
 ---
 
 [Scala2grpc](https://github.com/wb14123/scala2grpc) is a library and SBT plugin I wrote so that you can integrate gRPC to Scala code in a non-invasive way. In a previous [blog post](/2022-05-02-A-Library-to-Make-It-Easier-to-Use-Scala-with-GRPC.html), I talked about the motivation behind it.
