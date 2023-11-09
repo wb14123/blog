@@ -18,7 +18,7 @@
 
     <div class="index-entry index-{{ element.type }}">
       {% if element.type == "index" %}
-      <a href="#" onclick="taggleMenu({{ element.name }})">{{ element.name }}</a>
+      {{ element.name }}
       {% elsif element.type == "post" %}
         {% if page.title == element.post.title %}
         <div class="index-selected">{{ element.post.title }} <span class="publish-year">({{ element.post.date | date:"%Y"}})</span></div>
