@@ -12,11 +12,11 @@
 
 {% for element in include.index_arr %}
 
-<div class="index-entry index-{{ element.type }}">
-      {% for i in (0..element.level) %}
-        <div class="index-intend">
-      {% endfor %}
+  {% for i in (0..element.level) %}
+    <div class="index-intend">
+  {% endfor %}
 
+    <div class="index-entry index-{{ element.type }}">
       {% if element.type == "index" %}
       <a href="#" onclick="taggleMenu({{ element.name }})">{{ element.name }}</a>
       {% elsif element.type == "post" %}
@@ -27,10 +27,12 @@
         {% endif %}
       {% endif %}
 
-      {% for i in (0..element.level) %}
-        </div>
-      {% endfor %}
     </div>
+
+  {% for i in (0..element.level) %}
+    </div>
+  {% endfor %}
+
 
 {% endfor %}
 
