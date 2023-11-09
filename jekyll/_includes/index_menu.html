@@ -21,9 +21,9 @@
       <a href="#" onclick="taggleMenu({{ element.name }})">{{ element.name }}</a>
       {% elsif element.type == "post" %}
         {% if page.title == element.post.title %}
-          <div class="index-selected">{{ element.post.title }}</div>
+          <div class="index-selected">{{ element.post.title }} ({{ element.post.date | date:"%Y"}})</div>
         {% else %}
-          <a href="{{ element.post.url }}">{{ element.post.title }}</a>
+        <a href="{{ element.post.url }}">{{ element.post.title }} ({{ element.post.date | date:"%Y"}})</a>
         {% endif %}
       {% endif %}
 
