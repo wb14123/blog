@@ -3,7 +3,7 @@ layout: post
 title: About
 ---
 
-Hi, I’m Bin Wang (王斌). Welcome to my personal website. I record my thoughts, research and life here. You can find them in the [index page](/). You can also [subscribe RSS](/feed.xml) for the new posts.
+Hi, I’m Bin Wang (王斌). Welcome to my personal website. I record my thoughts, research and life here. You can find the index at the left side of the page if you are on a big screen, or click the menu button at the top left otherwise. You can also subscribe to the [RSS feed](/feed.xml) for the new posts.
 
 Other than the long posts, I also record some random thoughts with much shorter post. It's powered by [my self hosted Mastodon](https://mastodon.binwang.me/) and you can see them at the [Snippets tab](/snippets).
 
