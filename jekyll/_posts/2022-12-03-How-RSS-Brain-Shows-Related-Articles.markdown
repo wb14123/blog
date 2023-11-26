@@ -38,6 +38,8 @@ Last but not least, the recommendation is useful in its traditional way: just sh
 
 ## How the Feature is Implemented
 
+*Update: see [this blog](/2023-11-14-Update-On-RSS-Brain-to-Find-Related-Articles-with-Machine-Learning.html) for updated algorithm.*
+
 The algorithm to find recommended feature is content based instead of user based. RSS Brain doesn't collect any user's information in order to make personalized recommendation. It just find the related articles by how similar they are.
 
 Each of the article can be represented by a term vector. The values in this vector are scores of the terms. For example, if article A has the content of "apple boy cat" and article B has the content of "apple boy dog", the term vectors for each of the articles can be:
