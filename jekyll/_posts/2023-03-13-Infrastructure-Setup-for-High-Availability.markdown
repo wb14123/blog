@@ -5,6 +5,8 @@ tags: [Kubernetes, GlusterFS, CockroachDB, tech, high availability]
 index: ['/Computer Science/Distributed System Infrastructure']
 ---
 
+*See [Introduce K3s, CephFS and MetalLB to My High Avaliable Cluster](/2023-11-28-Introduce-K3s-CephFS-and-MetalLB-to-My-High-Avaliable-Cluster.html) for updates on this setup.*
+
 Cloud is popular these days. But sometimes we just want to host something small, maybe just an open source service for family and friends, or some self-built service that we are still experimenting on. In this case, the cloud can be expensive. We can just throw a few nodes at home and run it at a very low cost. But you don't want the service down when some nodes failed, at least the service should be available when you upgrade and reboot the nodes because it can happen very frequently. In this article, I will talk about how to build high available infrastructure so that the service can be alive even when some nodes are down.
 
 ## What is High Availability?
@@ -29,7 +31,10 @@ The HA setup has multiple layers and we will use different tools for each of the
 
 Here is an overview of the setup:
 
+
 ![overview](/static/images/2023-03-13-Infrastructure-Setup-for-High-Availability/HA-self-hosted.png)
+
+*Update at 2023-11-28: updated the diagram to include Keepalived.*
 
 Let's talk about each of them in detail.
 
