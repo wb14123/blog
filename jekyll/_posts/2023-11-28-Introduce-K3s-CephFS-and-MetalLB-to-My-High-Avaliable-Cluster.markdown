@@ -42,6 +42,8 @@ So it basically comes down to these 2 options:
 1. Use a S3 compatible storage like [MinIO](https://min.io/) but do a lot of work to configure services to store files into that, and make services cannot do that not HA anymore.
 2. Go ahead and uses a real distributed file system like CephFs or [Longhorn](https://longhorn.io/).
 
+*Update: I also explored [LINBIT](https://linbit.com/) which I forgot to write it here. It got more and more complex when I went into the rabbit hole. But its architecture looks very interesting to me. So I may explore it more in the future for other use cases.*
+
 Option 1 sounds appealing to me at first since I really don't want to deal with the complexity of setting up CephFS. But as I go into the rabbit hole, I found configuring the services to use S3 may be a more complex process and less portable than just setup CephFS. So at the end I decide to go option 2.
 
 I've heard of CephFS long time ago but decided to use GlusterFS at previous setups because of the level of user friendly. So CephFS seems like a nature choice after GlusterFs is deprecated. Especially when I found other than the distributed block device, it also supports file system and S3 compatible storage system. It's also easier to install than before because of [Rook](https://rook.io/). Longhorn is another choice I looked a little bit but because of wider adoption of CephFS and more features of it, I decide to use CephFS at the end.

@@ -13,7 +13,7 @@ There is a common problem in computer science and I've met it again recently: ho
 
 The easiest way to do it is producing and consuming the tasks in a sequence, for example:
 
-```Scala
+```scala
 val feeds = getPendingFeeds() // produce the tasks
 feeds.foreach(fetchFromNetwork) // consume the dtasks
 ```
@@ -29,7 +29,7 @@ In this article, we will explore ways to do it more efficiently with [Cats Effec
 
 To make `processTask` async, there is `Future` in Scala's standard library. However, the side effect will happen when you create a `Future` instance. For example:
 
-```
+```scala
 def processTask(task: Task): Future[Unit] = Future(println(task))
 
 val runTask1 = processTask(task1) // this will start the async task
@@ -37,7 +37,7 @@ val runTask1 = processTask(task1) // this will start the async task
 
 I assume the readers have a basic understanding of functional programming, so I'll not explain why we want to avoid side effects. While Scala is not a pure functional language, a popular Scala library [Cats Effect](https://typelevel.org/cats-effect/) provides convenient ways to wrap side effects. With the help of its `IO` type, we can define an async task like this:
 
-```
+```scala
 def processTask(task: Task): IO[Unit] = IO(println(task))
 
 // this will not start the task, so no side effect
@@ -55,7 +55,7 @@ Then there is [fs2](https://fs2.io) that is a stream library that can be used wi
 
 In order to test which approach is the best under different scenarios, we need some basic setup. In [TestRunner.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/TestRunner.scala), I defined some functions to generate tasks. Here are their signatures:
 
-```
+```scala
 // Produce a sequence of tasks represented by `Int`
 def produce(start: Int, end: Int): IO[Seq[Int]]
 
@@ -70,7 +70,7 @@ def def produceStream(start: Int, end: Double): fs2.Stream[IO, Int]
 
 Then there is [TestConfig.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/TestConfig.scala) for configuring the test:
 
-```
+```scala
 trait TestConfig {
   val testName: String
   val produceDelay: FiniteDuration
@@ -83,7 +83,7 @@ trait TestConfig {
 
 By setting up produce and consume delays, we can test scenarios when producer is slower, consumer is slower, or producer and consumer speed is almost the same. Here are the configurations we are going to use in [Main.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/Main.scala)
 
-```Scala
+```scala
 val configs = Seq(
   new TestConfig {
     override val testName: String = "slow-producer"
@@ -111,7 +111,7 @@ val configs = Seq(
 
 The first approach is to make the consuming side parallel. We can consume a batch of tasks concurrently, like in [BatchIOApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/BatchIOApp.scala).
 
-```
+```scala
 def loop(start: Int): IO[Unit] = {
   if (start >= config.totalSize) {
     IO.unit
@@ -158,7 +158,7 @@ When run it with `sbt "run -n BlockingQueueApp"`, we can see it's much faster wh
 
 Back to the blocking the whole thread problem: it doesn't seem to be a problem in this case, right? It's only because we are lucky! In this setup, we are using two fixed threads as the thread pool of running IO in `Main.scala`:
 
-```
+```scala
 private val executor = Executors.newFixedThreadPool(2, (r: Runnable) => {
   val back = new Thread(r)
   back.setDaemon(true)
@@ -174,7 +174,7 @@ implicit override def contextShift: ContextShift[IO] = IO.contextShift(execution
 
 If 2 consumers with empty queue happens to be scheduled on these 2 threads separately, it will block. If we change our `BlockingQueueApp` to the code in [RealBlockingQueueApp](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/RealBlockingQueueApp.scala):
 
-```
+```scala
 override def work(): IO[Unit] = {
   Seq(
     dequeueStream().unNoneTerminate.parEvalMap(config.batchSize)(consume).compile.drain,
@@ -191,7 +191,7 @@ The lesson learned here is that there is a big risk if any operation blocks the 
 
 Actually in [Cats Effect's thread model](https://typelevel.org/cats-effect/docs/thread-model), there is another thread pool for blocking tasks if we mark it explicitly. In [AsyncConsole.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/AsyncConsole.scala), I use this exact block mode to run console output so that it won't effect other non blocking IO operations:
 
-```
+```scala
 def asyncPrintln(s: String)(
     implicit cs: ContextShift[IO], blocker: Blocker): IO[Unit] = blocker.blockOn(IO(println(s)))
 ```
@@ -202,7 +202,7 @@ However, if a thread is blocked in this pool, it will start another thread for t
 
 What if we have a queue that only block the dequeue `IO` when empty instead of blocking the whole thread? Luckily, FS2 provides such a queue. (Cats Effect 3.x also provides such a queue). The implementation is basically the same as above (code in [StreamQueueApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/StreamQueueApp.scala)):
 
-```Scala
+```scala
 import fs2.concurrent.Queue
 
 def work(): IO[Unit] = {
@@ -222,13 +222,13 @@ Run `sbt "run -n StreamAppQueue"` to see how it performs.
 
 FS2 actually provides some advanced stream operations that makes it possible to combine the producing stream and consume stream, like the code in [StreamApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/StreamApp.scala):
 
-```
+```scala
 produceStream(0).parEvalMap(config.batchSize)(consume).compile.drain
 ```
 
 Here we map `consume` in parallel on `produce` stream. However, if you try to run `sbt "run -n StreamApp"` vs `sbt "run -n StreamQueueApp"`, you will find this is slower than before. This is because `produceStream` will give the next batch when the downstream asks. If we can prepare at least one batch before the downstream is free, we can save more time. Luckily, it's very easy to do in fs2. As we can see in [PrefetchStreamApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/PrefetchStreamApp.scala), we can add `prefetch` after the `produceStream`:
 
-```
+```scala
 produceStream(0).prefetch.parEvalMap(config.batchSize)(consume).compile.drain
 ```
 
@@ -238,7 +238,7 @@ Then run this with `sbt "run -n PrefetchStreamApp"`, you will find the performan
 
 Actually if you check the source code of `prefetch`, you will find the implementation is almost the same as ours:
 
-```
+```scala
 def prefetch[F2[x] >: F[x]: Concurrent]: Stream[F2, O] = prefetchN[F2](1)
 
 def prefetchN[F2[x] >: F[x]: Concurrent](n: Int): Stream[F2, O] =
@@ -253,7 +253,7 @@ def prefetchN[F2[x] >: F[x]: Concurrent](n: Int): Stream[F2, O] =
 
 We've made it runs in parallel between consumers, also between consumers and producers. But we haven't made producers run in parallel yet. With the queue, its very easy to do, just start multiple `IO`s for `produceStream.through(queue.enqueue)`. [ConcurrentProduceQueueApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/ConcurrentProducerQueueApp.scala) is an example:
 
-```
+```scala
 private val counter = new AtomicInteger(0)
 
 override def work(): IO[Unit] = {
@@ -280,7 +280,7 @@ It has 2 concurrent producers but in theory you can create as many as you want, 
 
 If you run this with `sbt "run -n ConcurrentProduceQueueApp"`, you can find the performance is much better with slower producer. However, with the help of fs2 library, we can make the code cleaner without depends on any queue explicitly. Here is what I did in [ConcurrentProducerApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/ConcurrentProducerApp.scala):
 
-```
+```scala
 def work(): IO[Unit] = {
   fs2.Stream.emits(Range(0, produceParallelism))
     .map(batch => produceStream(
