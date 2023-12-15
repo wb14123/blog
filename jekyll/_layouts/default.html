@@ -39,9 +39,11 @@
   </head>
 
   <body>
+    {% unless page.disable_side_index %}
     <div id="index_menu">
-      {% include index_menu.html index_arr=site.data.index_arr %}
+      {% include index_menu.html index_arr=site.data.index_arr check_refer='false' %}
     </div>
+    {% endunless %}
 
     <div id="main_content">
     <header id="page_header">
