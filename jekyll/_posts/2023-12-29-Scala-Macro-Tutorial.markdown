@@ -11,7 +11,7 @@ Scala's macro syntax and APIs can be different from version to version. Especial
 
 ## 1. What is Macro
 
-The basic idea of macro is to modify the code with code. For example, let's imagine a macro `plusToMinus` that modifies all the plus options of integers to minus:
+The basic idea of macro is to modify the code with code. For example, let's imagine a macro `plusToMinus` that modifies all the plus operations of integers to minus:
 
 ```scala
 plusToMinus { 1 + 1 }
