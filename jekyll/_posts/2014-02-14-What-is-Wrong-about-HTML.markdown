@@ -2,7 +2,7 @@
 layout: post
 title: What is Wrong about HTML and CSS
 tags: [web, HTML]
-index: ['/Computer Science/Programming Language/Javascript']
+index: ['/Computer Science/UI/Javascript']
 ---
 
 In my last blog, I wrote it is good to use HTML + JS + CSS. But I found I was just enjoy the part of the isolate between them, but not the language (HTML and CSS). I will talk about what is wrong about HTML and CSS.

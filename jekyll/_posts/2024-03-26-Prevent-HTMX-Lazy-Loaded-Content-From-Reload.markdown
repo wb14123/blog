@@ -2,7 +2,7 @@
 layout: post
 title: Prevent htmx Lazy Loaded Content From Reloading
 tags: [htmx, web, UI, Javascript]
-index: ['/Computer Science/Programming Language/Javascript']
+index: ['/Computer Science/UI/Javascript']
 ---
 
 This is a short article about some tricks in [htmx](https://htmx.org). I have more to say about htmx but I'll save that to another blog. In this one, I will skip the basics about htmx and assume you already know that.
