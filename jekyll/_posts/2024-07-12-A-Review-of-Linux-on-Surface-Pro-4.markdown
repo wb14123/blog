@@ -82,5 +82,5 @@ I'd say if the touch recognition works well enough, all the other problems are a
 * Krita for drawing and sketches.
 * Drawboard PDF for PDF reading.
 
-It's pretty disappointed that this device cannot be used with Linux properly. But using Windows is still better to just let the device sitting there doing nothing. Maybe I will re-evaluate it after Windows 10 is end of life next year.
+It's pretty disappointing that this device cannot be used with Linux properly. But using Windows is still better to just let the device sitting there doing nothing. Maybe I will re-evaluate it after Windows 10 is end of life next year.
 
