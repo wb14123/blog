@@ -1,3 +1,4 @@
 jekyll/_site/
 .*.swp
 .jekyll-cache
+jekyll/vendor/
