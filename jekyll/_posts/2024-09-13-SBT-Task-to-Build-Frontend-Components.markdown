@@ -9,7 +9,7 @@ Even writing a website using something else than Javascript to render content fr
 
 ## Frontend Package Management and Build
 
-I put all the frontend related code into a separate sub-directory and treat it like a frontend project. This makes things much easier and less hacky. I use npm to manage the dependencies and use webpack to build it. Here is an example of the code tree structure:
+I put all the frontend related code into a separate sub-directory and treat it like a frontend project. This makes things much easier and less hacky. I use npm to manage the dependencies and use webpack to build it. Here is a simplified example of the code tree structure from my project [RSS Brain](https://github.com/wb14123/rss_brain_release):
 
 
 ```
