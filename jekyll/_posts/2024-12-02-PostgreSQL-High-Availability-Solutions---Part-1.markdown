@@ -145,7 +145,9 @@ Some key params:
 * `--break-conn-percent 0.8`: 80% of the append transactions will be closed after 120ms.
 * `--key-count 1 --max-txn-length 1 --max-writes-per-key 24000`: operate on a single key until the operations exceed 24000 times.
 
-As stated above, the test slows down the network the whole time to an average of 100ms round trip. At the same time, it does this loop: wait 30 seconds. Kill the primary node by killing the k3s process and all its children processes. Wait 60 seconds. Start k3s service again. The for loop means run the command 10 times so it has a higher possibility to trigger the failure.
+As stated above, the test slows down the network the whole time to an average of 100ms round trip. At the same time, it does this loop: wait 30 seconds. Kill the primary node by killing the k3s process and all its children processes. Wait 60 seconds. Start k3s service again.
+
+At last, the outer for loop runs the command 10 times so it has a higher possibility to trigger the failure.
 
 About why run the test 10 times instead of a single round of 300 mins, it's related to another problem I found during the test which will be discussed in the later sections.
 
