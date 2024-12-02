@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "PostgreSQL High Availability Solutions - Part 1: Jepsen Test and Patroni"
+title: "Jepsen Test on Patroni: A PostgreSQL High Availability Solution"
 tags: [database, jepsen, test, distributed system, consistency, HA]
 index: ['/Computer Science/Distributed System']
 ---
