@@ -5,6 +5,8 @@ tags: [Yubikey, Linux, Encryption]
 index: ['/Computer Science/Operating System/Linux']
 ---
 
+*Updated at 2025-02-01: update the method to include using dracut.*
+
 ## Background
 
 As mentioned in a previous blog [Infrastructure Setup for High Availability](/2023-03-13-Infrastructure-Setup-for-High-Availability.html), I've setup a high available cluster that has 3 machines. But one of them is on my laptop. I feel like I need a dedicated machine for my personal usage, especially I'm planning some travels. So I need to remove the laptop from the cluster. Its disk space is also very limited. With migrating Gluster to Ceph (more blogs to come on that) and not be able to use a disk partition with Ceph's encryption, I need another machine with more disks. So I repurposed another small form factor machine to join the cluster.
@@ -31,7 +33,7 @@ We can enroll a FIDO2 (which is a protocol Yubikey supports) device by using `sy
 Plug in the Yubikey. You can use this command first to list all the FIDO2 devices to make sure the Yubikey is recognized:
 
 ```
-systemd-cryptenroll --fido2-device=auto list
+systemd-cryptenroll --fido2-device=list
 ```
 
 Note: You may need to install `libfido2`.
@@ -44,7 +46,7 @@ systemd-cryptenroll --fido2-device=auto <disk-device>
 
 It will show hint about you may need to press the Yubikey during the process. So **watch the Yubikey: when its LED flashes, press it to continue.**
 
-## Setup crypttab
+## Setup crypttab with mkinitcpio
 
 Put a line like this into `/etc/crypttab.initramfs`. It will be copied to initramfs by mkinitcpio as `/etc/crypttab` so that your root partition can be decrypted before it is mounted:
 
@@ -56,15 +58,27 @@ myvolume <disk-device> - fido2-device=auto
 
 If it's not root partition, you can put it in `/etc/crypttab` so it will be used after root partition is mounted.
 
-## Setup mkinitcpio
-
-`mkinitcpio` is a tool to generate initramfs. `/etc/crypttab.initramfs` only works with it. So if your distro comes with other tools like `dracut`, you may need to uninstall it and install `mkinitcpio` instead.
+`mkinitcpio` is a tool to generate initramfs. `/etc/crypttab.initramfs` only works with it.
 
 Once making sure `mkinitcpio` is installed, we need to configure the hooks to make it read `crypttab` to decrypt the disks. We also need to make sure we are using systemd init instead of busybox init.
 
 Open `/etc/mkinitcpio.conf`, and find the line with `HOOKS=(...)`. Refer to [this wiki page](https://wiki.archlinux.org/title/Mkinitcpio#Common_hooks) about the common hooks and replace busybox hooks with systemd ones. For example, in my setup, I replaced `udev` with `systemd` and `keymap` with `sd-vconsole`. Then add `sd-encrypt` to the hooks. The order matters: usually it comes after `sd-vconsole`.
 
 Then use `mkinitcpio -P` to regenerate initramfs images.
+
+## Setup crypttab with dracut
+
+If the system come with `dracut` instead of `mkinitcpio` by default, you can add this line in `/etc/crypttab` directly to support both password and Yubikey:
+
+```
+myvolume UUID=... none luks,fido2-device=auto
+```
+
+Then regenerate the initramfs using:
+
+```
+sudo dracut --force
+```
 
 ## Test and Finish!
 
