@@ -14,3 +14,24 @@ Start a local server to preview changes:
 ```
 bundle exec jekyll serve --watch
 ``
+
+## Create a new blog post
+
+This will create a file under `jekyll/_posts` and fill in basic information like date and layout. The date is set to the current date.
+
+```
+./newpost.sh <blog title>
+```
+
+## Publish updates
+
+```
+./update.sh <commit message>
+```
+
+This command will:
+
+* Build static site to `wb14123.github.com` folder.
+* Commit changes in `wb14123.github.com`.
+* Commit all the changes in both root repo and the `wb14123.github.com` repo.
+* Push all changes. It will publish all changes to the blog website.
