@@ -23,6 +23,14 @@ This will create a file under `jekyll/_posts` and fill in basic information like
 ./newpost.sh <blog title>
 ```
 
+## Add A Book as Read
+
+Make sure [Ammonite](https://ammonite.io/) is installed and is in the PATH. Then:
+
+```
+./add-book/add-book.sc <book_goodreads_url> jekyll/_books
+```
+
 ## Publish updates
 
 ```
