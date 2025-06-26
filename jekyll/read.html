@@ -1,74 +1,25 @@
 ---
-layout: post
-title: Read
+layout: index
 ---
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script>
-
-function getAuthor(author) {
-  var authors = "";
-  if (author.length > 0) {
-    authors = " -- "
-  }
-  for (var i = 0; i < author.length; i++) {
-    authors += author[i];
-    if (i < author.length - 1) {
-      authors += ", "
-    }
-  }
-  return authors;
-}
-
-function getSubtitle(subtitle) {
-  if (subtitle != "" && subtitle != null && subtitle != undefined) {
-    return " (" + subtitle + ") ";
-  }
-  return "";
-}
-
-function renderBook(item) {
-  var dom = $('<li>');
-  $('<a>')
-    .attr('href', item.book.alt)
-    .attr('target', '_blank')
-    .text(item.book.title + getSubtitle(item.book.subtitle) + getAuthor(item.book.author))
-    .appendTo(dom);
-  return dom;
-}
-
-function getBook(to, cb) {
-  var url = 'https://api.douban.com/v2/book/user/42177876/collections?apikey=0df993c66c0c636e29ecbb5344252a4a&to=' + to + '&count=50&alt=xd&callback=?';
-  $.getJSON(url, function(data){
-    $.each(data.collections, function (i, item) {
-      // 豆瓣中没有赵紫阳的《改革历程》，借壳评论，特殊处理。
-      if (item.book.isbn13 == "9787505877009") {
-        item.book.author = ["赵紫阳"]
-        item.book.subtitle = "完整录音 还原历史"
-        item.book.alt = "https://zh.wikipedia.org/wiki/%E6%94%B9%E9%9D%A9%E5%8E%86%E7%A8%8B"
-      }
-      renderBook(item).appendTo('#' + item.status)
-      if (i === (data.collections.length - 1) && data.count < data.total) {
-        cb(item.updated);
-      }
-    });
-  });
-}
-
-function bookCallback(d) {
-  getBook((new Date(d)).toISOString(), bookCallback);
-}
-
-getBook('', bookCallback);
-
-</script>
-
-<h2>I'm reading</h2>
-<div id="reading"></div>
-<h2>I have read</h2>
-<div id="read"></div>
-<h2>I wish to read</h2>
-<div id="wish"></div>
-
-<br/>
-Powered by <a href="https://www.douban.com">Douban</a> API.
+<div class="books">
+  <h1>Books I've Read</h1>
+  {% assign sortedbooks = site.books | sort: 'date_read' | reverse %}
+  {% for post in sortedbooks %}
+  <div class="book_card">
+    <img class="book_cover" src="{{ post.cover }}"/>
+    <div class="book_info">
+      <a class="book_title" href="{{ post.external_links.goodreads }}" target="_blank">{{ post.title }}</a>
+      <div class="book_desc">
+        <div class="book_authors">
+          By
+          {% for author in post.authors %}
+          {{ author }},&nbsp;
+          {% endfor %}
+        </div>
+        <div class="book_date">published in {{ post.year }}</div>
+      </div>
+      <div class="book_date">Finished reading on {{ post.date_read | date_to_string }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

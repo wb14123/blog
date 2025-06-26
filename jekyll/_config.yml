@@ -23,8 +23,8 @@ markdown:    kramdown
 permalink:   /:year-:month-:day-:title.html
 
 collections:
-  category:
-    output: true
+  books:
+    output: false
 
 rdiscount:
   extensions: []
