@@ -24,6 +24,9 @@ case class Book(
   private def removeEmptyLines(str: String): String = str.replaceAll("\n\n+", "\n").replaceAll("\n\n+$", "")
 
   def toLiquidHeader: String = {
+    val externalLinkEntry = if (externalLinks.nonEmpty) {
+      "external_links:\n" + externalLinks.map { case (provider, url) => s"  $provider: $url" }.mkString("\n")
+    } else ""
     val header = s"""---
        |layout: book
        |title: "$title"
@@ -31,7 +34,7 @@ case class Book(
        |${isbn.map(isbn => s"isbn: \"$isbn\"").getOrElse("")}
        |cover: "$coverUrl"
        |${publishYear.map(year => s"year: $year").getOrElse("")}
-       |external_links:{${externalLinks.map { case (provider, url) => s"\"$provider\": \"$url\"" }.mkString(",")}}
+       |${externalLinkEntry}
        |date_read: "${dateRead.atZone(java.time.ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))}"
        |---
        |""".stripMargin
