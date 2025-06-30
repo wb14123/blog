@@ -10,13 +10,11 @@ layout: index
     <div class="book_info">
       <a class="book_title" href="{{ post.external_links.douban | default: post.external_links.goodreads }}" target="_blank">{{ post.title }}</a>
       <div class="book_desc">
-        <div class="book_authors">
           By
           {% for author in post.authors %}
           {{ author }},&nbsp;
           {% endfor %}
-        </div>
-        <div class="book_date">published in {{ post.year }}</div>
+        published in {{ post.year }}
       </div>
       <div class="book_date">Finished reading on {{ post.date_read | date_to_string }}</div>
     </div>
