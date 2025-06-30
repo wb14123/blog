@@ -8,7 +8,7 @@ layout: index
   <div class="book_card">
     <img class="book_cover" src="{{ post.cover }}"/>
     <div class="book_info">
-      <a class="book_title" href="{{ post.external_links.goodreads }}" target="_blank">{{ post.title }}</a>
+      <a class="book_title" href="{{ post.external_links.douban | default: post.external_links.goodreads }}" target="_blank">{{ post.title }}</a>
       <div class="book_desc">
         <div class="book_authors">
           By
