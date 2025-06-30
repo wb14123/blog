@@ -3,6 +3,7 @@
 import $ivy.`com.lihaoyi::requests:0.9.0`
 import $ivy.`org.jsoup:jsoup:1.21.1`
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Element
 
 import java.nio.file.Path
 import java.io.PrintWriter
@@ -152,11 +153,50 @@ class GoodReadListDownloader(bookDownloader: BookDownloader) extends BookDownloa
 
 }
 
+
+class DoubanDownloader extends BookDownloader {
+
+  override def matches(url: String): Boolean = url.startsWith("https://book.douban.com/subject/")
+
+  override def download(url: String): Seq[Book] = {
+    val res = requests.get(url).text()
+    val html = Jsoup.parse(res)
+    val title = getFromMeta(html, "og:title")
+    val externalUrl = getFromMeta(html, "og:url")
+    val coverUrl = getFromMeta(html, "og:image")
+    val proxiedCoverUrl = s"https://http-proxy.rssbrain.com/?link=$coverUrl"
+    val isbn = getFromMeta(html, "book:isbn")
+    val author = getFromMeta(html, "book:author")
+    val book = Book(
+      title = title,
+      authors = Seq(author),
+      isbn = Some(isbn),
+      coverUrl = proxiedCoverUrl,
+      publishYear = getPublishYear(html),
+      externalLinks = Map(BookProvider.DOUBAN -> externalUrl),
+    )
+    Seq(book)
+  }
+
+  private def getPublishYear(elem: Element): Option[Int] = {
+    elem.select("#info .pl")
+      .listIterator()
+      .asScala
+      .find(_.text().contains("出版年"))
+      .map { _.nextSibling().outerHtml().trim.substring(0, 4).toInt}
+  }
+
+  private def getFromMeta(elem: Element, property: String): String = {
+    elem.select(s"meta[property=\"$property\"]").getFirst.attr("content")
+  }
+}
+
+
 @main
 def main(url: String, path: String): Unit = {
   val goodReadsDownloader = new GoodReadsDownloader()
   val goodReadListDownloader = new GoodReadListDownloader(goodReadsDownloader)
-  val downloaders = Seq(goodReadsDownloader, goodReadListDownloader)
+  val downloaders = Seq(goodReadsDownloader, goodReadListDownloader, new DoubanDownloader())
   downloaders.find(_.matches(url)) match {
     case None => println(s"No downloader found for link $url")
     case Some(downloader) =>
