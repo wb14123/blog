@@ -17,6 +17,10 @@ layout: index
         published in {{ post.year }}
       </div>
       <div class="book_date">Finished reading on {{ post.date_read | date_to_string }}</div>
+      {% assign contentsize = post.content | strip | size %}
+      {% if contentsize > 0  %}
+      <a class="book_title" href="{{ post.url }}">My Notes [{{ contentsize }} chars]</a>
+      {% endif %}
     </div>
   </div>
   {% endfor %}

@@ -3,5 +3,23 @@ layout : default
 ---
 
 
-<h1>{{ page.title }}</h1>
-<img src="{{ page.cover_url }}"/>
+<div class="book_card">
+  <img class="book_cover" src="{{ page.cover }}"/>
+  <div class="book_info">
+    <a class="book_title" href="{{ page.external_links.douban | default: page.external_links.goodreads }}" target="_blank">{{ page.title }}</a>
+    <div class="book_desc">
+        By
+        {% for author in page.authors %}
+        {{ author }},&nbsp;
+        {% endfor %}
+      published in {{ page.year }}
+    </div>
+    <div class="book_date">Finished reading on {{ page.date_read | date_to_string }}</div>
+  </div>
+</div>
+
+<div id="article_content">
+  <article id="post">
+    {{ content }}
+  </article>
+</div>
