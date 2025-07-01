@@ -10,7 +10,7 @@ external_links:
 date_read: "2025-02-08"
 ---
 
-I started this book a few years ago, but only read a little because I read too much Peter Hessler's book at the time so was a little tired. After read his new book *Other Rivers*, I picked up this book again and found it's one of my favorite books of his, because of the board topics he explored in the book.
+I started this book a few years ago, but only read a little because I read too much Peter Hessler's book at the time so was a little tired. After read his new book *Other Rivers*, I picked up this book again and found it's one of my favorite books of his, because of the broad topics he explored in the book.
 
 I talked his books a little bit in my [travel back to China blog](/2025-02-28-Travel-Back-To-China-2025.html), which mentions he inspired me to observe Chinese sociality more and write it in English. In this book, he talked about places like country of Beijing, relatively poorer countries along Great Wall in northwest China, boom towns of southern China and so on. The era he covered is the era when China developed in a surprising speed. The fast development comes with pains but the theme of the book is hopeful and positive. I appreciate the author can cover so many topics in such a big country like China, where each region can have very different characters. And he not only write the big picture, but also combine it with his own life and experience which makes some parts of the book very touching to read.
 
