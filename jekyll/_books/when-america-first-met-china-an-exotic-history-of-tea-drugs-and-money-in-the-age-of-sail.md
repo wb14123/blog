@@ -10,9 +10,9 @@ external_links:
 date_read: "2025-06-22"
 ---
 
-I picked up this book when I found it in the book store's discount section. Even though I'm living in Canada, it's still a country that is hugely impacted by America. As a Chinese, I couldn't help to be attracted by it. Not to mention the relationship between America and China is one of the most important topics in the current world. Maybe we can learn something from the beginning.
+I picked up this book when I found it in the book store's discount section. As a Chinese living in Canada (well, not Amercia but still a country hugely impacted by it), I couldn't help to be attracted by it. Not to mention the relationship between America and China is one of the most important topics in the current world. Maybe we can learn something from the beginning.
 
-When America first met China, Guangzhou was the only city in China that is allowed to do trades with foreigners. It's the frontier of the cross culture communication when the west surpass China in technology. The interaction between the ancient China and modern western countries affect the destiny of China until this day. Even though I've [lived in Guangzhou](/2013-03-04-Life-in-Guangzhou.html) for a few months, including a large amount of time spent around one of its first ports, I didn't know its full glory until I read this book.
+When America first met China, Guangzhou was the only city in China allowed to do trades with foreigners. It's the frontier of the cross culture communication in an era of the west surpassing China in technology. The interaction between the ancient China and modern western countries affect the destiny of China until this day. Even though [I've been in Guangzhou](/2013-03-04-Life-in-Guangzhou.html) for a few months, including a large amount of time spent around one of its first ports, I didn't know its full glory until I read this book.
 
 Here are some interesting things mentioned in the book:
 
