@@ -13,7 +13,7 @@ Start a local server to preview changes:
 
 ```
 bundle exec jekyll serve --watch
-``
+```
 
 ## Create a new blog post
 
