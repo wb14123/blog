@@ -1,0 +1,19 @@
+---
+layout: index
+---
+<div class="poetry_list">
+  {% assign sortedposts = site.poetry | sort: 'date' | reverse %}
+  {% for post in sortedposts %}
+  <div class="poetry">
+    <h2>{{ post.title }}</h2>
+    <div class="poetry_date">{{ post.date | date_to_string }}</div>
+    {{ post.content }}
+    {% if post.comment %}
+    <details class="poetry_comment">
+      <summary>注</summary>
+      {{ post.comment }}
+    </details>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>

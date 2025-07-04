@@ -25,6 +25,8 @@ permalink:   /:year-:month-:day-:title.html
 collections:
   books:
     output: true
+  poetry:
+    output: false
 
 rdiscount:
   extensions: []
