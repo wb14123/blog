@@ -3,15 +3,17 @@ layout: post
 title: About
 ---
 
-Hi, I’m Bin Wang (王斌). Welcome to my personal website. I record my thoughts, research and life here. You can find the index at the left side of the page if you are on a big screen, or click the menu button at the top left otherwise. You can also subscribe to the [RSS feed](/feed.xml) for the new posts.
+Hi, I’m Bin Wang (王斌). Welcome to my personal website.
 
-Other than the long posts, I also record some random thoughts with much shorter post. It's powered by [my self hosted Mastodon](https://mastodon.binwang.me/) and you can see them at the [Snippets tab](/snippets).
+Here, I share my thoughts, research, and life experiences. You can find the site index on the left side of the page if you're on a larger screen, or by tapping the menu button at the top left on smaller devices. If you'd like to stay updated, feel free to subscribe to the [RSS feed](/feed.xml) for new posts.
 
-As a programmer, I also write side projects and contribute to open source projects. You can find some information at [my Github page](https://github.com/wb14123).
+In addition to long-form posts, I also write poems (see the [Poetry](/poetry) page) and share brief reflections and ideas on the [Snippets](/snippets) page.
 
-I also list [where I have been](/travel.html) and [what I have read](/read.html). Since there is an old saying in Chinese: "Walk thousands of miles, and read thousands of books (行千里路，读万卷书)". I believe it makes my life vaster and more beautiful.
+As a programmer, I enjoy building side projects and contributing to open-source software. You can find some of my work on [my Github profile](https://github.com/wb14123).
 
-If you want to search something in this website. You can click [search](/search.html) above. It is powered by Google, which means the pages need time to be indexed. So you may not always be able to search the newest post.
+I also keep track of the [places I've visited](/travel.html) and [the books I've read](/read.html). As the old Chinese saying goes: "Walk thousands of miles, and read thousands of books (行千里路，读万卷书)". I believe this broadens my horizons and enriches my life.
 
-At last, if you want to contact me, my Email address is [bin.wang@mail.binwang.me](mailto:bin.wang@mail.binwang.me).
+If you're looking for something specific, you can use the [Search](/search.html) page. Please note that it's powered by Google, so newly published pages might take some time to appear in the search results.
+
+Lastly, if you'd like to get in touch, feel free to Email me at [bin.wang@mail.binwang.me](mailto:bin.wang@mail.binwang.me).
 
