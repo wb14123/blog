@@ -7,7 +7,7 @@ Hi, I’m Bin Wang (王斌). Welcome to my personal website.
 
 Here, I share my thoughts, research, and life experiences. You can find the site index on the left side of the page if you're on a larger screen, or by tapping the menu button at the top left on smaller devices. If you'd like to stay updated, feel free to subscribe to the [RSS feed](/feed.xml) for new posts.
 
-In addition to long-form posts, I also write poems (see the [Poetry](/poetry) page) and share brief reflections and ideas on the [Snippets](/snippets) page.
+In addition to long-form posts, I also write poetry (see the [Poetry](/poetry) page). For shorter reflections and ideas, check out the [Snippets](/snippets) page.
 
 As a programmer, I enjoy building side projects and contributing to open-source software. You can find some of my work on [my Github profile](https://github.com/wb14123).
 
