@@ -2,3 +2,4 @@ jekyll/_site/
 .*.swp
 .jekyll-cache
 jekyll/vendor/
+jekyll/_drafts/
