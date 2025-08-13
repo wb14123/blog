@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Introduce K3s, CephFS and MetalLB to My High Avaliable Cluster
+title: Introduce K3s, CephFS and MetalLB to My High Available Cluster
 tags: [Kubernetes, CephFS, MetalLB, k3s, Infrastructure, devops]
 index: ['/Computer Science/Distributed System Infrastructure']
 ---
@@ -26,7 +26,7 @@ In short, K3s is a distribution of Kubernetes instead of a fork. It does these t
 
 It's very easy to config K3s since all it needs is a configuration file on each machine. I created a virtual machine cluster with Vagrant in the project [k3s-vm-cluster](https://github.com/wb14123/k3s-vm-cluster) to experiment with it. Feel free to play with it to get a feel with it before go all in. The setup is based on the official guide for [High Availability Embedded etcd](https://docs.k3s.io/datastore/ha-embedded). It's the easiest way to setup a high available K3s cluster.
 
-No load balancer setup is needed if no external Kubernetes API server HA is needed. That means, you can access to Kubernetes API server within the cluster if any of the machine fails. But if you still want to access it outside of the cluster during a failure, check [this doc](https://docs.k3s.io/datastore/cluster-loadbalancer). Alternatively, I think load balancer like MentalLB can also do it, but I don't need it so I didn't experiment with it.
+No load balancer setup is needed if no external Kubernetes API server HA is needed. That means, you can access to Kubernetes API server within the cluster if any of the machine fails. But if you still want to access it outside of the cluster during a failure, check [this doc](https://docs.k3s.io/datastore/cluster-loadbalancer). Alternatively, I think load balancer like MetalLB can also do it, but I don't need it so I didn't experiment with it.
 
 ## Distributed Storage System: GlusterFS to CephFS
 

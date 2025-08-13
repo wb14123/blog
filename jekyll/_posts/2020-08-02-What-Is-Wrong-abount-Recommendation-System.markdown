@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What Is Wrong about Recommendation System
+title: What Is Wrong About Recommendation System
 tags: [technology, RSS]
 index: ['/Computer Science/Digital Life']
 ---

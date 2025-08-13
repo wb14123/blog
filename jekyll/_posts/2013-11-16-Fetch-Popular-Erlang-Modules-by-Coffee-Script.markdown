@@ -18,7 +18,7 @@ How It Works?
 Keep It Simple and Stupid
 ------------------------
 
-As its function is simple, so I keep the code simple.
+As its function is simple, I keep the code simple.
 
 * The app is written by coffeescript, which is perfect to parse Github's restful API and JSON.
 * No database is required. Just use some arrays and objects to store informations.

@@ -28,7 +28,7 @@ It is very nature to use BSD with ZFS since it is supported by deafult. With lin
 * The game support. Last year, game on Linux finally breaks out because of the Poton on Steam. Though I don't play games a lot, it's still a pity to have no game to play.
 * FreeBSD starts using ZFS on Linux as the upstream of ZFS. So with the bigger community, ZFS on Linux may has better support and more features in the future.
 * It's a risk to migrate to a new system. Arch Linux works great for me for a long time. If the new installation doesn't work, it's time consuming to recover the system. And it says FreeBSD doesn't have a good support on Nvidia graphic card, which I'm currently using.
-* FreeBSD's Jails are much mature than Containers on Linux. And I really hate Docker for its deamon running as root. Docker also has bad community reputation (e.g. changing its community version's name). Rkt from Core OS is much better but both Core OS and Rkt are dead after the acquire of Redhat. But finally I found Podman. So I can compromise at this point. Containers also has bigger community. For example, the Nextcloud I'm using has official image so I don't need to build my own one.
+* FreeBSD's Jails are much mature than Containers on Linux. And I really hate Docker for its daemon running as root. Docker also has bad community reputation (e.g. changing its community version's name). Rkt from Core OS is much better but both Core OS and Rkt are dead after the acquire of Redhat. But finally I found Podman. So I can compromise at this point. Containers also has bigger community. For example, the Nextcloud I'm using has official image so I don't need to build my own one.
 
 ## How to Migrate to ZFS?
 

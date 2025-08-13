@@ -7,7 +7,7 @@ index: ['/Computer Science/Machine Learning']
 
 [Module Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) is adopted by more and more people as a way to integrate tools to LLMs easily. However, I find it unintuitive and unnecessarily complex. So in this article, I'll explore how to use existing [OpenAPI](https://www.openapis.org/) servers as tools of LLMs instead of writing the functions in a completely new protocol. This can potentially become a simpler standard that only needs implementation an additional authentication flow (if authentication is needed).
 
-For the people who are not familar with OpenAPI, it's a formal way to descrit HTTP APIs. You may heard of Swagger which is basically the same thing. Lots of HTTP framework support it so that you can generate structured document in JSON or YAML format, and view it in tools like [Swagger Editor](https://editor.swagger.io/). Because of this structured document, it's perfect to be feeded into LLM as tool definations.
+For the people who are not familiar with OpenAPI, it's a formal way to describe HTTP APIs. You may heard of Swagger which is basically the same thing. Lots of HTTP framework support it so that you can generate structured document in JSON or YAML format, and view it in tools like [Swagger Editor](https://editor.swagger.io/). Because of this structured document, it's perfect to be fed into LLM as tool definitions.
 
 The final result is in the repo [ai-tool-proto-experiment](https://github.com/wb14123/ai-tool-proto-experiment). It's a single file Scala script with less than 300 lines of code.
 It doesn't use any LLM SDK, just simple HTTP calls to the LLM providers. It doesn't use any advance API either. Only chat completion API with structured output is needed.
