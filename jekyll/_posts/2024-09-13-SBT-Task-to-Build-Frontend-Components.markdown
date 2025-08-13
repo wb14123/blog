@@ -5,7 +5,7 @@ tags: [Scala, SBT, Javascript, CSS, frontend, webpack, npm]
 index: ['/Computer Science/Programming Language/Scala']
 ---
 
-Even writing a website using something else than Javascript to render content from server, sometimes it's inevitable to have some Javascript or CSS code. So managing Javascript dependencies and build packages is needed. The easiest way may be just don't use any tool: download all the dependency files into a directory and import them in the html file directly. That's what I was doing for [RSS Bran](https://rssbrain.com) before. But it get messy pretty quickly and it's hard to keep track of the dependencies. So it's time for me to resolve the problem. Since the project is written in Scala, I'll note down how I do it with Scala's build tool SBT.
+Even when writing a website using something other than Javascript to render content from the server, sometimes it's inevitable to have some Javascript or CSS code. So managing Javascript dependencies and build packages is needed. The easiest way may be to just not use any tool: download all the dependency files into a directory and import them in the html file directly. That's what I was doing for [RSS Brain](https://rssbrain.com) before. But it gets messy pretty quickly and it's hard to keep track of the dependencies. So it's time for me to resolve the problem. Since the project is written in Scala, I'll note down how I do it with Scala's build tool SBT.
 
 ## Frontend Package Management and Build
 
@@ -52,7 +52,7 @@ I put all the frontend related code into a separate sub-directory and treat it l
 
 You can see other than the `js` directory, it's a pretty standard structure for a Scala project managed by SBT.
 
-When look into `js` directory, it's a frontend project managed by npm and built with webpack.
+When you look into the `js` directory, it's a frontend project managed by npm and built with webpack.
 
 `js/src/index.js` bundles all the dependencies in node modules and local files. Here is an example:
 
@@ -123,7 +123,7 @@ module.exports = {
 };
 ```
 
-Since this is more related to frontend tech and is very basic, I will not go too much into details. But the point is, when run `npx webpack` under `js` directory, it will build bundled files into `js/dist`. We will write a SBT task to trigger this command and copy the dist files into resources to package.
+Since this is more related to frontend tech and is very basic, I will not go too much into details. But the point is, when you run `npx webpack` under the `js` directory, it will build bundled files into `js/dist`. We will write a SBT task to trigger this command and copy the dist files into resources to package.
 
 ## SBT Task to Trigger Build and Package Dist Files
 
@@ -150,9 +150,9 @@ Compile / resourceGenerators += Def.task {
 }.taskValue
 ```
 
-Here we added some steps when SBT generate resource files: first we let it run `webpack` task we defined above, then copy all the files under `js/dist` to `webview/static/dist` under generated resources. Here resources means Java resource files, like the files under `src/main/resources`, but auto generated to `target/scala-2.13/resource_managed` and will be packaged together as resource files.
+Here we added some steps when SBT generates resource files: first we let it run the `webpack` task we defined above, then copy all the files under `js/dist` to `webview/static/dist` under generated resources. Here resources means Java resource files, like the files under `src/main/resources`, but auto-generated to `target/scala-2.13/resource_managed` and will be packaged together as resource files.
 
-So when you run `sbt package` here, the generated jar package will include all those files as resource files. For example, in my project, the generated jar package have these if you open it with vim (which can view zipped package):
+So when you run `sbt package` here, the generated jar package will include all those files as resource files. For example, in my project, the generated jar package has these if you open it with vim (which can view zipped packages):
 
 ```
 81663 webview/static/dist/f20305dee9d396fea5c7.ttf
@@ -164,11 +164,11 @@ So when you run `sbt package` here, the generated jar package will include all t
 
 ## Serve Resource Files in Http Server
 
-Now you can serve the files under `webview/static/dist` with your web server. Different web server or framework do it differently. Here is an example of http4s:
+Now you can serve the files under `webview/static/dist` with your web server. Different web servers or frameworks do it differently. Here is an example of http4s:
 
 ```scala
 // include the following route into the http4s web server
-// IMPORTANT: every resource file under `/webview` will be public accessible
+// IMPORTANT: every resource file under `/webview` will be publicly accessible
 val assetsRoutes = resourceServiceBuilder[IO]("/webview").toRoutes
 ```
 

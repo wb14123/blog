@@ -19,7 +19,7 @@ plusToMinus { 1 + 1 }
 
 This will be compiled to `1 - 1` and ends up as `0`.
 
-Of cause this is not a practical example and not all the languages' macro system can do it. But this demonstrate what macros can do where normal code cannot. Here is a more practical example: when we log something in different log levels, the API usually looks like this:
+Of course this is not a practical example and not all the languages' macro system can do it. But this demonstrates what macros can do where normal code cannot. Here is a more practical example: when we log something in different log levels, the API usually looks like this:
 
 ```scala
 val v = ...
@@ -27,7 +27,7 @@ logger.info(s"This is a info log. Value: $v")
 logger.warn(s"This is a warning. Value: $v")
 ```
 
-However, with this kind of interface, the string `s"..."` need to be computed before passed in to the method, which is a waste since not all the strings need to be logged based on the log level configuration. Especially when `v.toString` needs a lot of resource to compute. So in language like Java, the values are usually passed in as separate parameters:
+However, with this kind of interface, the string `s"..."` needs to be computed before passed in to the method, which is a waste since not all the strings need to be logged based on the log level configuration. Especially when `v.toString` needs a lot of resource to compute. So in languages like Java, the values are usually passed in as separate parameters:
 
 ```java
 String v = ...
@@ -51,11 +51,11 @@ if (loggerLevel >= INFO) {
 }
 ```
 
-So that the actually string computation is not done unless log level is configured to print it.
+So that the actual string computation is not done unless log level is configured to print it.
 
 ## 2. How to Write a Macro
 
-Different languages have different syntaxes to write a macro. On the simpler side, macros in C can only do text substitution. On the powerful side, Lisp languages can modify the AST (abstract syntax tree) very easily because the code itself is written as a tree structure. The macro in Scala is on the powerful side since it is able to modify the AST even though it may not be as intuitive as Lisp. There are multiple ways to do it. But essentially, the process it to take the current AST as input and output a new AST. The APIs of reading AST input is very similar to reflection APIs (and in fact, sometimes they share some APIs). Generating a new AST part is more complex. In the following sections, we will walk through how to setup a SBT project to write macros, how to read an AST and how to generate a new AST.
+Different languages have different syntaxes to write a macro. On the simpler side, macros in C can only do text substitution. On the powerful side, Lisp languages can modify the AST (abstract syntax tree) very easily because the code itself is written as a tree structure. The macro in Scala is on the powerful side since it is able to modify the AST even though it may not be as intuitive as Lisp. There are multiple ways to do it. But essentially, the process is to take the current AST as input and output a new AST. The APIs of reading AST input are very similar to reflection APIs (and in fact, sometimes they share some APIs). Generating a new AST part is more complex. In the following sections, we will walk through how to setup a SBT project to write macros, how to read an AST and how to generate a new AST.
 
 ## 3. Project Setup with SBT
 
@@ -63,7 +63,7 @@ In Scala, the implementation of macros and the use of macros need to be compiled
 
 ```scala
 lazy val root = (project in file("."))
-  .aggregate(core, coretest
+  .aggregate(core, coretest)
   .settings(
     name := "archmage"
   )
@@ -108,7 +108,7 @@ The first parameter `c: blackbox.Context` is a must have for a macro implementat
 
 The remaining parameters of the implementation method are parameters for the macro. For example, if you want to take a parameter of type `String` for the macro, then the implementation of macro will take `c.Expr[String]` as a parameter, which `c.Expr[String]` is the tree representation of the macro's `String` parameter. The same applies to the return type of the macro. You can also  use `c.Tree` instead of `c.Expr[T]`. They can be converted between each other, which we will see in section 4.4.
 
-This example prints out the variable name of the passed in parameter and return the parameter without modification. Note that the printing happens at compile time since that's when the implementation of the macro is ran. Only the returned tree or `c.Expr` is used at run time. So this macro is not doing anything useful, it's just a demo of how to read the input tree.
+This example prints out the variable name of the passed in parameter and return the parameter without modification. Note that the printing happens at compile time since that's when the implementation of the macro is run. Only the returned tree or `c.Expr` is used at run time. So this macro is not doing anything useful, it's just a demo of how to read the input tree.
 
 Once we have the macro implementation, we can define the macro like this:
 
@@ -129,12 +129,12 @@ It will print out the full name of `a` like this during compilation:
 me.binwang.archmage.coretest.MethodMetaTest.a
 ```
 
-The API of `c.Expr` is very similar as reflection API. You can experiment with it by print out different things from it and see what you can get.
+The API of `c.Expr` is very similar as reflection API. You can experiment with it by printing out different things from it and see what you can get.
 
 
 ### 4.2 Read type parameters:
 
-Macro can also take generic type as parameters. The example below takes a parameter of any type and print out its type at compile time.
+Macros can also take generic type as parameters. The example below takes a parameter of any type and prints out its type at compile time.
 
 ```scala
 def macroImpl[T: c.WeakTypeTag](c: blackbox.Context)(s: c.Expr[T]) : c.Expr[T] = {
@@ -162,9 +162,9 @@ Int
 
 ### 4.3 Read implicit parameters:
 
-Macro can have implicit parameters, but the macro implementation shouldn't define them as implicit. Otherwise Scala compiler will give confusing errors. See [this issue](https://github.com/scala/bug/issues/6494) for more details.
+Macros can have implicit parameters, but the macro implementation shouldn't define them as implicit. Otherwise Scala compiler will give confusing errors. See [this issue](https://github.com/scala/bug/issues/6494) for more details.
 
-In the following example, `macroTest` takes an implicit double variable and return it as the new generated tree:
+In the following example, `macroTest` takes an implicit double variable and returns it as the new generated tree:
 
 ```scala
 def macroImpl(c: blackbox.Context)(s: c.Expr[String])(num: c.Expr[Double]) : c.Expr[Double] = {
@@ -290,7 +290,7 @@ More examples about how to match the tree can be found in [the document](https:/
 
 ### 5.1 Construct Tree Directly with API
 
-An AST can be constructed from the classes that represent the tree. For example, a constant of string can be created by `Literal(Constant("I replaced you!"))`. The following example replace any string to `I replaced you`:
+An AST can be constructed from the classes that represent the tree. For example, a constant of string can be created by `Literal(Constant("I replaced you!"))`. The following example replaces any string to `I replaced you`:
 
 ```scala
 def macroImpl(c: blackbox.Context)(s: c.Expr[String]) : c.Expr[String] = {
@@ -307,7 +307,7 @@ With the code below, it will print `I replaced you!` instead of `abc`:
 println(macroTest("abc"))
 ```
 
-This is a very simple example. When the tree becomes larger and larger , it's more and more difficult to construct a tree with this approach. It's like a much worse version of lisp. So in the following sections, we will see some easier ways to construct a tree.
+This is a very simple example. When the tree becomes larger and larger, it's more and more difficult to construct a tree with this approach. It's like a much worse version of lisp. So in the following sections, we will see some easier ways to construct a tree.
 
 ### 5.2 Use `c.parse`:
 
@@ -341,7 +341,7 @@ Note the output is at run time instead of compile time like the examples in the 
 
 `c.parse` is easy to use and understand. But when generating more and more code with it, it can be pretty messy since it is just a string. There is no syntax checks in IDE. Even worse, you cannot get any run time information to use in the generated tree.
 
-`reify` is a much better option. You can write code as usual. The code in `reify` block is the code that will be generated. You can refer to another `Expr` (in the old tree) by using its `.splice` method. Here is an example to print out both the variable name and it's value:
+`reify` is a much better option. You can write code as usual. The code in `reify` block is the code that will be generated. You can refer to another `Expr` (in the old tree) by using its `.splice` method. Here is an example to print out both the variable name and its value:
 
 ```scala
 def macroImpl(c: blackbox.Context)(s: c.Expr[String]): c.Expr[String] = {
@@ -385,11 +385,11 @@ It will print `b` instead of `a`.
 
 ### 5.5 Avoid Name Conflict
 
-When generating a new tree, we may generate some variables that have conflict names with the existing ones. Use `c.freshName` to get a unique name to avoid the conflict.
+When generating a new tree, we may generate some variables that have conflicting names with the existing ones. Use `c.freshName` to get a unique name to avoid the conflict.
 
 ### 5.6 Type Checked and Unchecked Tree
 
-There are two kinds of AST in Scala's internal compiler: type checked and unchecked. See more details in [this Stack Overflow answer](https://stackoverflow.com/questions/20936509/scala-macros-what-is-the-difference-between-typed-aka-typechecked-and-untyped). Some APIs can only accept either type checked or unchecked tree. And sometimes the compiler throws out weird errors if using the wrong type of tree. If that's the case, try to use `c.untypecheck` and `c.typecheck` to covert trees.
+There are two kinds of AST in Scala's internal compiler: type checked and unchecked. See more details in [this Stack Overflow answer](https://stackoverflow.com/questions/20936509/scala-macros-what-is-the-difference-between-typed-aka-typechecked-and-untyped). Some APIs can only accept either type checked or unchecked tree. And sometimes the compiler throws out weird errors if using the wrong type of tree. If that's the case, try to use `c.untypecheck` and `c.typecheck` to convert trees.
 
 For example, here is some code that cannot be compiled:
 

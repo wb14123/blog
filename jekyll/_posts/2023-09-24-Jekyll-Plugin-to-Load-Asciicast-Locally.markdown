@@ -5,7 +5,7 @@ tags: [Jekyll, Blog, command line, Asciicast]
 index: ['/Projects/Blog']
 ---
 
-[Asciinema](https://asciinema.org/) is a wonderful tool to record Linux terminal. It saves the records as a text format called Asciicast. However, it has a strong integration with its website. Especially if you want to embed the recordings into the web page use some simple JS code like this:
+[Asciinema](https://asciinema.org/) is a wonderful tool to record Linux terminal. It saves the records as a text format called Asciicast. However, it has a strong integration with its website. Especially if you want to embed the recordings into the web page using some simple JS code like this:
 
 ```html
 <script src="https://asciinema.org/a/14.js" id="asciicast-14" async></script>
@@ -13,7 +13,7 @@ index: ['/Projects/Blog']
 
 You need to share the recordings to Asciinema's website and need to link an account with the recordings, otherwise they will be deleted after 7 days, which I just found out yesterday. I don't want my blog to rely on some third party website for core content, so I need a way to load the recordings from my website itself.
 
-Lucky, the [Asciinema Javascript player](https://github.com/asciinema/asciinema-player) is open source and support to load recordings from a url out of box. First you need to import the CSS:
+Luckily, the [Asciinema Javascript player](https://github.com/asciinema/asciinema-player) is open source and supports loading recordings from a URL out of the box. First you need to import the CSS:
 
 ```html
 <link rel="stylesheet" type="text/css" href="/asciinema-player.css" />
@@ -30,7 +30,7 @@ This is no big deal since this can be put in Jekyll's template. Then you need so
 </script>
 ```
 
-It's a little bit too much for embedding a terminal recording in a blog. However, with the powerful Jekyll plugin system, We can write a plugin to make it simpler so that we can just use a tag to include it:
+It's a little bit too much for embedding a terminal recording in a blog. However, with the powerful Jekyll plugin system, we can write a plugin to make it simpler so that we can just use a tag to include it:
 
 ```
 {% raw %}

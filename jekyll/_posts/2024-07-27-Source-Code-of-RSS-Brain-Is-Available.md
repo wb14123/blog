@@ -28,7 +28,7 @@ Before I explain why I chose this license, I must explain the reasons of making 
 
 ### Transparent Algorithm
 
-In a past blog post [What Is Wrong about Recommendation System](https://www.binwang.me/2020-08-02-What-Is-Wrong-abount-Recommendation-System.html), I mentioned I don't want to manipulated by recommendation systems. Ant that's one of the main motivations for me to start write my own RSS reader. While there are still ranking and recommendation algorithms in RSS Brain, it's aimed to provider better information instead of making the user more addicted to the product. In order to approve that, the algorithm needs to be available so that the users can inspect it and decide whether it's the right one for them.
+In a past blog post [What Is Wrong about Recommendation System](https://www.binwang.me/2020-08-02-What-Is-Wrong-abount-Recommendation-System.html), I mentioned I don't want to be manipulated by recommendation systems. And that's one of the main motivations for me to start writing my own RSS reader. While there are still ranking and recommendation algorithms in RSS Brain, it tries to provide better information instead of making the user more addicted to the product. In order to prove that, the algorithm needs to be available so that the users can inspect it and decide whether it's the right one for them.
 
 Be aware even the source code is available, it still needs some level of trust since the code running on my server [app.rssbrain.com](https://app.rssbrain.com) can theoretically be different from what is being released. But it's good enough for most people. However, if you want absolute control, you can always run it on your own server with the source code available.
 
@@ -42,18 +42,18 @@ The next benefit is not for the user, but for myself. I want the **users** be ab
 
 ### Considerations of Contributors
 
-One big advantage of open source project is it can attract contributors to make the software better. And it can sometimes justify the free commercial usage because all the competitors are contributing to the software. But because this is a software I am and will use daily, I want to have 100% control of the roadmap of it. Not only the product aspect, but also technology aspect. It's just easier to write all the things by myself, at least for now. So I'm fine to chose a non open source license even with less potential contributors.
+One big advantage of open source project is it can attract contributors to make the software better. And it can sometimes justify the free commercial usage because all the competitors are contributing to the software. But because this is a software I am and will use daily, I want to have 100% control of its roadmap. Not only the product aspect, but also technology aspect. It's just easier to write all the things by myself, at least for now. So I'm fine to choose a non open source license even with less potential contributors.
 
 
 ## Release Process
 
-You may notice the source code has very few commit history. The release process will be only one commit for each release. The release cycle will be one release every few weeks, depends on how much process I make. The regular releases will mostly on the weekend. If there is a bug or a security risk, the release maybe more frequent.
+You may notice the source code has very few commit history. The release process will be only one commit for each release. The release cycle will be one release every few weeks, depends on how much progress I make. The regular releases will mostly on the weekend. If there is a bug or a security risk, the release may be more frequent.
 
 The version number is in the format of `X.Y.Z`. Where Y will be increased for every feature release and Z will be increased for every bug fix. X will only be increased for breaking changes or really major update.
 
 I'll make my hosted version at [app.rssbrain.com](https://app.rssbrain.com) the same as the source code. Which means at each release, I'll update the app first, and release the source code just after it. I'll add a section in the app's setting page to indicate the current version.
 
-The reason I chose this release mode is the same reason as I released it under SSPL. I only want the source code be available to users, but I don't really care about whether there will be contributions from other people. So hide the commit history between releases just make my life easier since I don't need to care too much about keep my commit messages clean.
+The reason I chose this release mode is the same reason as I released it under SSPL. I only want the source code be available to users, but I don't really care about whether there will be contributions from other people. So hiding the commit history between releases just makes my life easier since I don't need to care too much about keep my commit messages clean.
 
 ## Roadmap
 

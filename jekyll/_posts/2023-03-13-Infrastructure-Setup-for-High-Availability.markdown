@@ -5,9 +5,9 @@ tags: [Kubernetes, GlusterFS, CockroachDB, tech, high availability]
 index: ['/Computer Science/Distributed System Infrastructure']
 ---
 
-*See [Introduce K3s, CephFS and MetalLB to My High Avaliable Cluster](/2023-11-28-Introduce-K3s-CephFS-and-MetalLB-to-My-High-Avaliable-Cluster.html) for updates on this setup.*
+*See [Introduce K3s, CephFS and MetalLB to My High Available Cluster](/2023-11-28-Introduce-K3s-CephFS-and-MetalLB-to-My-High-Available-Cluster.html) for updates on this setup.*
 
-Cloud is popular these days. But sometimes we just want to host something small, maybe just an open source service for family and friends, or some self-built service that we are still experimenting on. In this case, the cloud can be expensive. We can just throw a few nodes at home and run it at a very low cost. But you don't want the service down when some nodes failed, at least the service should be available when you upgrade and reboot the nodes because it can happen very frequently. In this article, I will talk about how to build high available infrastructure so that the service can be alive even when some nodes are down.
+Cloud is popular these days. But sometimes we just want to host something small, maybe just an open source service for family and friends, or some self-built service that we are still experimenting on. In this case, the cloud can be expensive. We can just throw a few nodes at home and run it at a very low cost. But you don't want the service down when some nodes fail, at least the service should be available when you upgrade and reboot the nodes because it can happen very frequently. In this article, I will talk about how to build highly available infrastructure so that the service can be alive even when some nodes are down.
 
 ## What is High Availability?
 
@@ -25,7 +25,7 @@ As said before, the HA needs multiple nodes in case of some nodes are down. The 
 The HA setup has multiple layers and we will use different tools for each of the layers:
 
 * Compute: Kubernetes
-* Storage: GlusterFk
+* Storage: GlusterFS
 * Database: Cockroach DB
 * Network Ingress: Cloudflare Tunnel
 
@@ -41,9 +41,9 @@ Let's talk about each of them in detail.
 
 ## Compute: Kubernetes
 
-[Kubernetes](https://kubernetes.io/) is a container orchestration system. Think of it as Docker but across machines. You define what you want to run in the format of YAML or Json, including how much CPU, memory, and storage to use, then Kubernetes will find a node that fits your needs to run your container. It also tries to keep the current system state that meets your definition. For example, if there is a node failed and your service's container is on it, Kubernetes will try to find another node to start the container so that the state meets the definition. So if the service itself doesn't have any state between restarts, you get HA for free using Kubernetes.
+[Kubernetes](https://kubernetes.io/) is a container orchestration system. Think of it as Docker but across machines. You define what you want to run in the format of YAML or Json, including how much CPU, memory, and storage to use, then Kubernetes will find a node that fits your needs to run your container. It also tries to keep the current system state that meets your definition. For example, if there is a node failure and your service's container is on it, Kubernetes will try to find another node to start the container so that the state meets the definition. So if the service itself doesn't have any state between restarts, you get HA for free using Kubernetes.
 
-I must have some warnings about using Kubernetes. It's a complex project that is used by many big players. It's not very easy to set up, maintain or upgrade. You need lots of knowledge to make it work. It has so many open issues that your particular needs are most likely not prioritized. While it's open source so that you can modify the code to meet your use case, and I've had good experience contributing code in the early days, the recent experience is not so good anymore: you may need to attend some discussions to push your change instead of async online discussion. That is a lot for a causal contributor. So I end up maintaining a custom branch of Kubernetes with the changes I need locally, which is also a lot for average users.
+I must have some warnings about using Kubernetes. It's a complex project that is used by many big players. It's not very easy to set up, maintain or upgrade. You need lots of knowledge to make it work. It has so many open issues that your particular needs are most likely not prioritized. While it's open source so that you can modify the code to meet your use case, and I've had good experience contributing code in the early days, the recent experience is not so good anymore: you may need to attend some discussions to push your change instead of async online discussion. That is a lot for a casual contributor. So I end up maintaining a custom branch of Kubernetes with the changes I need locally, which is also a lot for average users.
 
 Even though Kubernetes is heavy, I still think it's a good tool even for small deployments since it's already the industry standard. If you want to dedicate the maintenance of the Kubernetes cluster to a third party in the future, you can find lots of providers very easily. And you can just migrate your services to a different cluster without much effort since you've already defined the deployment in a language that any Kubernetes cluster can understand.
 
@@ -75,7 +75,7 @@ sudo gluster volume create <volume-name> replica 3 arbiter 1 <host1>:<glusterfs-
 
 ## Database: CockroachDB
 
-Even though we can make persistent work with distributed storage, it's better to avoid it if possible because of the setup complexity and performance impact. (This is more of the case of a self-hosted solution, distributed storage from cloud providers is very easy to use, and is also used by the VM so there is no difference in performance). We've listed some options above. In this section, we will look at how to create a database for the services to use so that they don't need to store data on disks.
+Even though we can make persistence work with distributed storage, it's better to avoid it if possible because of the setup complexity and performance impact. (This is more of the case of a self-hosted solution, distributed storage from cloud providers is very easy to use, and is also used by the VM so there is no difference in performance). We've listed some options above. In this section, we will look at how to create a database for the services to use so that they don't need to store data on disks.
 
 Here I will use CockroachDB as an example. But this introduction should help you to set up other similar systems like Elastic Search. Cockroach DB is a distributed database that is compatible with PostgreSQL. It's built with HA in mind, so it has good guarantees and is easy to set up. I've checked lots of HA solutions for PostgreSQL and all of them have less guarantee (lots of them have no information about the consistency and availability level they provide, and I found them half-baked with a closer look) while are much harder to set up. I've written [a blog about Spanner that also talks about Cockroach DB](/2018-07-29-A-Review-on-Spanner-and-Open-Source-Implementations.html) if you are interested in more details. Overall I have a good impression of it: the tech writings are solid, and the support is nice: when I have an issue and report it in the forum, the response is usually very quick and useful even though I'm just a free user.
 
@@ -136,7 +136,7 @@ Once we have everything deployed in the cluster, the last step is to expose our 
 
 [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/) is basically a reverse proxy that forwards the traffic from the public Internet to your service. There is a daemon called cloudflared running in Kubernetes. Cloudflare will forward the traffic from clients to cloudflared and cloudflared will forward the traffic to the actual service. Check [this doc](https://developers.cloudflare.com/cloudflare-one/tutorials/many-cfd-one-tunnel/) to see how it works with Kubernetes.
 
-The upside of Cloudflare tunnel is that you don't need to open any port to the public Internet at all. So it's safer because there is no way to access your service without going to Cloudflare first. Cloudflare also provide some tools to mediate attacks like DDoS.
+The upside of Cloudflare tunnel is that you don't need to open any port to the public Internet at all. So it's safer because there is no way to access your service without going to Cloudflare first. Cloudflare also provides some tools to mediate attacks like DDoS.
 
 The downside is it depends on a third-party provider. And it can see all the traffic. It only supports limited protocols. So if you want to avoid Cloudflare seeing your traffic or have a protocol that is not supported, you need a more generic way to do it.
 

@@ -9,13 +9,13 @@ index: ["/Computer Science/UI/Javascript"]
 
 [htmx](https://htmx.org/) is a lightweight Javascript framework. We all know in native HTML, a `form` element can send a HTTP request to a server with the values of `input` elements. In htmx, this feature is made more powerful and flexible: you can include the value of any element, and with the help with htmx extensions like [json-enc](https://htmx.org/extensions/json-enc/), it can also post JSON data.
 
-However, there is one thing that htmx inherited from the native HTML form behaviour: for checkboxes, it only includes its value when the checkbox is checked. And the default value for checkbox is `"on"` instead of `true` (even though you can change it to another value). I understand this decision because it wants to keep the same behaviour so there is no surprise, but it also makes the backend parsing very inconvenient. The checkbox field needs some special treatment at the backend: you need to know there is a checkbox field so that you can set it to false when it's not submitted with the request, and set it to true otherwise.
+However, there is one thing that htmx inherited from the native HTML form behavior: for checkboxes, it only includes its value when the checkbox is checked. And the default value for checkbox is `"on"` instead of `true` (even though you can change it to another value). I understand this decision because it wants to keep the same behavior so there is no surprise, but it also makes the backend parsing very inconvenient. The checkbox field needs some special treatment at the backend: you need to know there is a checkbox field so that you can set it to false when it's not submitted with the request, and set it to true otherwise.
 
 In this article, we will explore how to define a custom checkbox element so that it has a boolean value and will always be submitted with the HTTP request. We first explore the implementation for htmx and then for native HTML.
 
-## How htmx Submit the Checkbox Value
+## How htmx Submits the Checkbox Value
 
-In order to make it work with htmx, we first need to know how htmx do the HTTP request with parameters. The document doesn't have a lot of details but we can always check the source code. The code that processes input values is in the function [`processInputValue`](https://github.com/bigskysoftware/htmx/blob/d6afc5b8dbd7213037d0bc4213aa0b7b469bcd62/src/htmx.js#L2549):
+In order to make it work with htmx, we first need to know how htmx does the HTTP request with parameters. The document doesn't have a lot of details but we can always check the source code. The code that processes input values is in the function [`processInputValue`](https://github.com/bigskysoftware/htmx/blob/d6afc5b8dbd7213037d0bc4213aa0b7b469bcd62/src/htmx.js#L2549):
 
 ```javascript
 function processInputValue(processed, values, errors, elt, validate) {
@@ -48,7 +48,7 @@ function processInputValue(processed, values, errors, elt, validate) {
 }
 ```
 
-So it checks whether the element should be included through function `shouldInclude(elt)` and get its value if so (some additional logic for `select` and `file` but it's not a concern here). In [`shouldInclude`](https://github.com/bigskysoftware/htmx/blob/d6afc5b8dbd7213037d0bc4213aa0b7b469bcd62/src/htmx.js#L2512), it will only include a checkbox if it's checked:
+So it checks whether the element should be included through function `shouldInclude(elt)` and gets its value if so (some additional logic for `select` and `file` but it's not a concern here). In [`shouldInclude`](https://github.com/bigskysoftware/htmx/blob/d6afc5b8dbd7213037d0bc4213aa0b7b469bcd62/src/htmx.js#L2512), it will only include a checkbox if it's checked:
 
 ```javascript
 function shouldInclude(elt) {
@@ -68,7 +68,7 @@ function shouldInclude(elt) {
 
 ## Create a Custom Checkbox Element with Web Component
 
-I tried to find or write an extension for htmx to include checkbox elements with boolean values, but from what I learnt in [the htmx extension doc](https://htmx.org/extensions/), there is no good way to do that. So I decided to create a custom HTML element that extends `input` to return boolean values for htmx to get.
+I tried to find or write an extension for htmx to include checkbox elements with boolean values, but from what I learned in [the htmx extension doc](https://htmx.org/extensions/), there is no good way to do that. So I decided to create a custom HTML element that extends `input` to return boolean values for htmx to get.
 
 With [web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components#attributechangedcallback), we can create a HTML tag that can be used just like any other built-in HTML tags. The [MDN guide](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements) does a good job to explain how to do it so I will not repeat it here. I'll just put my implementation of the customized checkbox here:
 
@@ -94,7 +94,7 @@ class BooleanCheckbox extends HTMLInputElement {
 customElements.define("boolean-checkbox", BooleanCheckbox, { extends: "input" });
 ```
 
-You can see it's very simple. It extends the `input` element. It overwrite `checked` to always return `true` so that htmx will always include it in the request. And for `value`, it returns a boolean depends on `super.checked`. At last it register the customized element as a tag namedj`boolean-checkbox`, so that we can just use it like this in HTML:
+You can see it's very simple. It extends the `input` element. It overwrites `checked` to always return `true` so that htmx will always include it in the request. And for `value`, it returns a boolean depending on `super.checked`. At last it registers the customized element as a tag named `boolean-checkbox`, so that we can just use it like this in HTML:
 
 ```html
 <input type="checkbox" is="boolean-checkbox" />Boolean checkbox
@@ -143,7 +143,7 @@ Here is a complete example:
 </html>
 ```
 
-It defines two checkboxes: a native one and a customized one. We use the `json-enc` extension so it will post JSON as request body. When click the submit button, if both of them are unchecked, the post body looks like this:
+It defines two checkboxes: a native one and a customized one. We use the `json-enc` extension so it will post JSON as request body. When clicking the submit button, if both of them are unchecked, the post body looks like this:
 
 ```json
 {"boolean-checkbox":false}
@@ -166,7 +166,7 @@ The custom element `boolean-checkbox` only works with htmx to post boolean value
 </form>
 ```
 
-The behaviour is still like the native checkbox, which only posts value "on" when it's checked.
+The behavior is still like the native checkbox, which only posts value "on" when it's checked.
 
 Even though I don't use the native form action, it still makes me wonder if I can support it. (Disclaimer: all the code below are experiments and I don't recommend anyone uses it on production without careful tests.)
 
@@ -181,7 +181,7 @@ However, in HTML standard, `ElementInternals` is not supported if the custom ele
 
 > Since Apple's WebKit team's position is that customized builtins shouldn't exist in the first place, we don't support this proposal.
 
-Anyway, it is what it is. So I need to workaround it. The solution I came up is to include another checkbox element as a child instead of inherit it. Here is the code:
+Anyway, it is what it is. So I need to work around it. The solution I came up with is to include another checkbox element as a child instead of inheriting it. Here is the code:
 
 ```javascript
 class BooleanCheckbox extends HTMLElement {
@@ -229,7 +229,7 @@ class BooleanCheckbox extends HTMLElement {
 customElements.define("boolean-checkbox", BooleanCheckbox);
 ```
 
-It listens on the `checked` attribute on the child checkbox and update the form value based on it. `static formAssociated = true;` is needed so that we can set form values.
+It listens to the `checked` attribute on the child checkbox and updates the form value based on it. `static formAssociated = true;` is needed so that we can set form values.
 
 Then in HTML, we can use it like this:
 
@@ -241,4 +241,4 @@ Then in HTML, we can use it like this:
 </form>
 ```
 
-When click the submit button, it calls `/test-call?boolean-checkbox=false` if both checkboxes are unchecked and `/test-call?default-checkbox=on&boolean-checkbox=true` if both are checked.
+When clicking the submit button, it calls `/test-call?boolean-checkbox=false` if both checkboxes are unchecked and `/test-call?default-checkbox=on&boolean-checkbox=true` if both are checked.

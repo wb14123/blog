@@ -15,7 +15,7 @@ The easiest way to do it is producing and consuming the tasks in a sequence, for
 
 ```scala
 val feeds = getPendingFeeds() // produce the tasks
-feeds.foreach(fetchFromNetwork) // consume the dtasks
+feeds.foreach(fetchFromNetwork) // consume the tasks
 ```
 
 However, it is unnecessarily slow. Network request doesn't take lots of CPU and we can send multiple requests at the same time. Even if `fetchFromNetwork` is a CPU bound task, it can be parallelized if there are multiple CPU cores on a machine.
@@ -63,7 +63,7 @@ def produce(start: Int, end: Int): IO[Seq[Int]]
 def consume(x: Int): IO[Unit]
 
 // Produce tasks as a stream
-def def produceStream(start: Int, end: Double): fs2.Stream[IO, Int]
+def produceStream(start: Int, end: Double): fs2.Stream[IO, Int]
 ```
 
 `produce` simply produces tasks as `int`, and `consume` just print characters. In each of the functions, I use `IO.sleep` to create some delay to simulate the real world non-blocking IO. They also print characters `P` (produce) or `C` (consume) (based on the width of terminal, some of the `C` outputs may be skipped to fit the width) when being invoked, so that we can have an intuitive view of how quick tasks are produced and consumed.
@@ -152,7 +152,7 @@ private def dequeueStream(): fs2.Stream[IO, Option[Int]] = {
 
 Here we have two IOs run in parallel with `parSequence`: the first one creates a task stream by `produceStream`, and append `None` at the end so that the consumer knows it should end processing. Another stream `dequeueStream` gets the tasks from the queue then consumes it in parallel with `parEvalmap(config.batchSize)(consume)`.
 
-When run it with `sbt "run -n BlockingQueueApp"`, we can see it's much faster when the consumer is faster or has the same speed as the producer. Especially when the consumer is slow, it prints multiple `P` at first, which means the producers doesn't wait all the consumers to finish in order to produce tasks.
+When run it with `sbt "run -n BlockingQueueApp"`, we can see it's much faster when the consumer is faster or has the same speed as the producer. Especially when the consumer is slow, it prints multiple `P` at first, which means the producer doesn't wait all the consumers to finish in order to produce tasks.
 
 {% asciicast tmp6dx2heu_-ascii %}
 
@@ -184,23 +184,23 @@ override def work(): IO[Unit] = {
 }
 ```
 
-Here we started two dequeue stream at first. Now the whole program will block when run it with `sbt "run -b"` .
+Here we started two dequeue streams at first. Now the whole program will block when run it with `sbt "run -b"`.
 
-The lesson learned here is that there is a big risk if any operation blocks the whole thread in cats effect. Even it doesn't block the whole program, it may make a whole thread unavailable.
+The lesson learned here is that there is a big risk if any operation blocks the whole thread in cats effect. Even if it doesn't block the whole program, it may make a whole thread unavailable.
 
 
-Actually in [Cats Effect's thread model](https://typelevel.org/cats-effect/docs/thread-model), there is another thread pool for blocking tasks if we mark it explicitly. In [AsyncConsole.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/AsyncConsole.scala), I use this exact block mode to run console output so that it won't effect other non blocking IO operations:
+Actually in [Cats Effect's thread model](https://typelevel.org/cats-effect/docs/thread-model), there is another thread pool for blocking tasks if we mark it explicitly. In [AsyncConsole.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/AsyncConsole.scala), I use this exact block mode to run console output so that it won't affect other non blocking IO operations:
 
 ```scala
 def asyncPrintln(s: String)(
     implicit cs: ContextShift[IO], blocker: Blocker): IO[Unit] = blocker.blockOn(IO(println(s)))
 ```
 
-However, if a thread is blocked in this pool, it will start another thread for the next operation. Based on the document, there is no limit on how many threads will be created. So if the producer is much slower than consumer, there will be more and more consume operations blocked on dequeue, so it will generate a large amount of threads, which is not ideal and eventually even will blow up the memory.
+However, if a thread is blocked in this pool, it will start another thread for the next operation. Based on the document, there is no limit on how many threads will be created. So if the producer is much slower than the consumer, there will be more and more consume operations blocked on dequeue, so it will generate a large number of threads, which is not ideal and eventually will even blow up the memory.
 
 ## Approach 3: Use Cats Effect Friendly Queue
 
-What if we have a queue that only block the dequeue `IO` when empty instead of blocking the whole thread? Luckily, FS2 provides such a queue. (Cats Effect 3.x also provides such a queue). The implementation is basically the same as above (code in [StreamQueueApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/StreamQueueApp.scala)):
+What if we have a queue that only blocks the dequeue `IO` when empty instead of blocking the whole thread? Luckily, FS2 provides such a queue. (Cats Effect 3.x also provides such a queue). The implementation is basically the same as above (code in [StreamQueueApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/StreamQueueApp.scala)):
 
 ```scala
 import fs2.concurrent.Queue
@@ -276,9 +276,9 @@ override def work(): IO[Unit] = {
 }
 ```
 
-It has 2 concurrent producers but in theory you can create as many as you want, just be careful with the parameters of `produceStream`.
+It has 2 concurrent producers, but in theory you can create as many as you want, just be careful with the parameters of `produceStream`.
 
-If you run this with `sbt "run -n ConcurrentProduceQueueApp"`, you can find the performance is much better with slower producer. However, with the help of fs2 library, we can make the code cleaner without depends on any queue explicitly. Here is what I did in [ConcurrentProducerApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/ConcurrentProducerApp.scala):
+If you run this with `sbt "run -n ConcurrentProduceQueueApp"`, you can find the performance is much better with a slower producer. However, with the help of the fs2 library, we can make the code cleaner without depending on any queue explicitly. Here is what I did in [ConcurrentProducerApp.scala](https://github.com/wb14123/scala-stream-demo/blob/master/src/main/scala/ConcurrentProducerApp.scala):
 
 ```scala
 def work(): IO[Unit] = {
@@ -296,7 +296,7 @@ Here we use `parJoin` to join multiple producer stream at the same time.
 
 ## More
 
-All the approaches above other than the first one uses a queue either implicitly or explicitly. However, under high parallelism and load, every job operating on a single queue may makes this queue a bottleneck. In this case, there is a [work stealing](https://en.wikipedia.org/wiki/Work_stealing) algorithm that each consumers can has its own queue, and whenever a consumer's queue is empty, it steal some tasks from another one. But it's a little bit complex and unnecessary if the load is not so high, so I will not cover it in this article.
+All the approaches above other than the first one use a queue either implicitly or explicitly. However, under high parallelism and load, every job operating on a single queue may make this queue a bottleneck. In this case, there is a [work stealing](https://en.wikipedia.org/wiki/Work_stealing) algorithm where each consumer can have its own queue, and whenever a consumer's queue is empty, it steals some tasks from another one. But it's a little bit complex and unnecessary if the load is not so high, so I will not cover it in this article.
 
 
 ## Test Results

@@ -5,7 +5,7 @@ tags: ["distributed system", "raft", "paxos", "etcd", "postgresql"]
 index: ['/Computer Science/Distributed System']
 ---
 
-There are some battle-tested consensus algorithms like Paxos and Raft to ensure a consistent view will be reached in a distributed system, even with scenarios like node failure, network partition, clock skew, and so on. There are existing systems like etcd and Zookeeper that implement these algorithms so you can use them as external systems. But sometimes, you may need to embed the algorithm into your own system instead of relying on a third-party one (it may be more common than you think—more on that in my next blog). Sometimes, because of the limitations of existing systems or other reasons, it may be hard to fully implement the algorithm, so people may tend to cut some corners and think it will be okay. While Raft and Paxos are not the only consensus algorithms, creating new ones is error-prone. This article explores how partial implementations fail, even when leveraging existing Raft systems incorrectly. We will use Raft as an example instead of other algorithms like Paxos, since it's easier to understand and has a better description of real-world systems.
+There are some battle-tested consensus algorithms like Paxos and Raft to ensure a consistent view will be reached in a distributed system, even with scenarios like node failure, network partition, clock skew, and so on. There are existing systems like etcd and Zookeeper that implement these algorithms so you can use them as external systems. But sometimes, you may need to embed the algorithm into your own system instead of relying on a third-party one (it may be more common than you think—more on that in my next blog). Sometimes, because of the limitations of existing systems or other reasons, it may be hard to fully implement the algorithm, so people may tend to cut some corners and think it will be okay. While Raft and Paxos are not the only consensus algorithms, creating new ones is error-prone. This article explores how partial implementations fail, even when leveraging existing Raft systems incorrectly. We will use Raft as an example instead of other algorithms like Paxos, since it's easier to understand and has better descriptions of real-world systems.
 
 ## Goal of the System
 
@@ -48,9 +48,9 @@ if (is_leader()) {
 }
 ```
 
-As described above for the non-Byzantine model, a process may pause for arbitrary long. So if the process is paused after `is_leader()` returns true, in order for the system to still be available, another leader should be elected. But when the old leader resumes and comes back, it thinks it's still the leader since from its perspective, it just checked that. You can add more checks before `do_something()`, like checking the time passed since `is_leader()` and so on, but the pause can always happen after all the checks and just before `do_something()`.
+As described above for the non-Byzantine model, a process may pause for arbitrarily long. So if the process is paused after `is_leader()` returns true, in order for the system to still be available, another leader should be elected. But when the old leader resumes and comes back, it thinks it's still the leader since from its perspective, it just checked that. You can add more checks before `do_something()`, like checking the time passed since `is_leader()` and so on, but the pause can always happen after all the checks and just before `do_something()`.
 
-Not only can process pauses cause issues. If you are doing any network requests in `do_something`, because of network latency, when the requests reach to the other node, a new node may be elected as a leader by then.
+Not only can process pauses cause issues. If you are doing any network requests in `do_something`, because of network latency, when the requests reach the other node, a new node may be elected as a leader by then.
 
 This is not only something that can happen in theory. Some languages have built-in GC that are known to have long GC pauses under some scenarios. And the operating system can also be too busy to schedule the process back to the CPU. If the process is running in a virtual machine, the host can also pause the virtual machine. To try to resolve it, some systems delay the new leader election when the old one loses contact, in the hope that the process pause or the network delay would be over by then. However, there is really no guarantee of the length of a process pause. So the delay of leader election only makes the possibility smaller, but not zero.
 
@@ -80,7 +80,7 @@ if (key != null) {
 
 Note how `get_revision_in_db`, `do_something` and `update_revision_in_db` happen in the same database transaction. Essentially, we are using another consistent system, the database, combined with the leader terms to make sure there is a single leader doing the operation.
 
-## High Available PostgreSQL Cluster
+## Highly Available PostgreSQL Cluster
 
 But what if we are implementing a distributed database system? There is no external database for us to depend on. For example, let's say we are implementing a highly available cluster for PostgreSQL. Is there a way to use an external Raft system like etcd to implement a PostgreSQL cluster so that it meets the properties we discussed in the section "Goal of the System"?
 

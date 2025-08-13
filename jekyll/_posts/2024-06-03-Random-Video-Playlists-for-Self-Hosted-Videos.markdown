@@ -5,7 +5,7 @@ tags: [video, selfhost, vlc, kodi, media]
 index: ["/Computer Science/Digital Life"]
 ---
 
-With the development of computer systems and online streaming services, it's never easier to play TV shows or movies on demand. There are some shows that I watch over and over when I want to relax. But the action of finding a show and selecting an episode makes it less causal. To some extent, I miss the old days to causally open a TV channel just to watch some random things. In this article, I will explain my journey to achieve that. More specifically, I want something like this:
+With the development of computer systems and online streaming services, it's never been easier to play TV shows or movies on demand. There are some shows that I watch over and over when I want to relax. But the action of finding a show and selecting an episode makes it less casual. To some extent, I miss the old days to casually open a TV channel just to watch some random things. In this article, I will explain my journey to achieve that. More specifically, I want something like this:
 
 * Be able to add videos into collections and play videos randomly from a collection.
 * Be able to share the collections and videos to other devices including:
@@ -15,7 +15,7 @@ With the development of computer systems and online streaming services, it's nev
 * No transcoding on the server.
 * The solution needs to be self hosted, free and open.
 
-I think I need to add more details about "no transcoding on the server" since a lot of solutions need that. All my devices are compatible to play the formats in my video collection. So it's a waste of resource to do another transcoding on the server, especially my video server is also the desktop PC I use the most everyday. If this is not a requirement to you, you may be able to find much better solutions. That's why I listed everything I've tried so it may help someone even it's not the solution I chose at last.
+I think I need to add more details about "no transcoding on the server" since a lot of solutions need that. All my devices are compatible to play the formats in my video collection. So it's a waste of resources to do another transcoding on the server, especially since my video server is also the desktop PC I use the most every day. If this is not a requirement for you, you may be able to find much better solutions. That's why I listed everything I've tried so it may help someone even if it's not the solution I chose at last.
 
 So here you go. If you just want to see my final solution, go to the last section.
 
