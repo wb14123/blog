@@ -7,8 +7,9 @@
 * Write the fix to a new file under the same folder named `<original_filename>.new`. If such a file already exists, ask the user if they want to delete it first. The new file should be the fixed article without anything else. If you need to respond with any summary or suggestions, respond in the chat instead of in the new file.
 * Keep the metadata header in the new file. (The part between the two `---`).
 * Keep the markdown formatting.
-* You can give suggestions in the chat, but don't change the following things:
+* Give suggestions in the chat for the following things (but don't change it in the newly created file):
   * The structure of the article.
   * The tone of the article.
   * Awkward phrasing.
   * Minor stylistic improvements.
+  * Writing clarity.
