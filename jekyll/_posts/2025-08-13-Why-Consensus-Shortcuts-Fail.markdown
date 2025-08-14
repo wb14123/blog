@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Danger of Half-Implementing Raft: Why Consensus Shortcuts Fail"
+title: "What Happens If Raft Algorithm Is Not Fully Implemented"
 tags: ["distributed system", "raft", "paxos", "etcd", "postgresql"]
 index: ['/Computer Science/Distributed System']
 ---
