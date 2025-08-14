@@ -19,7 +19,7 @@ During web service development, it's very usual to use a cache before the databa
 
 ## System Architecture
 
-Let's first describe the normal architecture of the cache and database system. Normally, a web service query data from a database and save data to it. The service itself usually doesn't store any stateful data. This makes it's very easy to scale up: just start a bunch of servers and put them behind a load balancer. But for the database, it's not so easy. It's usually very hard to scale up a database. So when the performance of the database is an issue, we usually put a cache before it. The cache stores everything in memory so it would be much faster and can handle much more requests than a traditional database that needs to persistent everything. When we read data, we read cache first and only load it from database if there is no data in cache. When save data, we must persistent the data to database. Here is a graph about what this architecture looks like:
+Let's first describe the normal architecture of the cache and database system. Normally, a web service queries data from a database and saves data to it. The service itself usually doesn't store any stateful data. This makes it very easy to scale up: just start a bunch of servers and put them behind a load balancer. But for the database, it's not so easy. It's usually very hard to scale up a database. So when the performance of the database is an issue, we usually put a cache before it. The cache stores everything in memory so it would be much faster and can handle much more requests than a traditional database that needs to persistent everything. When we read data, we read cache first and only load it from database if there is no data in cache. When save data, we must persistent the data to database. Here is a graph about what this architecture looks like:
 
 ```
 web_server_1
@@ -29,7 +29,7 @@ web_server_3  <--> cache <--> database
 web_server_n
 ```
 
-We need to notice this is a different architecture than the cache of CPU. In multi-core CPUs, each core has it's own cache instead of having a shared cache, which looks like this:
+We need to notice this is a different architecture than the cache of CPU. In multi-core CPUs, each core has its own cache instead of having a shared cache, which looks like this:
 
 ```
 core_1 <--> cache_1
@@ -39,7 +39,7 @@ core_3 <--> cache_3  <---> main memory
 core_n <--> cache_n
 ```
 
-Because of the differences of architectures, consistency and latency requirements, they usually needs different solutions. In this article, we only talk about the cache algorithms for web services.
+Because of the differences of architectures, consistency and latency requirements, they usually need different solutions. In this article, we only talk about the cache algorithms for web services.
 
 ## Cache Algorithms
 
@@ -69,7 +69,7 @@ write(key, value) {
 Once we have the algorithm in mind, we can write a TLA+ specification and let TLC to check whether it has the properties we want. A TLA+ specification is not a 100% map from the system, it's an abstraction that omits irrelevant details. In our specification, we make two key abstractions:
 
 1. Data is inconsistent between cache and database if one row is inconsistent. So in the specification, we only care about one row. Which means we don't need the parameter for `key`.
-2. In the specification, we don't care about what's the actual value as long as each client writes different values. So we let the client write it's own ID as the value. Thus we can also omit `value` from write behavior.
+2. In the specification, we don't care about what's the actual value as long as each client writes different values. So we let the client write its own ID as the value. Thus we can also omit `value` from write behavior.
 
 We need also to notice that if we write multiple state changes in one TLA+ statement, it means those state changes are atomic. In the code, we assume read/write cache/database is atomic while others are not, which means each line is an atomic operation but the lines between them are not. So for each of the lines, we should write separate statements.
 
@@ -102,7 +102,7 @@ Data == CLIENTS \union {Null, InitValue}
 
 Once these basic values are ready, it's not hard to write the specification for cache and database interface. The specification of it is in [CacheInterface.tla](https://github.com/wb14123/tla-cache/blob/master/CacheInterface.tla). Then we can use the interface to specify the algorithm described above: [WriteInvalidateCache.tla](https://github.com/wb14123/tla-cache/blob/master/WriteInvalidateCache.tla).
 
-Finally, we want to also specify what property we want for our system. We want the data in cache and database to be consistent. It would be very hard to make them to be the same all the time. So we make a reasonable weaker statement: we want to make sure once all the clients are done, either the cache doesn't have any data, or it has the same data as in database:
+Finally, we want to also specify what property we want for our system. We want the data in cache and database to be consistent. It would be very hard to make them the same all the time. So we make a reasonable weaker statement: we want to make sure once all the clients are done, either the cache doesn't have any data, or it has the same data as in database:
 
 ```
 AllDone == \A c \in CLIENTS: states[c] = "done"
@@ -119,7 +119,7 @@ After running this, it will show it violates `Consistency`, and also show all th
 
 ## A Better Algorithm
 
-An algorithm that makes data possible to be inconsistent doesn't necessary makes it a bad algorithm. It maybe faster than stronger consistent algorithms and some application is fine with stale data. It all depends on the use case. What makes it a bad algorithm is people use it without truly understand it.
+An algorithm that makes data possible to be inconsistent doesn't necessarily make it a bad algorithm. It may be faster than stronger consistent algorithms and some application is fine with stale data. It all depends on the use case. What makes it a bad algorithm is people use it without truly understanding it.
 
 In this section, I'll introduce an algorithm with better consistency. It's introduced by the paper [Scaling Memcache at Facebook](https://pdos.csail.mit.edu/6.824/papers/memcache-fb.pdf). In this algorithm, if there is a cache miss during read, the cache server will return a lease token to client. A newer token or the invalidate of the cache will make previous token invalidate. The client can only write cache if it has a valid token.
 
@@ -139,7 +139,7 @@ You can make it as many clients as you want. But increase one client will increa
 
 ## What Else Can Go Wrong
 
-In the algorithm above, we can see the data in cache and database can be consistent once the client has done the work. But it doesn't say any thing about client failure. Because the client write to database then invalid the cache, if the client is down during these two operations, it will not invalid the cache so it will have stale data. To specify this in TLA+, we can add two behaviors into Next:
+In the algorithm above, we can see the data in cache and database can be consistent once the client has done the work. But it doesn't say anything about client failure. Because the client writes to database then invalidates the cache, if the client is down during these two operations, it will not invalidate the cache so it will have stale data. To specify this in TLA+, we can add two behaviors into Next:
 
 ```
 Failure(c) == /\ states' = [states EXCEPT ![c] = "fail"]
@@ -152,7 +152,7 @@ Recover(c) == /\ states[c] = "fail"
 
 Since it's much less likely for the server to not graceful shutdown, this problem is much smaller than the previous one. And the effect can be limited by having a TTL for cache. However, you need to understand that to know if the algorithm really meets your need.
 
-Another thing need to notice is the consistency property we defined above is a really weak one. It doesn't guarantee you always read the newest data.
+Another thing to notice is the consistency property we defined above is a really weak one. It doesn't guarantee you always read the newest data.
 
 ## Conclusion
 

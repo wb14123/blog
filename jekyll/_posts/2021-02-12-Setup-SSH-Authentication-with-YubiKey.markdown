@@ -9,12 +9,12 @@ index: ['/Computer Science/Operating System/Linux']
 
 ## Generate OpenSSH Hardware Token
 
-The most easy way is to generate a ssh key file based on Yubikey. OpenSSH supports this since 8.2.
+The easiest way is to generate a ssh key file based on Yubikey. OpenSSH supports this since 8.2.
 
 1. Run `ssh-keygen -t ecdsa-sk`
 2. Touch the Yubikey for a few seconds.
 
-Then you can use the generated ssh key like other key files with `-i` option. After type in the login command, you need to touch Yubikey for a few seconds, then you should be able to login.
+Then you can use the generated ssh key like other key files with `-i` option. After typing in the login command, you need to touch Yubikey for a few seconds, then you should be able to login.
 
 
 ## ~~Use PAM~~
@@ -25,7 +25,7 @@ A more generic way is to use [PAM](https://en.wikipedia.org/wiki/Linux_PAM) with
 
 ### 1. Install packages
 
-PAM should be installed by default for Archlinux. So the only package we need to install is the PAM module for Yubikey `pam-u2f`:
+PAM should be installed by default for Arch Linux. So the only package we need to install is the PAM module for Yubikey `pam-u2f`:
 
 ```
 sudo pacman -S pam-u2f
@@ -55,7 +55,7 @@ The parts after `pam_u2f.so` are the parameters. `authfile` is one of them. For 
 
 ### 4. Config SSH to include password authentication
 
-In order to actually use PAM in ssh, ssh server needs to include password as part of authorization methods. The configuration is `AuthenticationMethods` in `sshd_config`. For example, if you want to use password + Yubikey + ssh key file, you can config it like this:
+In order to actually use PAM in ssh, the ssh server needs to include password as part of authorization methods. The configuration is `AuthenticationMethods` in `sshd_config`. For example, if you want to use password + Yubikey + ssh key file, you can configure it like this:
 
 ```
 AuthenticationMethods "publickey,password"
@@ -68,4 +68,4 @@ PasswordAuthentication Yes
 ChallengeResponseAuthentication Yes
 ```
 
-After this, restart sshd then you can login with Yubikey authentication: type in ssh login command, input user password and press enter, touch the Yubikey for a few seconds, then you should be able to login!
+After this, restart sshd then you can login with Yubikey authentication: type in the ssh login command, input user password and press enter, touch the Yubikey for a few seconds, then you should be able to login!
