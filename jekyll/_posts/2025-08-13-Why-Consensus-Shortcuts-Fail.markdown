@@ -132,7 +132,7 @@ But let's ignore the performance again and compare the whole log history or stat
   * D: [Y]
   * E: [Y]
 
-So none of the log histories has a majority. It's impossible to know which one to pick in this scenario.
+So none of the log histories has a majority. It's impossible to know which one to pick in this scenario. My previous blog post about [Jepsen Test on Patroni](/2024-12-02-PostgreSQL-High-Availability-Solutions-Part-1.html) shows this flaw at some level: In the section "Failed to Recover the Cluster When Only 1 Out of 3 Nodes is Lost", we can see it failed to recover even only 1 node is lost. The implementation of Patroni itself has some problems that doesn't really enforce the writes to a real majority. But even with the majority rule enforced, we can see it still cannot be sure which log history to go forward under this scenario.
 
 ## Save the Last Log Entry to External Raft System
 
