@@ -27,12 +27,12 @@ a_i(x, w, b) = \sigma(z_i(x, w, b))
 
 </div>
 
-Assume <span>$$ layer_i $$</span> means the number of neural in layer i, then the variables in the equations could be explained as below:
+Assume <span>$$ layer_i $$</span> means the number of neurons in layer i, then the variables in the equations could be explained as below:
 
 * `x` is the input, which is a row vector, it has <span>$$ layer_1 $$</span> elements.
-* <span>$$ w_i $$</span> meas the weights in layer `i`, which is a matrix of <span>$$ layer_i $$</span> rows and <span>$$ layer_{i+1} $$</span> columns.
+* <span>$$ w_i $$</span> means the weights in layer `i`, which is a matrix of <span>$$ layer_i $$</span> rows and <span>$$ layer_{i+1} $$</span> columns.
 * <span>$$ b_i $$</span> means biases in layer i, which is a row vector of <span>$$ layer_{i+1} $$</span> elements.
-* <span>$$ a_i $$</span> means activation function in the ith layer, which the output is a row vector, it has <span>$$ layer_i $$</span> elements.
+* <span>$$ a_i $$</span> means activation function in the ith layer, where the output is a row vector, it has <span>$$ layer_i $$</span> elements.
 * `l` means the last layer. The output of <span>$$a_l$$</span> is the output of the neural network.
 
 And <span>$$ \sigma(z) $$</span> may be different in different use cases. This one is an example:
@@ -47,7 +47,7 @@ And <span>$$ \sigma(z) $$</span> may be different in different use cases. This o
 Gradient Descent Algorithm
 ---------------
 
-We need a cost function to measure how well do we do for now. And the training of the network becomes a optimization problem. The method we use in the problem is gradient descent. Let me try to explain it.
+We need a cost function to measure how well do we do for now. And the training of the network becomes an optimization problem. The method we use in the problem is gradient descent. Let me try to explain it.
 
 Assume we have a cost function, and it is always non-negative. For example, this function is a good one:
 
@@ -57,7 +57,7 @@ C(x, y, w, b) = {1 \over 2} (y - a_l(x, w, b)) ^ 2
 \end{equation}
 </div>
 
-Then the goal is try to make the output of the cost function smaller. Since `x` and `y` is fixed, the change of cost function while change `w` and `b` little could be shown as this:
+Then the goal is to try to make the output of the cost function smaller. Since `x` and `y` are fixed, the change of cost function while changing `w` and `b` a little could be shown as this:
 
 <div>
 \begin{equation}
@@ -95,7 +95,7 @@ So the goal is to compute the partial derivative <span>$$ \partial C \over \part
 
 Note that we use <span>$$ \odot $$</span> before <span>$$ \sigma^{'} $$</span> is because function <span>$$ \sigma(z) $$</span> is element wise.
 
-We can find there are many same parts in these equations: <span>$$ {\partial C \over \partial a_{i+1}} \odot {\sigma^{'}(z_{i+1})} $$</span>. So we can define <span>$$ \delta_i = {\partial C \over \partial a_i} \odot {\sigma^{'}(z_i)} $$</span>, and rewrite these equations like this to avoid compute these parts many times:
+We can find there are many same parts in these equations: <span>$$ {\partial C \over \partial a_{i+1}} \odot {\sigma^{'}(z_{i+1})} $$</span>. So we can define <span>$$ \delta_i = {\partial C \over \partial a_i} \odot {\sigma^{'}(z_i)} $$</span>, and rewrite these equations like this to avoid computing these parts many times:
 
 <div>
 \begin{equation}

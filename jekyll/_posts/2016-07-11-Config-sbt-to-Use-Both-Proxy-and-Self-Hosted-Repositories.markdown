@@ -10,7 +10,7 @@ While building Scala projects, we usually use a proxy to make the build faster. 
 Use Proxy Repositories
 -------
 
-sbt has a [document](http://www.scala-sbt.org/0.13/docs/Proxy-Repositories.html) that described how to set proxy repositories:
+sbt has a [document](http://www.scala-sbt.org/0.13/docs/Proxy-Repositories.html) that describes how to set proxy repositories:
 
 ### Config repositories in `~/.sbt/repositories` like this:
 
@@ -21,7 +21,7 @@ sbt has a [document](http://www.scala-sbt.org/0.13/docs/Proxy-Repositories.html)
     my-maven-proxy-releases: http://repo.company.com/maven-releases/
 ```
 
-### Add `-Dsbt.override.build.repos=true` while use sbt command.
+### Add `-Dsbt.override.build.repos=true` while using sbt command.
 
 The second step will override all the resolvers defined in your project, like in the file `build.sbt`. It is necessary because if you don't do this, sbt will still send requests to default repos like typesafe and scala-sbt.
 
@@ -48,6 +48,6 @@ Use Both
 
 You may see the problem to use both of them. In order to force sbt to use proxy repos, you should use the option `-Dsbt.override.build.repos=true`, which will override your self hosted repo written in `build.sbt`.
 
-After tried some methods, I find I can just write the repos defined in `build.sbt` into `~/.sbt/repositories`, and sbt will still be able to find the credentials for it while building the project.
+After trying some methods, I found I can just write the repos defined in `build.sbt` into `~/.sbt/repositories`, and sbt will still be able to find the credentials for it while building the project.
 
 This method will make sbt print some error logs while loading the project: sbt will attempt to download some dependencies from this repo but cannot find the credential since it hasn't loaded the project yet. If you are comfortable to ignore the error log, this method would be fine.

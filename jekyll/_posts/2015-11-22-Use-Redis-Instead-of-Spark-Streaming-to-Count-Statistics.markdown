@@ -22,7 +22,7 @@ Sum and mean is very easy to compute, the tricky one is to compute the variance.
 
 So we need to count the sum of squares: <span>$$ \sum_{i=1}^n a_i^2 $$</span>.
 
-Since <span>$$ a_i $$</span> is changing as the data is coming, we need to keep tracking of all the elements in <span>$$ \vec{a} $$</span>. This is the key to solve the problem.
+Since <span>$$ a_i $$</span> is changing as the data is coming, we need to keep track of all the elements in <span>$$ \vec{a} $$</span>. This is the key to solve the problem.
 
 Next, I'll show you how to compute sum of squares with Spark Streaming and Redis.
 
@@ -42,16 +42,16 @@ The code is clean and easy to read. But there are two problems, both are about `
 
 1. `updateStateByKey` has a state in memory, we need to enable checkpointing for it in order to support fault tolerance. And in the case of updating the code, we need to save the state by ourself, as I have specified in [an earlier blog](/2015-11-03-the-proper-way-to-use-spark-checkpoint.html). When the state is big, it will be very slow and complex.
 
-2. `updateStateByKey` is not so fast. It will run against all the elements in it every time. It is not necessary in our situation. The Spark guys seems to [realize this problem](http://technicaltidbit.blogspot.sg/2015/11/spark-streaming-16-stop-using.html), too.
+2. `updateStateByKey` is not so fast. It will run against all the elements in it every time. It is not necessary in our situation. The Spark guys seem to [realize this problem](http://technicaltidbit.blogspot.sg/2015/11/spark-streaming-16-stop-using.html), too.
 
-I tried this program with billions of elements and save the state data into Cassandra. I ran this on a cluster with 4 machines, each of them have 32GB RAM. The program simply cannot save the state data into Cassandra and crashed.
+I tried this program with billions of elements and saved the state data into Cassandra. I ran this on a cluster with 4 machines, each of them has 32GB RAM. The program simply cannot save the state data into Cassandra and crashed.
 
 So what do we need? What we really need is just a place to store and update the vector <span>$$\vec{a}$$</span>. Redis is the perfect tool to do this thing.
 
 Using Redis
 ----------------
 
-We will store the whole vector into Redis: for each element in the vector, we will use `i` as the key and <span>$$a_i$$</span> as the value.  When a new element arrives in the data stream, we will update the key-valule and the sum of sqaures. Here is the code:
+We will store the whole vector into Redis: for each element in the vector, we will use `i` as the key and <span>$$a_i$$</span> as the value.  When a new element arrives in the data stream, we will update the key-value and the sum of squares. Here is the code:
 
 ```
 val redis = RedisClient()
@@ -72,4 +72,4 @@ This program can compute billions of elements in one day. And the memory usage o
 Conclusion
 ----------------
 
-At first, I use Spark Streaming to solve this problem becuase it seems to be a "big data" problem. But after analyzing the problem, what I really need is just a place to store state. And CPU is really not the bottleneck. Spark is good for batch processing but not so good at this kind of problem. Choosing the right tool instead of the most awesome tool is very important.
+At first, I use Spark Streaming to solve this problem because it seems to be a "big data" problem. But after analyzing the problem, what I really need is just a place to store state. And CPU is really not the bottleneck. Spark is good for batch processing but not so good at this kind of problem. Choosing the right tool instead of the most awesome tool is very important.

@@ -14,15 +14,15 @@ There is a famous software called [Cygwin](https://www.cygwin.com/) which provid
 
 While installing it, it will ask you which tools you'd like to install. Just install the default ones and Lynx is enough, since we will install a package manager and it will be easier to install other tools then.
 
-You can use Xterm with Cygwin terminal, so you can config it as you are in Linux.
+You can use Xterm with Cygwin terminal, so you can configure it as you are in Linux.
 
 
 Package Manager
 ------------
 
-The most missed thing while I'm using Windows is Linux's package manager. You can search, install, update and manage software very easily with it. There is also HomeBrew under Mac OS X so I'd like something like that under Windows. I searched on Google and found [apt-cyg](https://github.com/transcode-open/apt-cyg) which can manage packages in Cygwin. You can follow the steps on its homepage to install it. After install it, you can install wget with it so that it will stop print warning messages.
+The most missed thing while I'm using Windows is Linux's package manager. You can search, install, update and manage software very easily with it. There is also HomeBrew under Mac OS X so I'd like something like that under Windows. I searched on Google and found [apt-cyg](https://github.com/transcode-open/apt-cyg) which can manage packages in Cygwin. You can follow the steps on its homepage to install it. After installing it, you can install wget with it so that it will stop printing warning messages.
 
-I've installed tmux, zsh, Git and vim with it. And config them with my [config files](https://github.com/wb14123/dotfiles). I only need to change the tmux start up config:
+I've installed tmux, zsh, Git and vim with it. And configure them with my [config files](https://github.com/wb14123/dotfiles). I only need to change the tmux start up config:
 
 ```
 - set -g default-command "reattach-to-user-namespace -l /bin/zsh"
@@ -35,7 +35,7 @@ Except this, everything else works very well without any problem.
 Python
 ----------
 
-There are many tools are written in Python. And my work also uses Python a lot. You can install Python with apt-cyg. But there will be some tricky things if you need to install some Python packages with pip.
+There are many tools that are written in Python. And my work also uses Python a lot. You can install Python with apt-cyg. But there will be some tricky things if you need to install some Python packages with pip.
 
 First we will install pip:
 

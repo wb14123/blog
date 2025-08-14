@@ -26,15 +26,15 @@ I find injections are everywhere in many web frameworks, but we really do not ne
 
 For example, let's review two normal usages of injections.
 
-The first one is inject the login user. But you can just write a function that get token or session from HTTP request, and query your storage whether this token/session belongs to any user. No need with injections.
+The first one is to inject the login user. But you can just write a function that get token or session from HTTP request, and query your storage whether this token/session belongs to any user. No need with injections.
 
-The second one is inject database connection. But you can write a function to get your global database pool and get a connection from it. No need with injections, either.
+The second one is to inject database connection. But you can write a function to get your global database pool and get a connection from it. No need with injections, either.
 
 
-Annoying While Always Write Some Functions In Many Handlers?
+Annoying to Always Write Some Functions In Many Handlers?
 --------------
 
-Sometimes we find, some functions in the library is so common that we almost use them in every handler. For example, if all the handlers need the user to login, we will write a function like `validateLogin(request)` in every handler. In order to resolve this problem, we could pass the function `valudateLogin` to the framework, tell it to run it on every request. This is the design of filter: filters are functions that read request, then write some response for you.
+Sometimes we find, some functions in the library is so common that we almost use them in every handler. For example, if all the handlers need the user to login, we will write a function like `validateLogin(request)` in every handler. In order to resolve this problem, we could pass the function `validateLogin` to the framework, tell it to run it on every request. This is the design of filter: filters are functions that read request, then write some response for you.
 
 The API to define filters may like this:
 
@@ -48,7 +48,7 @@ We Need Injectors While Performance Matters
 
 When there comes filters, we should use injectors in order to improve performance. For example, in one filter, you query the login user, and in your handler, you query the login user, too. If you store the login user while you first query it, you can query it just one time.
 
-Injectors could be designed to use like filters. But it write things into the context instead of response.
+Injectors could be designed to use like filters. But it writes things into the context instead of response.
 
 Even at this time, some of the injectors like parse HTTP query string as number or something like that is not necessary.
 
@@ -68,7 +68,7 @@ Just one handler should handle the HTTP request. So how we define the rule? HTTP
 framework.get('/abc', handlerA)
 ```
 
-But what if we what some more control over the request? We should be able to custom and extend it. My design is a function called adapter. It is a function that returns a function, which takes HTTP request as parameter and  return a result that tell the framework whether this request suits this adapter. For example, `pathAdapter("/abc")` could return a function, that return true if the HTTP URL is "/abc" otherwise return false.
+But what if we want some more control over the request? We should be able to custom and extend it. My design is a function called adapter. It is a function that returns a function, which takes HTTP request as parameter and returns a result that tells the framework whether this request suits this adapter. For example, `pathAdapter("/abc")` could return a function, that returns true if the HTTP URL is "/abc" otherwise returns false.
 
 So the API may looks like this:
 

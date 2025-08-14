@@ -5,21 +5,21 @@ tags: [life]
 index: ['/Computer Science/Machine Learning']
 ---
 
-These days, I bought some hardware and build a computer by myself. It's fun and I've learned lots of things from it. Here is a note to record it.
+These days, I bought some hardware and built a computer by myself. It's fun and I've learned lots of things from it. Here is a note to record it.
 
 Why I Built It
 ----------------
 
-This computer is used for working and learning. I build it for two reasons:
+This computer is used for working and learning. I built it for two reasons:
 
-* Use Linux. I've used Linux for many years and then used MacOS X. I missed the days of using Linux, which I can control everything.
+* Use Linux. I've used Linux for many years and then used MacOS X. I missed the days of using Linux, where I can control everything.
 * Run deep learning programs.
 
 
 Hardware
 ---------------
 
-<table> <tr><td>CPU</td> <td>Intel i5-6600k</td> <td>It is easy to overclock and has built in graphics to support 4k at 60Hz.</td></tr>
+<table> <tr><td>CPU</td> <td>Intel i5-6600k</td> <td>It is easy to overclock and has built-in graphics to support 4k at 60Hz.</td></tr>
 
 
 <tr><td>RAM</td> <td>G.Skill DDR4 2400Hz * 2</td> <td></td></tr>
@@ -36,9 +36,9 @@ Hardware
 
 <tr><td>CPU Cooler</td> <td>DeepCool</td> <td>This cooler is by wind and the noise is small.</td></tr>
 
-<tr><td>Monitor</td> <td>DELL P2715Q</td> <td>This monitor has 4k support. The display effect is very fantasy.</td></tr>
+<tr><td>Monitor</td> <td>DELL P2715Q</td> <td>This monitor has 4k support. The display effect is very fantastic.</td></tr>
 
-<tr><td>Graphics</td> <td>NVIDIA GTX 1080</td> <td>I haven't buy it yet. Use this to run deep learning programs.</td></tr>
+<tr><td>Graphics</td> <td>NVIDIA GTX 1080</td> <td>I haven't bought it yet. Use this to run deep learning programs.</td></tr>
 </table>
 
 
@@ -48,8 +48,8 @@ Software
 I may share all my configurations some day. Here is a brief list:
 
 <table>
-<tr><td>OS</td> <td>Archlinux</td> <td>I've used ArchLinux for many years and I love the philosophies like rolling update, just install what you need ans so on.</td></tr>
-<tr><td>Window Manager</td> <td>i3wm</td> <td>Tilling window manger is very awesome.</td> </tr>
+<tr><td>OS</td> <td>Archlinux</td> <td>I've used ArchLinux for many years and I love the philosophies like rolling update, just install what you need and so on.</td></tr>
+<tr><td>Window Manager</td> <td>i3wm</td> <td>Tiling window manager is very awesome.</td> </tr>
 <tr><td>dmenu</td> <td>Rofi</td> <td>It supports fuzzy search and searching opening windows.</td></tr>
 <tr><td>Monitor</td> <td>Conky</td> <td></td></tr>
 </table>

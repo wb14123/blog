@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to Put RNN Layers Into Neural Network Model
-tags: [neural nerwork, rnn]
+tags: [neural network, rnn]
 index: ['/Computer Science/Machine Learning']
 ---
 
@@ -12,7 +12,7 @@ While these articles are very great and introduce the idea and structure of RNN,
 Basic Idea of RNN
 ---------------
 
-The basic idea of RNN is that you have a sequence of data, you can train on this data so that represent the sequence of data as a vector, then you can do other tricks on this trained vector in other tasks. So make it simple: **RNN deals with sequence data (maybe dymical length)**.
+The basic idea of RNN is that you have a sequence of data, you can train on this data so that represent the sequence of data as a vector, then you can do other tricks on this trained vector in other tasks. So make it simple: **RNN deals with sequence data (maybe dynamical length)**.
 
 For example, given this task: the input is a sequence of chars, and you need to predict the next char of the sequence. Then you can train to represent the sequence of chars as a vector with RNN, and then input the vector into next layer, maybe a linear layer with softmax activation, like in other classification tasks.
 
@@ -26,9 +26,9 @@ For each step:
 * Count output from current input and state: <span>$$ output_i = out\_func(state, input_i) $$</span>
 * Update the state: <span>$$ state = next\_state $$</span>
 
-The `state_func` and `out_func` maybe different depends on what kind of the RNN is (for example, LSTM or GRU), but the basic structure is the same.
+The `state_func` and `out_func` may be different depending on what kind of RNN it is (for example, LSTM or GRU), but the basic structure is the same.
 
-A thing we need to notice is, the process I just described, is just the behaviour of one RNN layer.
+A thing we need to notice is, the process I just described, is just the behavior of one RNN layer.
 
 Then we've got two outputs from the RNN: a sequence of output and its inner state. Normally, if we want to stack multiple RNN layers, we can use the sequence of output as the next input of RNN layer. If you just want a vector to represent the sequence of data, you can get the output of the last step. Some other models such as seq2seq also uses the inner state to represent the sequence of data.
 
@@ -58,11 +58,11 @@ Some Other Details
 
 ### Loop Operations
 
-Since we want to use tensor operations as many as we could, we don't want to split the tensor based on the time_step dimension and use our own loop. Some deep learning frameworks have there own loop operations. These operations should be optimized to be more efficient.
+Since we want to use tensor operations as many as we could, we don't want to split the tensor based on the time_step dimension and use our own loop. Some deep learning frameworks have their own loop operations. These operations should be optimized to be more efficient.
 
-Theana and TensorFlow both use symbol computation. They both have the loop operation, too. It's [scan](http://deeplearning.net/software/theano/library/scan.html) in Theano and [while_loop](https://www.tensorflow.org/versions/r0.8/api_docs/python/control_flow_ops.html#while_loop) in TensorFlow.
+Theano and TensorFlow both use symbolic computation. They both have the loop operation, too. It's [scan](http://deeplearning.net/software/theano/library/scan.html) in Theano and [while_loop](https://www.tensorflow.org/versions/r0.8/api_docs/python/control_flow_ops.html#while_loop) in TensorFlow.
 
 ### Variable Time Step
 
-Some input sequences of RNN have different length. One way to solve this is use the max length as time step, and padding other samples with some special value like zero. But this can be expensive. Another way is split the sequences into many tensors with the same time step, and let RNN keep its inner state while training on a same sequence. The implement can be tricky, you can see the [implement of Keras](http://keras.io/layers/recurrent/).
+Some input sequences of RNN have different length. One way to solve this is use the max length as time step, and padding other samples with some special value like zero. But this can be expensive. Another way is to split the sequences into many tensors with the same time step, and let RNN keep its inner state while training on the same sequence. The implementation can be tricky, you can see the [implementation of Keras](http://keras.io/layers/recurrent/).
 
