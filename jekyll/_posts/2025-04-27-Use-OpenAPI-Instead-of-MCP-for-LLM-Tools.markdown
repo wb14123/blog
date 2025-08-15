@@ -2,7 +2,7 @@
 layout: post
 title: Use OpenAPI Instead of MCP for LLM Tools
 tags: [machine learning, LLM, MCP, OpenAPI, gRPC]
-index: ['/Computer Science/Machine Learning']
+index: ['/Computer Science/Machine Learning Application']
 ---
 
 [Module Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) is adopted by more and more people as a way to integrate tools to LLMs easily. However, I find it unintuitive and unnecessarily complex. So in this article, I'll explore how to use existing [OpenAPI](https://www.openapis.org/) servers as tools of LLMs instead of writing the functions in a completely new protocol. This can potentially become a simpler standard that only needs implementing an additional authentication flow (if authentication is needed).
