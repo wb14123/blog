@@ -10,10 +10,10 @@ These days I write [a small app](https://github.com/wb14123/erlang_module) which
 How It Works?
 -------------------------
 
-1. Fetch top 1000 stared Erlang repos form Github's search API.
+1. Fetch top 1000 starred Erlang repos from Github's search API.
 2. Fetch `rebar.config` of the repo from `https://raw.github.com/<repo's full name>`.
 3. Use regex to get the repo's dependencies.
-4. Sort the repos by how many repos are depend on it.
+4. Sort the repos by how many repos depend on it.
 
 Keep It Simple and Stupid
 ------------------------
@@ -21,7 +21,7 @@ Keep It Simple and Stupid
 As its function is simple, I keep the code simple.
 
 * The app is written by coffeescript, which is perfect to parse Github's restful API and JSON.
-* No database is required. Just use some arrays and objects to store informations.
+* No database is required. Just use some arrays and objects to store information.
 * It generates static html files with Jade. So it is faster to visit and easier to deploy.
 
 Develop: Bitbucket VS Github
@@ -43,7 +43,7 @@ Heroku is very easy to use. If you want to deploy new version, just push to the 
 
 There are some tricks:
 
-* Use environment variables to config secret things such as database password, OAuth client secret and so on.
+* Use environment variables to configure secret things such as database password, OAuth client secret and so on.
 * Use Express as the static file server.
 * Set timeout to update every day.
 * Use redirect to force the user to visit through my custom domain name.

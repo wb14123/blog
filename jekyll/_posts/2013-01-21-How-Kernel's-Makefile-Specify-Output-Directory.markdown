@@ -5,7 +5,7 @@ tags: [kernel, make]
 index: ['/Computer Science/Operating System/Linux']
 ---
 
-When compile Linux kernel, we could output files to a split directory with "make O=". The kernel's way to do it is a little tricky. Since kernel's Makefile is very big, we could have a simpler version to analyse:
+When compiling Linux kernel, we could output files to a separate directory with "make O=". The kernel's way to do it is a little tricky. Since kernel's Makefile is very big, we could have a simpler version to analyze:
 
 	ifeq ($(KBUILD_SRC),)
 	ifeq ("$(origin O)", "command line")
@@ -42,7 +42,7 @@ When you execute make, `KBUILD_SRC` is not defined at first, so it will make `su
 
 At the second time, `KBUILD_SRC` is defined so it will make the real targets.
 
-The thing to notice is, while you make the real `target1`, **variables between `ifeq ($(KBUILD_SRC),)` is not defined**. You could see the output:
+The thing to notice is, while you make the real `target1`, **variables between `ifeq ($(KBUILD_SRC),)` are not defined**. You could see the output:
 
 	make -C ../build -f /home/wangbin/maketest/Makefile \
 	                KBUILD_SRC=/home/wangbin/maketest \

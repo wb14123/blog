@@ -5,7 +5,7 @@ tags: [golang, scheduler]
 index: ['/Computer Science/Programming Language/Go']
 ---
 
-I read the Go source code about scheduler these days. They are under `src/pkg/runtime`, mainly in `runtime.h`, `proc.c` and some Assembly files. The scheduler's policy is easy to understand, because there are already many articles on this. I'm more interesting in the details. I learned how to switch the current running goroutine, which is a little mystery for me before.
+I read the Go source code about scheduler these days. They are under `src/pkg/runtime`, mainly in `runtime.h`, `proc.c` and some Assembly files. The scheduler's policy is easy to understand, because there are already many articles on this. I'm more interested in the details. I learned how to switch the current running goroutine, which is a little mystery for me before.
 
 Basic Structures
 -----------
@@ -16,7 +16,7 @@ Go scheduler mainly uses three structures:
 * `M` as an OS thread.
 * `P` as a context. Running under threads and control the goroutines.
 
-The number of `P` is setted by `GOMAXPROCS`.
+The number of `P` is set by `GOMAXPROCS`.
 
 Each `M` has a `G` called `g0` to do schedule jobs. (`mcall` will use `g0` to execute functions).
 
@@ -78,17 +78,17 @@ ok:
 	RET
 ```
 
-It init an `M`, and a `G` as this `M`'s `g0`.
+It inits an `M`, and a `G` as this `M`'s `g0`.
 
-`runtime·schedinit` init the global scheduler, read `GOMAXPROCS` and start the `P`s.
+`runtime·schedinit` inits the global scheduler, reads `GOMAXPROCS` and starts the `P`s.
 
 `runtime.main` and `runtime.newproc` create and queue the main Goroutine.
 
-`runtime.mstart` start this `M` at last.
+`runtime.mstart` starts this `M` at last.
 
 `runtime.mstart` will call `schedule`, `schedule` will find a runnable `G` and call `execute` on it, `execute` will call `runtime·gogo` which is defined in the Assembly files, set the program pointer and stack to run a `G`. Now the program starts running and will never return. This main goroutine is locked to the main OS thread.
 
-Here is what `runtime.gogo` do, for example in `asm_386.s`:
+Here is what `runtime.gogo` does, for example in `asm_386.s`:
 
 ```
 // void gogo(Gobuf*)
@@ -112,7 +112,7 @@ TEXT runtime·gogo(SB), NOSPLIT, $0-4
 The Start of the Other Goroutines
 --------------
 
-When the program use the keyword `go`, it will start a new Goroutine. `runtime·proc` could start a `G` given the function. It put this new `G` in the current `P`'s run queue, then call `wakep` in order to call `startm`, which will get an idle `P` and run a `G` on it. If the `P` don't have an `M` for now, it will call `newm` which will alloc an `M` using `startm` as its executing function. As we already known, `startm` will start this `M`, call scheduler to find a `G` to run.
+When the program uses the keyword `go`, it will start a new Goroutine. `runtime·proc` could start a `G` given the function. It puts this new `G` in the current `P`'s run queue, then call `wakep` in order to call `startm`, which will get an idle `P` and run a `G` on it. If the `P` doesn't have an `M` for now, it will call `newm` which will allocate an `M` using `startm` as its executing function. As we already know, `startm` will start this `M`, call scheduler to find a `G` to run.
 
 How the `P` finds the executable `G` will be explained in the next section.
 
@@ -123,9 +123,9 @@ Change the Current Executing Goroutine
 
 We know when the `G` is executing, the code will never return. It means that the scheduler of Go is non-preemptive. So when to change the current running `G`?
 
-When the current Goroutine call a system call, it is the chance. It will call `handoffp`, which will release the current `P` (and set it's state to idle), start a new `M` to run the system call `G`, and then call `startm`, which will find an idle `P` and run it.
+When the current Goroutine calls a system call, it is the chance. It will call `handoffp`, which will release the current `P` (and set its state to idle), start a new `M` to run the system call `G`, and then call `startm`, which will find an idle `P` and run it.
 
-From Go 1.2, it increases the chance to run the scheduler. For example, when the goroutine call a function, it will check the memory and deside whether to do a scheduling.
+From Go 1.2, it increases the chance to run the scheduler. For example, when the goroutine calls a function, it will check the memory and decide whether to do a scheduling.
 
 This could be verified by a piece of code:
 
@@ -174,7 +174,7 @@ func main() {
 
 			/*
 			  loop2() is a dead end loop. So it will block other Goroutines to run.
-			  loop1() keeps call functions, so it give other Goroutines a chance to run.
+			  loop1() keeps calling functions, so it gives other Goroutines a chance to run.
 			  You can see what will happen when change it to loop1()
 			*/
 			loop2()
@@ -193,11 +193,11 @@ GODEBUG=schedtrace=1000,scheddetail=1 GOMAXPROCS=10 go run a.go
 
 ### How to Change
 
-We've know that the first Gorutine is run by the main program and never returns. So how to change the current Goroutine? The answer is it just change the current SP to the `g0` by the Assembly code. The current Goroutine's context is saved in order to be swapped back in the future. `g0` will then call the scheduler to decide which Goroutine to run next.
+We've known that the first Goroutine is run by the main program and never returns. So how to change the current Goroutine? The answer is it just changes the current SP to the `g0` by the Assembly code. The current Goroutine's context is saved in order to be swapped back in the future. `g0` will then call the scheduler to decide which Goroutine to run next.
 
 ### Which One to Change
 
-In the last section, we know that the new started `G` is just put under the `P` that calls the `go` keyword. So the queue don't ensure fairness. However, while the `P` is able to run a new `G` but could not find any `G` in its queue, it will look up other `P`s and steal half of their `G`s if there are any. This is more effective that ensure the fairness while put `G` in the run queue since it need not lock all the scheduler to check all the `P`s run queue to ensure the fairness.
+In the last section, we know that the new started `G` is just put under the `P` that calls the `go` keyword. So the queue doesn't ensure fairness. However, while the `P` is able to run a new `G` but could not find any `G` in its queue, it will look up other `P`s and steal half of their `G`s if there are any. This is more effective than ensuring the fairness while putting `G` in the run queue since it need not lock all the scheduler to check all the `P`s run queue to ensure the fairness.
 
 The code could be found in `findrunnable`.
 

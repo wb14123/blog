@@ -6,31 +6,31 @@ tags: [blog, disqus, google]
 index: ['/Projects/Blog']
 ---
 
-As you can see, my blog are able to comment and search now!
+As you can see, my blog is able to comment and search now!
 
 Comment
 ---
 
-I always think comment is very important for a blog. You can know how helpful or is there some issues in your article. [Disqus](http://disqus.com) is a great tool to put comment on a website. It is neat and powerful as you can see. It may be a little slow in China. But consider of my blog are mostly written in English, it is not a big deal.
+I always think comment is very important for a blog. You can know how helpful it is or if there are some issues in your article. [Disqus](http://disqus.com) is a great tool to put comment on a website. It is neat and powerful as you can see. It may be a little slow in China. But considering my blog is mostly written in English, it is not a big deal.
 
 Search
 ---
 
-The search engine I am using is [Google custom search engine](http://www.google.com/cse). Isn't it awesome I have google's technology on my blog? It is easy to use, too. The badness of this choice is google may take some time to put the website's content into its index. And google is even not available in China sometimes.
+The search engine I am using is [Google custom search engine](http://www.google.com/cse). Isn't it awesome that I have Google's technology on my blog? It is easy to use, too. The downside of this choice is that Google may take some time to put the website's content into its index. And Google is not even available in China sometimes.
 
 Scripts to Make Life Easy
 ---
 
-As I put the website on [github page](http://pages.github.com/), I don't want to upload the jekyll directory. Just the static site is enough. So I must copy the site to git repository, add, commit and then push it. It is a boring work. I write two scripts to make it easy. I don't know if there is some other way to do this, but I'm OK with it.
+As I put the website on [github page](http://pages.github.com/), I don't want to upload the jekyll directory. Just the static site is enough. So I must copy the site to git repository, add, commit and then push it. It is boring work. I write two scripts to make it easy. I don't know if there is some other way to do this, but I'm OK with it.
 
 update.sh: generate static site and upload to github.
 
     #!/bin/bash
-    
+
     BASE_DIR=`pwd`
     J_DIR="./jekyll"
     GIT_DIR="./wb14123.github.com"
-    
+
     cd $J_DIR
     jekyll
     cd $BASE_DIR

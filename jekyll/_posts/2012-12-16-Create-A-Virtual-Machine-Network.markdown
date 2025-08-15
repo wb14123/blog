@@ -15,7 +15,7 @@ Because of some problems I'm working on, I need some test machines with Windows 
 There are two points I'd like to say:
 
 + Qemu with [kvm](http://www.linux-kvm.org/) is quite effective. I could start three guests (or more) at the same time and it works very well.
-+ Virt-manager is very easy to use. Before it , I waste almost a whole day to use qemu's command line to put the three guests into a same VLAN.
++ Virt-manager is very easy to use. Before it, I wasted almost a whole day to use qemu's command line to put the three guests into the same VLAN.
 
 I'm quite happy with these now. I could
 
@@ -23,4 +23,4 @@ I'm quite happy with these now. I could
 + Do experiments in multi-host environment.
 + Test whatever on any OS and need nothing to worry about.
 
-After all, I want to say something about virtaulization. I think the only useful situation of virtaulization is testing, learning or trying to do something for fun. I'm not saying it is not important. When a technology could let us do some funny things, it will be really awesome and important.
+After all, I want to say something about virtualization. I think the only useful situation of virtualization is testing, learning or trying to do something for fun. I'm not saying it is not important. When a technology could let us do some funny things, it will be really awesome and important.
