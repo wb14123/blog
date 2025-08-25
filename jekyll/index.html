@@ -4,7 +4,8 @@ layout: index
 {% for post in paginator.posts %}
 <div class="per_post">
   <h2 class="title {{ post.lang }}"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-  <div class="description">Posted on {{ post.date | date_to_string }}, tagged {% for tag in post.tags %}<code>{{ tag }}</code>{% endfor %}</div>
+  <div class="description">Posted on {{ post.date | date_to_string }} in <a class="category-link" href="/index_page.html#idx-{{ post.index | split:'/' | last | replace: ' ', '-' }}">{{ post.index }}</a></div>
+  <div class="description">{% for tag in post.tags %}<code>{{ tag }}</code>{% endfor %}</div>
 </div>
 {% endfor %}
 
