@@ -3,3 +3,5 @@ jekyll/_site/
 .jekyll-cache
 jekyll/vendor/
 jekyll/_drafts/
+CLAUDE*
+user_personality_context*
