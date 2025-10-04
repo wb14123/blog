@@ -1,7 +1,3 @@
-#!/usr/bin/env amm
-
-import $ivy.`com.lihaoyi::requests:0.9.0`
-import $ivy.`org.jsoup:jsoup:1.21.1`
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 
@@ -192,18 +188,26 @@ class DoubanDownloader extends BookDownloader {
 }
 
 
-@main
-def main(url: String, path: String): Unit = {
-  val goodReadsDownloader = new GoodReadsDownloader()
-  val goodReadListDownloader = new GoodReadListDownloader(goodReadsDownloader)
-  val downloaders = Seq(goodReadsDownloader, goodReadListDownloader, new DoubanDownloader())
-  downloaders.find(_.matches(url)) match {
-    case None => println(s"No downloader found for link $url")
-    case Some(downloader) =>
-      println(s"Trying to download from $url ...")
-      downloader.download(url).foreach { book =>
-        val outputFilePath = book.createJekllyFile(Path.of(path))
-        println(s"Book written to $outputFilePath")
-      }
+object AddBook {
+  def main(args: Array[String]): Unit = {
+    if (args.length != 2) {
+      println("Usage: add-book <url> <path>")
+      sys.exit(1)
+    }
+    val url = args(0)
+    val path = args(1)
+
+    val goodReadsDownloader = new GoodReadsDownloader()
+    val goodReadListDownloader = new GoodReadListDownloader(goodReadsDownloader)
+    val downloaders = Seq(goodReadsDownloader, goodReadListDownloader, new DoubanDownloader())
+    downloaders.find(_.matches(url)) match {
+      case None => println(s"No downloader found for link $url")
+      case Some(downloader) =>
+        println(s"Trying to download from $url ...")
+        downloader.download(url).foreach { book =>
+          val outputFilePath = book.createJekllyFile(Path.of(path))
+          println(s"Book written to $outputFilePath")
+        }
+    }
   }
 }

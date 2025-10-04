@@ -5,3 +5,6 @@ jekyll/vendor/
 jekyll/_drafts/
 CLAUDE*
 user_personality_context*
+
+.bsp/
+target/
