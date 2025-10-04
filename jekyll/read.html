@@ -1,9 +1,39 @@
 ---
 layout: index
 ---
+{% assign readingbooks = site.books | where: 'reading', true %}
+{% if readingbooks.size > 0 %}
+<div class="books">
+  <h1>Books I'm Reading</h1>
+  {% for post in readingbooks %}
+  <div class="book_card">
+    <img class="book_cover" src="{{ post.cover }}"/>
+    <div class="book_info">
+      <a class="book_title" href="{{ post.external_links.douban | default: post.external_links.goodreads }}" target="_blank">{{ post.title }}</a>
+      <div class="book_desc">
+          By
+          {% for author in post.authors %}
+          {{ author }},&nbsp;
+          {% endfor %}
+        {% if post.year == 'Ongoing' %}
+        Ongoing
+        {% else %}
+        published in {{ post.year }}
+        {% endif %}
+      </div>
+      {% assign contentsize = post.content | strip | size %}
+      {% if contentsize > 0  %}
+      <a class="book_title" href="{{ post.url }}">My Notes [{{ contentsize }} chars]</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
 <div class="books">
   <h1>Books I've Read</h1>
-  {% assign sortedbooks = site.books | sort: 'date_read' | reverse %}
+  {% assign sortedbooks = site.books | where_exp: 'item', 'item.reading != true' | sort: 'date_read' | reverse %}
   {% for post in sortedbooks %}
   <div class="book_card">
     <img class="book_cover" src="{{ post.cover }}"/>
@@ -14,7 +44,11 @@ layout: index
           {% for author in post.authors %}
           {{ author }},&nbsp;
           {% endfor %}
+        {% if post.year == 'Ongoing' %}
+        Ongoing
+        {% else %}
         published in {{ post.year }}
+        {% endif %}
       </div>
       <div class="book_date">Finished reading on {{ post.date_read | date_to_string }}</div>
       {% assign contentsize = post.content | strip | size %}
