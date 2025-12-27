@@ -7,6 +7,7 @@
   * Technical concepts and definitions.
   * System architecture designs and claims.
   * Mathematical formulas.
+  * Graphs and diagrams.
 * Check facts in the articles. Search the internet if possible. Use reliable source like reputable news organizations, official website of the software mentioned and so on.
 * Check the terminologies used in the articles are correct and used in a correct way.
 * Check if there is confusing, not so clear description in the article.
