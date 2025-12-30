@@ -2,7 +2,8 @@
 layout: book
 title: "Bad Blood: Secrets and Lies in a Silicon Valley Startup"
 authors: ["John Carreyrou"]
-cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1523311515i/37976541.jpg"
+cover: "/static/book-covers/bad-blood-secrets-and-lies-in-a-silicon-valley-startup.jpg"
+cover_original: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1523311515i/37976541.jpg"
 year: 2018
 external_links:
   goodreads: https://www.goodreads.com/book/show/37976541-bad-blood

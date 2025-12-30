@@ -3,7 +3,8 @@ layout: book
 title: "A History of the Ancient Near East, ca. 3000-323 BC"
 authors: ["Marc Van de Mieroop"]
 isbn: "9781405149112"
-cover: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348971802i/447556.jpg"
+cover: "/static/book-covers/a-history-of-the-ancient-near-east-ca-3000-323-bc.jpg"
+cover_original: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348971802i/447556.jpg"
 year: 2003
 external_links:
   goodreads: https://www.goodreads.com/book/show/447556.A_History_of_the_Ancient_Near_East_ca_3000_323_BC

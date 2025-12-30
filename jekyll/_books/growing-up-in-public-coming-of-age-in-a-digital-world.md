@@ -3,7 +3,8 @@ layout: book
 title: "Growing Up in Public: Coming of Age in a Digital World"
 authors: ["Devorah Heitner"]
 isbn: "9780593420966"
-cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1685350268i/71872866.jpg"
+cover: "/static/book-covers/growing-up-in-public-coming-of-age-in-a-digital-world.jpg"
+cover_original: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1685350268i/71872866.jpg"
 year: 2023
 external_links:
   goodreads: https://www.goodreads.com/book/show/71872866-growing-up-in-public

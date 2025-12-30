@@ -3,7 +3,8 @@ layout: book
 title: "C++: How to Program"
 authors: ["Harvey M. Deitel", "Paul J. Deitel"]
 isbn: "9780131857575"
-cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1386923997i/115703.jpg"
+cover: "/static/book-covers/c++-how-to-program.jpg"
+cover_original: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1386923997i/115703.jpg"
 year: 2014
 external_links:
   goodreads: https://www.goodreads.com/book/show/115703.C_

@@ -3,7 +3,8 @@ layout: book
 title: "The da Vinci Code 达·芬奇密码"
 authors: ["Dan Brown", "丹·布朗"]
 isbn: "9787020101566"
-cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1435112679i/25784055.jpg"
+cover: "/static/book-covers/the-da-vinci-code-达-芬奇密码.jpg"
+cover_original: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1435112679i/25784055.jpg"
 year: 2003
 external_links:
   goodreads: https://www.goodreads.com/book/show/25784055-the-da-vinci-code
