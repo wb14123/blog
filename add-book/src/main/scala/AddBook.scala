@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter
 import scala.jdk.CollectionConverters._
 import java.time.{Instant, LocalDate, ZoneId}
 import scala.util.Try
+import javax.imageio.ImageIO
+import java.awt.image.BufferedImage
+import java.awt.RenderingHints
+import java.net.URL
 
 case class Book(
     title: String,
@@ -20,7 +24,15 @@ case class Book(
 ) {
   private def removeEmptyLines(str: String): String = str.replaceAll("\n\n+", "\n").replaceAll("\n\n+$", "")
 
-  def toLiquidHeader: String = {
+  private def sanitizeFilename(name: String): String = {
+    name
+      .replaceAll("['\"?.!《》/\\\\]", "") // remove all special chars
+      .replaceAll("[ .,。，·:：]", "-") // replace separator chars to `-`
+      .replaceAll("-+", "-") // consolidate `-` chars
+      .toLowerCase
+  }
+
+  def toLiquidHeader(localCoverPath: String): String = {
     val externalLinkEntry = if (externalLinks.nonEmpty) {
       "external_links:\n" + externalLinks.map { case (provider, url) => s"  $provider: $url" }.mkString("\n")
     } else ""
@@ -29,7 +41,8 @@ case class Book(
        |title: "$title"
        |authors: [${authors.map(a => s"\"$a\"").mkString(", ")}]
        |${isbn.map(isbn => s"isbn: \"$isbn\"").getOrElse("")}
-       |cover: "$coverUrl"
+       |cover: "$localCoverPath"
+       |cover_original: "$coverUrl"
        |${publishYear.map(year => s"year: $year").getOrElse("")}
        |${externalLinkEntry}
        |date_read: "${dateRead.atZone(java.time.ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))}"
@@ -38,16 +51,51 @@ case class Book(
     removeEmptyLines(header)
   }
 
-  def createJekllyFile(path: Path): String = {
-    val filename = title
-      .replaceAll("['\"?.!《》/\\\\]", "") // remove all special chars
-      .replaceAll("[ .,。，·:：]", "-") // replace seperator chars to `-`
-      .replaceAll("-+", "-") // consolidate `-` chars
-      .toLowerCase
+  def downloadAndResizeCover(coverDir: Path, maxSize: Int = 120): String = {
+    println(s"Downloading cover from $coverUrl ...")
+    val originalImage = ImageIO.read(new URL(coverUrl))
+
+    val width = originalImage.getWidth
+    val height = originalImage.getHeight
+    val (newWidth, newHeight) = if (width <= maxSize && height <= maxSize) {
+      (width, height)
+    } else if (width > height) {
+      (maxSize, (height.toDouble / width * maxSize).toInt)
+    } else {
+      ((width.toDouble / height * maxSize).toInt, maxSize)
+    }
+
+    val resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB)
+    val g2d = resizedImage.createGraphics()
+    g2d.setColor(java.awt.Color.WHITE)
+    g2d.fillRect(0, 0, newWidth, newHeight)
+    g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR)
+    g2d.drawImage(originalImage, 0, 0, newWidth, newHeight, null)
+    g2d.dispose()
+
+    val filename = sanitizeFilename(title) + ".jpg"
+    coverDir.toFile.mkdirs()
+    val outputFile = coverDir.resolve(filename).toFile
+    ImageIO.write(resizedImage, "jpg", outputFile)
+    println(s"Cover saved to ${outputFile.getAbsolutePath}")
+
+    // Compute the Jekyll-relative path
+    val coverDirStr = coverDir.toString.replace("\\", "/")
+    val relativePath = if (coverDirStr.startsWith("jekyll/")) {
+      "/" + coverDirStr.stripPrefix("jekyll/") + "/" + filename
+    } else {
+      "/" + coverDirStr + "/" + filename
+    }
+    relativePath
+  }
+
+  def createJekllyFile(path: Path, coverDir: Path): String = {
+    val localCoverPath = downloadAndResizeCover(coverDir)
+    val filename = sanitizeFilename(title)
     val file = path.resolve(s"$filename.md").toFile
     println(s"Creating file ${file.getAbsolutePath}")
     val writer = new PrintWriter(file)
-    writer.write(toLiquidHeader)
+    writer.write(toLiquidHeader(localCoverPath))
     writer.close()
     file.getAbsolutePath
   }
@@ -189,20 +237,32 @@ class DoubanDownloader extends BookDownloader {
 
 
 object AddBook {
-  private val DEFAULT_PATH = "jekyll/_books"
+  private val DEFAULT_BOOKS_PATH = "jekyll/_books"
+  private val DEFAULT_COVERS_PATH = "jekyll/static/book-covers"
 
   def main(args: Array[String]): Unit = {
-    if (args.length < 1 || args.length > 2) {
-      println("Usage: add-book <url> [path]")
-      println(s"  path defaults to '$DEFAULT_PATH' if not specified")
+    if (args.length < 1 || args.length > 3) {
+      println("Usage: add-book <url> [books-path] [covers-path]")
+      println(s"  books-path defaults to '$DEFAULT_BOOKS_PATH' if not specified")
+      println(s"  covers-path defaults to '$DEFAULT_COVERS_PATH' if not specified")
       sys.exit(1)
     }
     val url = args(0)
-    val path = if (args.length == 2) args(1) else DEFAULT_PATH
+    val booksPath = if (args.length >= 2) args(1) else DEFAULT_BOOKS_PATH
+    val coversPath = if (args.length >= 3) args(2) else DEFAULT_COVERS_PATH
 
-    val pathFile = new java.io.File(path)
-    if (!pathFile.exists() || !pathFile.isDirectory) {
-      println(s"Error: Path '$path' does not exist or is not a directory")
+    val booksPathFile = new java.io.File(booksPath)
+    if (!booksPathFile.exists() || !booksPathFile.isDirectory) {
+      println(s"Error: Path '$booksPath' does not exist or is not a directory")
+      sys.exit(1)
+    }
+
+    val coversPathFile = new java.io.File(coversPath)
+    if (!coversPathFile.exists()) {
+      coversPathFile.mkdirs()
+    }
+    if (!coversPathFile.isDirectory) {
+      println(s"Error: Path '$coversPath' is not a directory")
       sys.exit(1)
     }
 
@@ -214,7 +274,7 @@ object AddBook {
       case Some(downloader) =>
         println(s"Trying to download from $url ...")
         downloader.download(url).foreach { book =>
-          val outputFilePath = book.createJekllyFile(Path.of(path))
+          val outputFilePath = book.createJekllyFile(Path.of(booksPath), Path.of(coversPath))
           println(s"Book written to $outputFilePath")
         }
     }
