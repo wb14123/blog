@@ -189,13 +189,22 @@ class DoubanDownloader extends BookDownloader {
 
 
 object AddBook {
+  private val DEFAULT_PATH = "jekyll/_books"
+
   def main(args: Array[String]): Unit = {
-    if (args.length != 2) {
-      println("Usage: add-book <url> <path>")
+    if (args.length < 1 || args.length > 2) {
+      println("Usage: add-book <url> [path]")
+      println(s"  path defaults to '$DEFAULT_PATH' if not specified")
       sys.exit(1)
     }
     val url = args(0)
-    val path = args(1)
+    val path = if (args.length == 2) args(1) else DEFAULT_PATH
+
+    val pathFile = new java.io.File(path)
+    if (!pathFile.exists() || !pathFile.isDirectory) {
+      println(s"Error: Path '$path' does not exist or is not a directory")
+      sys.exit(1)
+    }
 
     val goodReadsDownloader = new GoodReadsDownloader()
     val goodReadListDownloader = new GoodReadListDownloader(goodReadsDownloader)
