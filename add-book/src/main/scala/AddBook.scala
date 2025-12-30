@@ -51,7 +51,7 @@ case class Book(
     removeEmptyLines(header)
   }
 
-  def downloadAndResizeCover(coverDir: Path, maxSize: Int = 120): String = {
+  def downloadAndResizeCover(coverDir: Path, maxSize: Int = 360): String = {
     println(s"Downloading cover from $coverUrl ...")
     val originalImage = ImageIO.read(new URL(coverUrl))
 
