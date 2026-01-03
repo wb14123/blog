@@ -20,14 +20,38 @@ layout : default
 </article>
 
 <footer id="post_footer">
-  <table><tr>
-    {% if page.previous %}
-      <td id="prev"><a href="{{ page.previous.url }}">Prev: {{ page.previous.title}}</a></td>
+<table>
+
+    <!-- Navigation within the same index/category -->
+    {% if page.index_prev_next %}
+      {% assign index_entries = page.index | sort %}
+      {% for entry in index_entries limit:1 %}
+        {% assign clean_entry = entry | strip %}
+        {% assign clean_entry = clean_entry | remove_first:'/' | remove:'"' | remove:"'" %}
+        {% assign nav_data = page.index_prev_next[entry] %}
+        {% if nav_data %}
+          <tr>
+            {% if nav_data.prev %}
+              <td class="prev"><a href="{{ nav_data.prev.url }}">Prev in {{ entry }}: {{ nav_data.prev.title }}</a></td>
+            {% endif %}
+            {% if nav_data.next %}
+              <td class="next"><a href="{{ nav_data.next.url }}">Next in {{ entry }}: {{ nav_data.next.title }}</a></td>
+            {% endif %}
+          </tr>
+        {% endif %}
+      {% endfor %}
     {% endif %}
-    {% if page.next %}
-      <td id="next"><a href="{{ page.next.url }}" id="next">Next: {{ page.next.title }}</a></td>
-    {% endif %}
-  </tr></table>
+
+    <!-- Global navigation -->
+    <tr>
+      {% if page.previous %}
+        <td class="prev"><a href="{{ page.previous.url }}">Prev: {{ page.previous.title}}</a></td>
+      {% endif %}
+      {% if page.next %}
+        <td class="next"><a href="{{ page.next.url }}" id="next">Next: {{ page.next.title }}</a></td>
+      {% endif %}
+    </tr>
+  </table>
 </footer>
 
 <!--
