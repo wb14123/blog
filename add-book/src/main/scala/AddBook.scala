@@ -11,7 +11,7 @@ import scala.util.Try
 import javax.imageio.ImageIO
 import java.awt.image.BufferedImage
 import java.awt.RenderingHints
-import java.net.URL
+import java.net.{HttpURLConnection, URL}
 
 case class Book(
     title: String,
@@ -53,7 +53,20 @@ case class Book(
 
   def downloadAndResizeCover(coverDir: Path, maxSize: Int = 360): String = {
     println(s"Downloading cover from $coverUrl ...")
-    val originalImage = ImageIO.read(new URL(coverUrl))
+    val connection = new URL(coverUrl).openConnection().asInstanceOf[HttpURLConnection]
+    connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+    connection.setRequestProperty("Accept", "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8")
+    connection.setRequestProperty("Accept-Language", "en-US,en;q=0.9")
+    connection.setRequestProperty("Referer", coverUrl)
+    connection.setConnectTimeout(30000)
+    connection.setReadTimeout(30000)
+    val inputStream = connection.getInputStream
+    val originalImage = try {
+      ImageIO.read(inputStream)
+    } finally {
+      inputStream.close()
+      connection.disconnect()
+    }
 
     val width = originalImage.getWidth
     val height = originalImage.getHeight
@@ -208,7 +221,8 @@ class DoubanDownloader extends BookDownloader {
     val title = getFromMeta(html, "og:title")
     val externalUrl = getFromMeta(html, "og:url")
     val coverUrl = getFromMeta(html, "og:image")
-    val proxiedCoverUrl = s"https://http-proxy.rssbrain.com/?link=$coverUrl"
+    // val proxiedCoverUrl = s"https://http-proxy.rssbrain.com/?link=$coverUrl"
+    val proxiedCoverUrl = coverUrl
     val isbn = getFromMeta(html, "book:isbn")
     val author = getFromMeta(html, "book:author")
     val book = Book(
