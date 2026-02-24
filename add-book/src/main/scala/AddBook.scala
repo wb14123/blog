@@ -123,10 +123,10 @@ class GoodReadsDownloader extends BookDownloader {
     val res = requests.get(url).text()
     val html = Jsoup.parse(res)
     val body = html.body()
-    val title = body.select("[data-testid=bookTitle]").getFirst.text()
+    val title = body.select("[data-testid=bookTitle]").first().text()
     val authors = body.select(".ContributorLink__name[data-testid=name]").listIterator()
       .asScala.map(_.text()).toList.distinct
-    val coverUrl = body.select(".BookCover__image img").getFirst.attr("src")
+    val coverUrl = body.select(".BookCover__image img").first().attr("src")
     val jsonScript = html.select("script[type=application/ld+json]").first().data()
     val isbnPattern = """"isbn":"([^"]+)"""".r
     val isbn = isbnPattern.findFirstMatchIn(jsonScript).map(_.group(1))
@@ -187,9 +187,9 @@ class GoodReadListDownloader(bookDownloader: BookDownloader) extends BookDownloa
     val html = Jsoup.parse(res)
     val body = html.body()
     body.select("#booksBody .bookalike").listIterator().asScala.toList.map { elem =>
-      val urlPath = elem.select(".title a").getFirst.attr("href")
+      val urlPath = elem.select(".title a").first().attr("href")
       val url = s"https://www.goodreads.com$urlPath"
-      val dateReadStr = Option(elem.select(".date_read_value")).filter(_.size() > 0).map(_.getFirst.text())
+      val dateReadStr = Option(elem.select(".date_read_value")).filter(_.size() > 0).map(_.first().text())
       val dateRead = dateReadStr.map(parseTimeToInstant).getOrElse(Instant.now())
       (url, dateRead)
     }
@@ -231,7 +231,7 @@ class DoubanDownloader extends BookDownloader {
   }
 
   private def getFromMeta(elem: Element, property: String): String = {
-    elem.select(s"meta[property=\"$property\"]").getFirst.attr("content")
+    elem.select(s"meta[property=\"$property\"]").first().attr("content")
   }
 }
 
