@@ -1,6 +1,7 @@
 ---
 layout: index
 ---
+{% comment %}
 {% assign readingbooks = site.books | where: 'reading', true %}
 {% if readingbooks.size > 0 %}
 <div class="books">
@@ -30,6 +31,7 @@ layout: index
   {% endfor %}
 </div>
 {% endif %}
+{% endcomment %}
 
 <div class="books">
   <h1>Books I've Read</h1>
