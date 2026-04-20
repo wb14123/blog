@@ -15,4 +15,4 @@ fi
 
 # Return to original directory and run the JAR
 cd "$ORIGINAL_DIR"
-java -jar "$SCRIPT_DIR/target/scala-2.13/add-book.jar" "$@"
+java -Djava.awt.headless=true -jar "$SCRIPT_DIR/target/scala-2.13/add-book.jar" "$@"
