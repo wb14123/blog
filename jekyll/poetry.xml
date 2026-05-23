@@ -1,0 +1,29 @@
+---
+layout: none
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <generator uri="https://jekyllrb.com/" version="{{ jekyll.version }}">Jekyll</generator>
+  <link href="{{ site.url }}/poetry.xml" rel="self" type="application/atom+xml" />
+  <link href="{{ site.url }}/poetry.html" rel="alternate" type="text/html" />
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ site.url }}/poetry.xml</id>
+  <title type="html">{{ site.title }} — Poetry</title>
+  <subtitle>Poems by Bin Wang</subtitle>
+  {% assign sorted_poetry = site.poetry | sort: 'date' | reverse %}
+  {% for post in sorted_poetry limit:20 %}
+  <entry>
+    <title type="html">{{ post.title | xml_escape }}</title>
+    <link href="{{ site.url }}/poetry.html#{{ post.title | slugify }}" rel="alternate" type="text/html" title="{{ post.title | xml_escape }}" />
+    <published>{{ post.date | date_to_xmlschema }}</published>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <id>{{ site.url }}/poetry.html#{{ post.title | slugify }}</id>
+    <content type="html" xml:base="{{ site.url }}/poetry.html">
+      <![CDATA[{{ post.content | strip }}]]>
+    </content>
+    <summary type="html">
+      <![CDATA[{{ post.content | strip | truncatewords: 30 | xml_escape }}]]>
+    </summary>
+  </entry>
+  {% endfor %}
+</feed>

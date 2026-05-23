@@ -1,0 +1,36 @@
+---
+layout: none
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <generator uri="https://jekyllrb.com/" version="{{ jekyll.version }}">Jekyll</generator>
+  <link href="{{ site.url }}/books.xml" rel="self" type="application/atom+xml" />
+  <link href="{{ site.url }}/read.html" rel="alternate" type="text/html" />
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ site.url }}/books.xml</id>
+  <title type="html">{{ site.title }} — Books</title>
+  <subtitle>Books I've read, with notes</subtitle>
+  {% assign sorted_books = site.books | sort: 'date_read' | reverse %}
+  {% for post in sorted_books limit:20 %}
+  <entry>
+    <title type="html">{{ post.title | xml_escape }}</title>
+    <link href="{{ site.url }}{{ post.url }}" rel="alternate" type="text/html" title="{{ post.title | xml_escape }}" />
+    <published>{{ post.date_read | date_to_xmlschema }}</published>
+    <updated>{{ post.date_read | date_to_xmlschema }}</updated>
+    <id>{{ site.url }}{{ post.url }}</id>
+    <content type="html" xml:base="{{ site.url }}{{ post.url }}">
+      <![CDATA[
+        <p>By {% for author in post.authors %}{{ author }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if post.year %}, published in {{ post.year }}{% endif %}</p>
+        {% if post.cover %}<p><img src="{{ site.url }}{{ post.cover }}" alt="{{ post.title | xml_escape }}" /></p>{% endif %}
+        {% assign contentsize = post.content | strip | size %}
+        {% if contentsize > 0 %}
+        {{ post.content }}
+        {% endif %}
+      ]]>
+    </content>
+    <summary type="html">
+      <![CDATA[By {% for author in post.authors %}{{ author }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if post.year %}, published in {{ post.year }}{% endif %}.{% assign contentsize = post.content | strip | size %}{% if contentsize > 0 %} My Notes: {{ post.content | strip | truncatewords: 50 | xml_escape }}{% endif %}]]>
+    </summary>
+  </entry>
+  {% endfor %}
+</feed>
