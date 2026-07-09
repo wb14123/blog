@@ -1,4 +1,8 @@
-# Guide for Grammar Review
+---
+description: Review grammar
+user-invocable: true
+disable-model-invocation: true
+---
 
 * Review the article for problems like grammar errors, spelling errors, typos, capitalization, and so on.
 * The theme of the articles can cover a wide range of topics. So do not assume the formality and change it.

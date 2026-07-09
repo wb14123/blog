@@ -1,4 +1,8 @@
-# Guide for Correctness Check
+---
+description: Review correctness
+user-invocable: true
+disable-model-invocation: true
+---
 
 * Check the technical correctness thoroughly. Think about all the scenarios.
 * The technical correctness includes but not limited to these things:
