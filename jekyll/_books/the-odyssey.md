@@ -5,6 +5,7 @@ authors: ["Homer", "Emily Wilson"]
 isbn: "9780393089059"
 cover: "/static/book-covers/the-odyssey.jpg"
 cover_original: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1487351579i/34068470.jpg"
+year: 2017
 external_links:
   goodreads: https://www.goodreads.com/book/show/34068470
 date_read: "2026-08-26"
