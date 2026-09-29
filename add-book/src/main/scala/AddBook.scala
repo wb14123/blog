@@ -51,13 +51,14 @@ case class Book(
     removeEmptyLines(header)
   }
 
-  def downloadAndResizeCover(coverDir: Path, maxSize: Int = 360): String = {
+  def downloadAndResizeCover(url: String, coverDir: Path, maxSize: Int = 360): String = {
     println(s"Downloading cover from $coverUrl ...")
     val connection = new URL(coverUrl).openConnection().asInstanceOf[HttpURLConnection]
     connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
     connection.setRequestProperty("Accept", "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8")
     connection.setRequestProperty("Accept-Language", "en-US,en;q=0.9")
-    connection.setRequestProperty("Referer", coverUrl)
+    connection.setRequestProperty("Accept-Encoding", "gzip, deflate, br, zstd")
+    connection.setRequestProperty("Referer", url)
     connection.setConnectTimeout(30000)
     connection.setReadTimeout(30000)
     val inputStream = connection.getInputStream
@@ -102,8 +103,8 @@ case class Book(
     relativePath
   }
 
-  def createJekllyFile(path: Path, coverDir: Path): String = {
-    val localCoverPath = downloadAndResizeCover(coverDir)
+  def createJekllyFile(url: String, path: Path, coverDir: Path): String = {
+    val localCoverPath = downloadAndResizeCover(url, coverDir)
     val filename = sanitizeFilename(title)
     val file = path.resolve(s"$filename.md").toFile
     println(s"Creating file ${file.getAbsolutePath}")
@@ -288,7 +289,7 @@ object AddBook {
       case Some(downloader) =>
         println(s"Trying to download from $url ...")
         downloader.download(url).foreach { book =>
-          val outputFilePath = book.createJekllyFile(Path.of(booksPath), Path.of(coversPath))
+          val outputFilePath = book.createJekllyFile(url, Path.of(booksPath), Path.of(coversPath))
           println(s"Book written to $outputFilePath")
         }
     }
