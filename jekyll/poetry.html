@@ -9,7 +9,7 @@ layout: index
     <div class="poetry_date">{{ post.date | date_to_string }}</div>
     {{ post.content }}
     {% if post.comment %}
-    <details class="poetry_comment">
+    <details class="poetry_comment" open>
       <summary>注</summary>
       {{ post.comment }}
     </details>
